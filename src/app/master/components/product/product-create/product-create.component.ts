@@ -15,6 +15,7 @@ export class ProductCreateComponent implements OnInit {
   taxes: any;
   productCategories: any;
   errors: any;
+  data: any[] = []
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,
@@ -28,7 +29,7 @@ export class ProductCreateComponent implements OnInit {
     this.product = this.fb.group({
       "id": ['new', Validators.required],
       "product_name": ['', Validators.required],
-      "product_display_name": ['', Validators.required],
+      "product_display_name": [''],
       "product_code": ['', Validators.required],
       "product_uom": ['', Validators.required],
       "product_conv_uom": ['', Validators.required],

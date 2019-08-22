@@ -1,4 +1,4 @@
-<button class="btn btn-primary btn-raised" (click)="toBack()">Back</button>
+<button class="btn btn-primary btn-raised" [routerLink]="['/master/product']">Back</button>
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -18,9 +18,7 @@
                       class="form-control border-primary" name="product_name">
                     <input type="hidden" formControlName="id" id="id" value="new" class="form-control border-primary"
                       name="id">
-                    <div *ngIf="errors.product_name !== '' ">
-                      <p class="red mt-1">{{errors.product_name}}</p>
-                    </div>
+
                   </div>
 
                 </div>
@@ -36,9 +34,6 @@
                     <label for="product_code">Product Code</label>
                     <input type="text" formControlName="product_code" id="product_code"
                       class="form-control border-primary" name="product_code">
-                    <div *ngIf="errors.product_code !== '' ">
-                      <p class="red mt-1">{{errors.product_code}}</p>
-                    </div>
                   </div>
                 </div>
                 <div class="col-md-2">
@@ -255,7 +250,7 @@
 
             </div>
             <div class="form-actions left">
-              <input type="submit" [disabled]=isProcessing value="Save" class="btn btn-raised btn-primary">
+              <input type="submit" [disabled]="product.invalid" value="Save" class="btn btn-raised btn-primary">
             </div>
           </form>
         </div>
