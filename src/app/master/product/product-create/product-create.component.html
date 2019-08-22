@@ -1,0 +1,266 @@
+<button class="btn btn-primary btn-raised" (click)="toBack()">Back</button>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-colored-form-control">Product</h4>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          <form class="form" [formGroup]="product" (ngSubmit)="addOrUpdate(product)">
+            <div class="form-body">
+              <h4 class="form-section"><i class="ft-info"></i> Product Details</h4>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="product_name">Product Name</label>
+                    <input type="text" formControlName="product_name" id="product_name"
+                      class="form-control border-primary" name="product_name">
+                    <input type="hidden" formControlName="id" id="id" value="new" class="form-control border-primary"
+                      name="id">
+                    <div *ngIf="errors.product_name !== '' ">
+                      <p class="red mt-1">{{errors.product_name}}</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="product_display_name">Product Display Name</label>
+                    <input type="text" formControlName="product_display_name" id="product_display_name"
+                      class="form-control border-primary" name="product_display_name">
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="product_code">Product Code</label>
+                    <input type="text" formControlName="product_code" id="product_code"
+                      class="form-control border-primary" name="product_code">
+                    <div *ngIf="errors.product_code !== '' ">
+                      <p class="red mt-1">{{errors.product_code}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="product_hsn">HSN Code</label>
+                    <input type="text" formControlName="product_hsn" id="product_hsn"
+                      class="form-control border-primary" name="product_hsn">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="product_category">Product Category</label>
+                    <select class="form-control" formControlName="product_category" id="product_category"
+                      name="product_category">
+                      <option *ngFor="let product_category of productCategories" value="{{product_category.id}}">
+                        {{product_category.product_category_name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="product_uom">UOM</label>
+                    <select class="form-control" formControlName="product_uom" id="product_uom">
+                      <!-- <option *ngFor="let uom of uoms" value="{{uom.id}}">{{uom.unit_name}}</option> -->
+                      <option *ngFor="let uom of data" value="{{uom.id}}">{{uom.unit_name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="product_conv_uom">Conv. UOM</label>
+                    <select class="form-control" formControlName="product_conv_uom" id="product_conv_uom">
+                      <option *ngFor="let uom of data" value="{{uom.id}}">{{uom.unit_name}}</option>
+                      <!-- <option *ngFor="let uom of uoms" value="{{uom.id}}">{{uom.unit_name}}</option> -->
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="product_conv_factor">Conv. Factor</label>
+                    <input type="number" formControlName="product_conv_factor" id="product_conv_factor"
+                      class="form-control border-primary" name="product_conv_factor">
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label for="product_trade_name">Trade Name</label>
+                    <input type="text" formControlName="product_trade_name" id="product_trade_name"
+                      class="form-control border-primary" name="product_trade_name">
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <label for="product_type">Product Type</label>
+                    <select class="form-control" formControlName="product_type" id="product_type">
+                      <option>RAW Product</option>
+                      <option>Finished Product</option>
+                      <option>Semi-Finished Product</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label for="product_store_location">Store Location</label>
+                    <input type="text" formControlName="product_store_location" id="product_store_location"
+                      class="form-control border-primary" name="product_store_location">
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="form-section mt-1"><i class="ft-info"></i>Stock Management</h4>
+              <div class="row">
+                <div class="col-md-2">
+                  <!-- <div class="form-group">
+                                            <label for="product_batch_type">Batch Type</label>
+                                            <select class="form-control" formControlName="product_batch_type" id="product_batch_type">
+                                                <option>Yes</option>
+                                                <option>No</option>
+                                            </select>
+                                        </div> -->
+                  <div class="form-group">
+                    <label for="product_batch_type">Batch Type</label> <br />
+                    <div class="btn-group btn-group-toggle btn-group-sm btn-raised" formControlName="product_batch_type"
+                      ngbRadioGroup name="product_batch_type">
+                      <label ngbButtonLabel class="btn-light btn-sm btn-raised">
+                        <input ngbButton type="radio" value="Yes"> Yes</label>
+                      <label ngbButtonLabel class="btn-light btn-sm btn-raised">
+                        <input ngbButton type="radio" value="No"> No</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <!-- <div class="form-group">
+                                            <label for="product_maintain_stock_ledger">Maintain Stock Ledger</label>
+                                            <select class="form-control" formControlName="product_maintain_stock_ledger" id="product_maintain_stock_ledger">
+                                                  <option>Yes</option>
+                                                  <option>No</option>
+                                                </select>
+                                        </div> -->
+                  <div class="form-group">
+                    <label for="product_maintain_stock_ledger">Maintain Stock Ledger</label><br />
+                    <div class="btn-group btn-group-toggle btn-group-sm btn-raised"
+                      formControlName="product_stock_ledger" ngbRadioGroup name="product_stock_ledger">
+                      <label ngbButtonLabel class="btn-light btn-sm btn-raised">
+                        <input ngbButton type="radio" value="Yes"> Yes</label>
+                      <label ngbButtonLabel class="btn-light btn-sm btn-raised">
+                        <input ngbButton type="radio" value="No"> No</label>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="product_rate_pick">Rate Pick From</label>
+                    <select class="form-control" formControlName="product_rate_pick" id="product_rate_pick">
+                      <option>MRP Rates Standards</option>
+                      <option>Sales Rates Standards</option>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <h4 class="form-section mt-1"><i class="ft-info"></i>Item Price</h4>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="product_purchase_rate">Purchase Rate</label>
+                        <input type="number" formControlName="product_purchase_rate" id="product_purchase_rate"
+                          class="form-control border-primary" name="product_purchase_rate">
+                      </div>
+
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="product_sales_rate">Sales Rate</label>
+                        <input type="number" formControlName="product_sales_rate" id="product_sales_rate"
+                          class="form-control border-primary" name="product_sales_rate">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!-- <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="product_purchase_rate">Purchase Rate</label>
+                                                    <input type="number" formControlName="product_purchase_rate" id="product_purchase_rate" class="form-control border-primary" name="product_purchase_rate">
+                                                </div>
+                                            </div> -->
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="product_mrp_rate">MRP Rate</label>
+                        <input type="number" formControlName="product_mrp_rate" id="product_sales_rate"
+                          class="form-control border-primary" name="product_sales_rate">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="product_gst_rate">GST Slot %</label>
+
+                        <select class="form-control" formControlName="product_gst_rate" id="product_gst_rate">
+                          <option *ngFor="let tax of taxes" value="{{tax.id}}">{{tax.tax_name}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!-- <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="product_purchase_rate">Sales Rate</label>
+                                                    <input type="number" formControlName="product_sales_rate" id="product_purchase_rate" class="form-control border-primary" name="product_purchase_rate">
+                                                </div>
+                                            </div> -->
+
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <h4 class="form-section mt-1"><i class="ft-info"></i>Critical Level</h4>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="product_max_level">Max Level</label>
+                        <input type="number" formControlName="product_max_level" id="product_max_level"
+                          class="form-control border-primary" name="product_max_level">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="product_min_level">Min Level</label>
+                        <input type="number" formControlName="product_min_level" id="product_min_level"
+                          class="form-control border-primary" name="product_min_level">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <fieldset class="form-group">
+                    <label for="product_description">Description</label>
+                    <textarea class="form-control" formControlName="product_description" id="product_description"
+                      name="product_description" rows="3"></textarea>
+                  </fieldset>
+                </div>
+              </div>
+
+            </div>
+            <div class="form-actions left">
+              <input type="submit" [disabled]=isProcessing value="Save" class="btn btn-raised btn-primary">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
