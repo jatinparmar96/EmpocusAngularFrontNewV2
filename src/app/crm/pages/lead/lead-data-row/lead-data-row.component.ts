@@ -7,10 +7,16 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   styleUrls: ['./lead-data-row.component.scss'],
   animations: [
     trigger('fade', [
-      state('void, hidden', style({ opacity: 0 })),
-      state('visible', style({ opacity: 1 })),
-      transition('hidden <=> visible', [
-        animate(150)
+      state('void, hidden', style({
+        opacity: 0,
+        //transform: 'translateX(-100%)',
+      })),
+      state('visible', style({
+        opacity: 1,
+        // transform: 'translateX(0%)',
+      })),
+      transition('hidden => visible', [
+        animate("300ms ease")
       ])
     ])
   ]
@@ -26,7 +32,6 @@ export class LeadDataRowComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
 
     setTimeout(() => {
       this.localVisibility = changes.visibility.currentValue;

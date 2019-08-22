@@ -3,11 +3,32 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ApiService } from 'app/shared/services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifyService } from 'app/shared/services/notify.service';
+import { trigger, style, state, transition, animate, query } from '@angular/animations';
 
 @Component({
   selector: 'app-lead-create',
   templateUrl: './lead-create.component.html',
-  styleUrls: ['./lead-create.component.scss']
+  styleUrls: ['./lead-create.component.scss'],
+  animations: [
+    trigger('fade', [
+      state('void, hidden', style({
+        transform: 'scale(0) translateY(100%)'
+      })),
+      transition('void => *', [
+        animate('300ms ease',
+          style({
+            transform: 'scale(1) translateY(0)'
+          }))
+      ]),
+      transition('* => void', [
+        animate('300ms ease-out',
+          style({
+            'background-color': 'red',
+            transform: 'scale(0.3) translateY(-100%)'
+          }))
+      ])
+    ])
+  ]
 })
 export class LeadCreateComponent implements OnInit {
   active: string = 'today';
