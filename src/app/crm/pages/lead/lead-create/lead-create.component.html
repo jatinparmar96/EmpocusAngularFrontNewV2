@@ -1,0 +1,472 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title" id="basic-layout-colored-form-control">Add New Lead</h4>
+      </div>
+      <div class="card-body">
+        <div class="px-3">
+          <!-- Form Start -->
+          <form class="form" [formGroup]="lead_data" (ngSubmit)="addOrUpdate(lead_data)">
+            <input type="hidden" formControlName="id" id="id" class="form-control border-primary" name="id">
+            <div class="form-body">
+              <h4 class="form-section"><i class="ft-info primary"></i> Basic Information </h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="company_name">Company Name</label>
+                    <input type="text" formControlName="company_name" id="company_name"
+                      class="form-control border-primary" name="company_name" required>
+                    <div *ngIf="companyName.touched && companyName.invalid">
+                      <small class="form-text text-muted danger">Please enter a company Name!</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" formArrayName="contact_persons">
+                <div class="col-md-12">
+                  <h4 class="form-section"><i class="ft-user danger"></i> Contact Persons <a
+                      class="btn btn-raised btn-primary btn-sm" (click)="addContactGroup()">
+                      Add New
+                    </a></h4>
+                  <div class="card" *ngFor="let contact of contactsFormArray.controls;let i = index" [formGroupName]="i"
+                    @fade>
+                    <div class="card-body">
+                      <h5 class="card-title">Contact Person-{{i+1}} <a *ngIf="contactsFormArray.controls.length!==1"
+                          (click)=removeContact(i)><i class="ft-x danger"></i></a>
+                      </h5>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="name-{{i}}">Name</label>
+                            <input type="text" formControlName="name" placeholder="Roxso LLP" id="name-{{i}}"
+                              class="form-control border-primary">
+                            <div
+                              *ngIf="contactsFormArray.controls[i].controls.name.touched && contactsFormArray.controls[i].controls.name.invalid">
+                              <small class="form-text text-muted danger">Please enter Name of the contact!</small>
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="email-{{i}}">Email</label>
+                            <input type="text" formControlName="email" id="email-{{i}}" placeholder="Roxso"
+                              class="form-control border-primary">
+                            <div *ngIf="contactsFormArray.controls[i].controls.email.errors">
+                              <div
+                                *ngIf="contactsFormArray.controls[i].controls.email.touched && contactsFormArray.controls[i].controls.email.errors.required">
+                                <small class="form-text text-muted danger">Please enter Email of the contact!</small>
+                              </div>
+                              <div
+                                *ngIf="contactsFormArray.controls[i].controls.email.touched && contactsFormArray.controls[i].controls.email.errors.email">
+                                <small class="form-text text-muted danger">Please enter Valid Email Address of the
+                                  contact!</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="primary_contact_number-{{i}}">Primary Contact Number</label>
+                            <input type="number" formControlName="primary_contact_number"
+                              id="primary_contact_number-{{i}}" class="form-control border-primary"
+                              name="primary_contact_number">
+                            <div
+                              *ngIf="contactsFormArray.controls[i].controls.primary_contact_number.touched && contactsFormArray.controls[i].controls.primary_contact_number.invalid">
+                              <small class="form-text text-muted danger">Please enter Primary Contact Number!</small>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="secondary_contact_number-{{i}}">Secondary Contact Number</label>
+                            <input type="number" formControlName="secondary_contact_number"
+                              id="secondary_contact_number-{{i}}" class="form-control border-primary">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <h4 class="form-section"><i class="ft-edit-2 secondary"></i> Lead Details</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="assigned_to">Assigned To</label>
+                    <select formControlName="assigned_to">
+                      <option>Employee 1</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="lead_status">Lead Status</label>
+                    <select class="form-control" formControlName="lead_status" id="lead_status">
+                      <option>Select Option</option>
+                      <option>New</option>
+                      <option>Contacted</option>
+                      <option>Interested</option>
+                      <option>Under Review</option>
+                      <option>Demo</option>
+                      <option>Unqualified</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="source">Source</label>
+                    <select class="form-control" formControlName="source" id="source">
+                      <option>Select Option</option>
+                      <option>Web</option>
+                      <option>Organic Search</option>
+                      <option>Email</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="product">Product</label>
+                    <select class="form-control" formControlName="product" id="product">
+                      <option>Select Option</option>
+                      <option>Product 1</option>
+                      <option>Product 2</option>
+                      <option>Product 3</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <h4 class="form-section mt-1"><i class="ft-info"></i> Other Details</h4>
+              <div class="row">
+                <div class="col-md-12">
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link" [class.active]="active=='today'" (click)="active='today'" role="tab"> Company
+                        Info </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" [class.active]="active=='missed'" (click)="active='missed'"
+                        role="tab">Address</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" [class.active]="active=='social'" (click)="active='social'"
+                        role="tab">Social</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" [class.active]="active =='future'" (click)="active='future'"
+                        role="tab">Deal</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" [class.active]="active=='source'" (click)="active='source'" role="tab">Source
+                        Info</a>
+                    </li>
+
+                  </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane active" [class.active]="active=='today'" id="today" role="tabpanel"
+                      formGroupName="company_info">
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="company_employee_number">Number of employees</label>
+                            <input type="text" formControlName="company_employee_number" id="company_employee_number"
+                              class="form-control border-primary" name="company_employee_number">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="company_annual_revenue">Company annual revenue</label>
+                            <input type="text" formControlName="company_annual_revenue" id="company_annual_revenue"
+                              class="form-control border-primary" name="company_annual_revenue">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="company_website">Company website</label>
+                            <input type="text" formControlName="company_website" id="company_website"
+                              class="form-control border-primary" name="company_website">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="company_phone">Company phone</label>
+                            <input type="text" formControlName="company_phone" id="company_phone"
+                              class="form-control border-primary" name="company_phone">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="company_industry_type">Industry type</label>
+                            <select class="form-control" formControlName="company_industry_type"
+                              id="company_industry_type">
+                              <option>Select Option</option>
+                              <option>Accounting Type</option>
+                              <option>Advertising</option>
+                              <option>Aerospace</option>
+                              <option>Agriculture</option>
+                              <option>Aircraft</option>
+                              <option>Airline</option>
+                              <option>Apparel & Accessories</option>
+                              <option>Automative</option>
+                              <option>Banking</option>
+                              <option>Biotechology</option>
+                              <option>Broadcasting</option>
+                              <option>Call Center</option>
+                              <option>Cargo Handling</option>
+                              <option>Construction</option>
+                              <option>Consulting</option>
+                              <option>Consumer Product</option>
+                              <option>Defence</option>
+                              <option>Education</option>
+                              <option>Electronic</option>
+                              <option>Energy</option>
+                              <option>Engineering</option>
+                              <option>Entertainment & Leisure</option>
+                              <option>Executive Search</option>
+                              <option>Finanical Services</option>
+                              <option>Hosptality</option>
+                              <option>Insurance</option>
+                              <option>Investment Banking</option>
+                              <option>Music</option>
+                              <option>Newspaper Publishing</option>
+                              <option>Online Auctions</option>
+                              <option>Pension Funds</option>
+                              <option>Pharmaceuticals</option>
+                              <option>Publishing</option>
+                              <option>Real Estate</option>
+                              <option>Retail & Wholesale</option>
+                              <option>Security & Wholesale</option>
+                              <option>Services</option>
+                              <option>Shipping</option>
+                              <option>Saop & Detergent</option>
+                              <option>Software</option>
+                              <option>Sports</option>
+                              <option>Telecommunication</option>
+                              <option>Television</option>
+                              <option>Transportation</option>
+                              <option>Utilities</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="company_business_type">Business Type</label>
+                            <select class="form-control" formControlName="company_business_type"
+                              id="company_business_type">
+                              <option>Select Option</option>
+                              <option>Analyst</option>
+                              <option>Competitor</option>
+                              <option>Customer</option>
+                              <option>Integration</option>
+                              <option>Investor</option>
+                              <option>Partner</option>
+                              <option>Press</option>
+                              <option>Prospect</option>
+                              <option>Reseller</option>
+                              <option>Other</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="tab-pane" [class.active]="active=='missed'" id="missed" role="tabpanel"
+                      formGroupName="address">
+                      <input type="hidden" formControlName="address_id">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="building">Block No./ Building Name</label>
+                            <input type="text" formControlName="building" class="form-control" id="building"
+                              name="building">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="road_name">Road Name</label>
+                            <input type="text" formControlName="road_name" class="form-control" id="road_name"
+                              name="road_name">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="landmark">Landmark</label>
+                            <input type="text" formControlName="landmark" class="form-control" id="landmark"
+                              name="landmark">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="pincode">Pincode</label>
+                            <input type="text" formControlName="pincode" class="form-control" id="pincode"
+                              name="pincode">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="country">Country</label>
+                            <select class="form-control" formControlName="country" id="country">
+                              <option>Select Option</option>
+                              <option>India</option>
+                              <option>China</option>
+                              <option>Nepal</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="state">State</label>
+                            <select class="form-control" formControlName="state" id="state">
+                              <option>Select Option</option>
+                              <option>Maharashtra</option>
+                              <option>Gujarat</option>
+                              <option>Rajasthan</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="city">City</label>
+                            <select class="form-control" formControlName="city" id="city">
+                              <option>Select Option</option>
+                              <option>Mumbai</option>
+                              <option>Nagpur</option>
+                              <option>Thane</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane active" [class.active]="active=='social'" id="social" role="tabpanel"
+                      formGroupName="social">
+                      <div class="row d-flex flex-column">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="facebook_link"><i class="ft-facebook"></i> Facebook </label>
+                            <input type="text" formControlName="facebook_link" id="facebook_link"
+                              class="form-control border-primary" name="facebook_link">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="twitter_link"><i class="ft-twitter"></i> Twitter </label>
+                            <input type="text" formControlName="twitter_link" id="twitter_link"
+                              class="form-control border-primary" name="twitter_link">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="linkedin_link">LinkedIN</label>
+                            <input type="text" formControlName="linkedin_link" id="linkedin_link"
+                              class="form-control border-primary" name="linkedin_link">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane" [class.active]="active=='future'" id="future" role="tabpanel"
+                      formGroupName="deal">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="deal_name">Deal name</label>
+                            <input type="text" formControlName="deal_name" class="form-control" id="deal_name"
+                              name="deal_name">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="deal_value">Deal value</label>
+                            <input type="text" formControlName="deal_value" class="form-control" id="deal_value"
+                              name="deal_value">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="deal_expected_close_date">Deal Expected Close Date</label>
+                            <input type="date" formControlName="deal_expected_close_date" id="issueinput3"
+                              class="form-control" name="deal_expected_close_date" data-toggle="tooltip"
+                              data-trigger="hover" data-placement="top" data-title="Date Opened">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="deal_product">Product</label>
+
+                            <select class="form-control" formControlName="deal_product" id="deal_product">
+                              <option>Select Option</option>
+                              <option>Maharashtra</option>
+                              <option>Gujarat</option>
+                              <option>Rajasthan</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane" [class.active]="active==='source'" id="source" role="tabpanel"
+                      formGroupName="source_info">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="campaign">Campaign</label>
+                            <!-- <select class="form-control" formControlName="campaign" id="campaign">
+                                                          <option>Select Option</option>
+                                                          <option>Option 1</option>
+                                                          <option>Option 2</option>
+                                                          <option>Option 3</option>
+                                                        </select> -->
+                            <input type="text" formControlName="campaign" class="form-control" id="campaign"
+                              name="campaign">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="medium">Medium</label>
+                            <input type="text" formControlName="medium" class="form-control" id="medium" name="medium">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="keyword">Keyword</label>
+                            <input type="text" formControlName="keyword" class="form-control" id="keyword"
+                              name="keyword">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions left">
+              <input type="submit" value="Save" class="btn btn-raised btn-primary">
+              <input type="button" value="Cancel" [routerLink]="['/crm/lead']" class="btn btn-raised ml-1 btn-danger">
+            </div>
+          </form>
+          <!-- Form End -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

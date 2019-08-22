@@ -39,6 +39,13 @@ export const ROUTES: RouteInfo[] = [
         ]
     },
     {
+        path: '', title: 'CRM', icon: 'ft-trending-up', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+            {
+                path: '/crm/lead', title: 'Lead', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
+            },
+        ]
+    },
+    {
         path: '/full-layout', title: 'Full Layout', icon: 'ft-layout', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
     },
     {

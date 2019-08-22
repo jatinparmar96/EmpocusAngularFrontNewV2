@@ -14,5 +14,8 @@ export const Full_ROUTES: Routes = [
     path: 'master',
     loadChildren: () => import('app/master/master.module').then(m => m.MasterModule)
   },
-
+  {
+    path: 'crm',
+    loadChildren: () => import('app/crm/crm.module').then(m => m.CrmModule)
+  },
 ];
