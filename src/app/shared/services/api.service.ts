@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
-// export const address= 'http://127.0.0.1:8000/api/';
+export const address = 'http://127.0.0.1:8000/api/';
 // export const address= 'http://clarusinfo.com/apis/public/api/';
-export const address = 'http://roksoindia.com/empocus/apis/public/api/';
+//export const address = 'http://roksoindia.com/empocus/apis/public/api/';
 
 @Injectable({
   providedIn: 'root'

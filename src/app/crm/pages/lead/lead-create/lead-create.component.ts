@@ -24,6 +24,7 @@ import { trigger, style, state, transition, animate, query } from '@angular/anim
         animate('300ms ease-out',
           style({
             'background-color': 'red',
+            opacity: '0.5',
             transform: 'scale(0.3) translateY(-100%)'
           }))
       ])
