@@ -6,12 +6,14 @@ import { LeadCreateComponent } from './pages/lead/lead-create/lead-create.compon
 import { LeadListComponent } from './pages/lead/lead-list/lead-list.component';
 import { LeadDataRowComponent } from './pages/lead/lead-data-row/lead-data-row.component';
 import { LeadDetailComponent } from './pages/lead/lead-detail/lead-detail.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ContactSelectorComponent } from './selector-components/contact-selector/contact-selector.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MatTableModule } from '@angular/material/table';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EmployeeCreateComponent } from './pages/employee/employee-create/employee-create.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LeadListComponent,
     LeadDataRowComponent,
     LeadDetailComponent,
-    ContactSelectorComponent
+    ContactSelectorComponent,
+    EmployeeCreateComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +31,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     NgSelectModule,
     MatTableModule,
+    FormsModule,
+    MatCheckboxModule,
     NgbModule.forRoot(),
   ]
 })
