@@ -11,42 +11,43 @@ import { AuthService } from 'app/shared/auth/auth.service';
 export class LoginFormComponent implements OnInit {
   user: FormGroup;
   errors: any;
-  isProcessing: boolean = false;
+  isProcessing = false;
   constructor(
     fb: FormBuilder,
     private router: Router,
-    private authService: AuthService) {
+    private authService: AuthService
+  ) {
     this.user = fb.group({
-      "email": ["pritesh@gmail.com", Validators.required],
-      "password": ["123", Validators.required],
+      email: ['jatinparmar96@gmail.com', Validators.required],
+      password: ['123', Validators.required]
     });
   }
 
-  ngOnInit() {
-  }
-  onSubmit(user) {
+  ngOnInit() {}
+  onSubmit(user1) {
     this.isProcessing = true;
-    this.authService.signinUser(user.value).then((data) => {
-      let user: any = data
-      console.log(user);
-      if (user.status) {
-        console.log(this.errors);
+    this.authService
+      .signinUser(user1.value)
+      .then(data => {
+        const user: any = data;
+        if (user.status) {
+          console.log(user);
+          this.isProcessing = false;
+          this.router.navigateByUrl('/');
+        } else {
+          this.isProcessing = false;
+          this.errors = user.message;
+          console.log(this.errors);
+        }
+      })
+      .catch(error => {
         this.isProcessing = false;
-        this.router.navigateByUrl('/');
-      }
-      else {
-        this.isProcessing = false;
-        this.errors = user.message;
         console.log(this.errors);
-      }
-    }).catch((error) => {
-      this.isProcessing = false;
-      console.log(this.errors);
-      this.errors = error.statusText;
-    });
+        this.errors = error.statusText;
+      });
   }
 
   onForgotPassword() {
-    alert("You forgot Password");
+    alert('You forgot Password');
   }
 }

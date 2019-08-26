@@ -14,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeCreateComponent } from './pages/employee/employee-create/employee-create.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { EmployeeListComponent } from './pages/employee/employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     LeadDataRowComponent,
     LeadDetailComponent,
     ContactSelectorComponent,
-    EmployeeCreateComponent
+    EmployeeCreateComponent,
+    EmployeeListComponent
   ],
   imports: [
     CommonModule,

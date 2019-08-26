@@ -5,6 +5,8 @@ import { LeadListComponent } from './pages/lead/lead-list/lead-list.component';
 import { LeadDetailComponent } from './pages/lead/lead-detail/lead-detail.component';
 import { FormAbandonGuard } from './guards/form-abandon.guard';
 import { EmployeeCreateComponent } from './pages/employee/employee-create/employee-create.component';
+import { EmployeeListComponent } from './pages/employee/employee-list/employee-list.component';
+import { EmployeeListResolverService } from './resolvers/employee-list-resolver.service';
 
 const routes: Routes = [
   {
@@ -22,8 +24,7 @@ const routes: Routes = [
       {
         path: 'show/:id',
         component: LeadDetailComponent
-      },
-
+      }
     ]
   },
   {
@@ -31,15 +32,22 @@ const routes: Routes = [
     children: [
       {
         path: ':id',
-        component: EmployeeCreateComponent,
+        component: EmployeeCreateComponent
+      },
+      {
+        path: '',
+        component: EmployeeListComponent,
+        resolve: {
+          employeeList: EmployeeListResolverService
+        }
       }
     ]
-  },
-
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [EmployeeListResolverService]
 })
-export class CrmRoutingModule { }
+export class CrmRoutingModule {}
