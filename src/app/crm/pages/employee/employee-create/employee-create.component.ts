@@ -68,6 +68,5 @@ export class EmployeeCreateComponent implements OnInit {
   }
 
   addOrUpdate(employee) {
-    console.log(employee.value);
   }
 }

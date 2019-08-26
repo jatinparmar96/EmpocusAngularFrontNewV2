@@ -105,12 +105,15 @@
             <label>Contact Number </label>
             <a class="mt-2 ml-2 btn btn-sm btn-raised btn-outline-primary" (click)="addContact()">Add</a>
             <div class="row mb-2" *ngFor="let contact of contactNumbers.controls;let i = index">
-              <div class="col-md-4" [formGroupName]="i">
-                <input class="form-control border-primary" id="contact_number" formControlName="contact_number"
-                  name='contact_number-{{i}}' type="number" placeholder="Contact Number-{{i+1}}">
-              </div>
-              <div class="col-md-1" *ngIf="contactNumbers.controls.length!==1">
-                <i class="ft-x danger" (click)="removeContact(i)"></i>
+              <div class="col-md-5" [formGroupName]="i">
+                <div class="d-flex">
+                  <input class="form-control border-primary" id="contact_number" formControlName="contact_number"
+                    name='contact_number-{{i}}' type="number" placeholder="Contact Number-{{i+1}}">
+                  <a class="ml-1 mt-2">
+                    <i class="ft-x danger font-medium-2" *ngIf="contactNumbers.controls.length!==1"
+                      (click)="removeContact(i)"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -130,9 +133,6 @@
           </button>
         </div>
       </form>
-      <div>
-        {{employee.value | json}}
-      </div>
     </div>
   </div>
 </div>

@@ -26,12 +26,12 @@
               <div class="row" formArrayName="contact_persons">
                 <div class="col-md-12">
                   <h4 class="form-section"><i class="ft-user danger"></i> Contact Persons <a
-                      class="btn btn-raised btn-primary btn-sm" (click)="addContactGroup()">
+                      class="btn btn-raised btn-outline-primary btn-sm mt-2 ml-2" (click)="addContactGroup()">
                       Add New
                     </a></h4>
                   <div class="card animation-frame" *ngFor="let contact of contactsFormArray.controls;let i = index"
                     [formGroupName]="i" @fade>
-                    <div class="card-body">
+                    <div class="card-block p-0">
                       <h5 class="card-title">Contact Person-{{i+1}} <a *ngIf="contactsFormArray.controls.length!==1"
                           (click)=removeContact(i)><i class="ft-x danger"></i></a>
                       </h5>
@@ -39,7 +39,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="name-{{i}}">Name</label>
-                            <input type="text" formControlName="name" placeholder="Roxso LLP" id="name-{{i}}"
+                            <input type="text" formControlName="name" id="name-{{i}}"
                               class="form-control border-primary">
                             <div
                               *ngIf="contactsFormArray.controls[i].controls.name.touched && contactsFormArray.controls[i].controls.name.invalid">
@@ -51,7 +51,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="email-{{i}}">Email</label>
-                            <input type="text" formControlName="email" id="email-{{i}}" placeholder="Roxso"
+                            <input type="text" formControlName="email" id="email-{{i}}"
                               class="form-control border-primary">
                             <div *ngIf="contactsFormArray.controls[i].controls.email.errors">
                               <div
@@ -98,9 +98,9 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="assigned_to">Assigned To</label>
-                    <select formControlName="assigned_to">
-                      <option>Employee 1</option>
-                    </select>
+                    <ng-select>
+                      <ng-option>Employee 1</ng-option>
+                    </ng-select>
                   </div>
                 </div>
                 <div class="col-md-6">
