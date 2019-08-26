@@ -66,4 +66,8 @@ export class EmployeeCreateComponent implements OnInit {
       this.employee.controls['permanent_address'].reset();
     }
   }
+
+  addOrUpdate(employee) {
+    console.log(employee.value);
+  }
 }

@@ -4,7 +4,7 @@
   </div>
   <div class="card-content">
     <div class="px-3">
-      <form class="form" [formGroup]="employee">
+      <form class="form" [formGroup]="employee" (ngSubmit)="addOrUpdate(employee)">
         <div class="form-body">
           <h4 class="form-section"><i class="ft-info"></i> About Employee</h4>
           <div class="row">
@@ -102,8 +102,8 @@
             <input class="form-control border-primary" id="email" type="email" formControlName="email">
           </div>
           <div class="form-group" formArrayName="contact_numbers">
-            <label>Contact Number </label> <button class="mt-2 ml-2 btn btn-sm btn-raised btn-outline-primary"
-              (click)="addContact()">Add</button>
+            <label>Contact Number </label>
+            <a class="mt-2 ml-2 btn btn-sm btn-raised btn-outline-primary" (click)="addContact()">Add</a>
             <div class="row mb-2" *ngFor="let contact of contactNumbers.controls;let i = index">
               <div class="col-md-4" [formGroupName]="i">
                 <input class="form-control border-primary" id="contact_number" formControlName="contact_number"
@@ -125,9 +125,10 @@
           </div>
         </div>
         <div class="form-actions right"><button class="btn btn-raised btn-warning mr-1" type="button"><i
-              class="ft-x"></i> Cancel
-          </button><button class="btn btn-raised btn-primary" type="button"><i class="fa fa-check-square-o"></i> Save
-          </button></div>
+              class="ft-x"></i> Cancel</button>
+          <button class="btn btn-raised btn-primary" type="submit"><i class="fa fa-check-square-o"></i> Save
+          </button>
+        </div>
       </form>
       <div>
         {{employee.value | json}}
