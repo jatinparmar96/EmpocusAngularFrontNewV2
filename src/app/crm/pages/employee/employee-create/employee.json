@@ -1,0 +1,26 @@
+{
+  "id": "new",
+  "employee_name": "asdf",
+  "employee_username": "asdf",
+  "email": "asdf",
+  "contact_numbers": [{ "contact_number": 9226714345 }],
+  "adhar_number": "asf",
+  "pan_number": "asdf",
+  "bank_name": "sadf",
+  "bank_account_number": "asf",
+  "ifsc_code": "asf",
+  "residential_address": {
+    "address_line_1": "INDIA",
+    "address_line_2": null,
+    "city": "MUMBAI",
+    "state": "Maharashtra",
+    "pincode": "400001"
+  },
+  "permanent_address": {
+    "address_line_1": "INDIA",
+    "address_line_2": null,
+    "city": "MUMBAI",
+    "state": "Maharashtra",
+    "pincode": "400001"
+  }
+}

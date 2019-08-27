@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeCreateComponent } from './pages/employee/employee-create/employee-create.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EmployeeListComponent } from './pages/employee/employee-list/employee-list.component';
+import { AddressComponent } from './shared/address/address.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EmployeeListComponent } from './pages/employee/employee-list/employee-l
     LeadDetailComponent,
     ContactSelectorComponent,
     EmployeeCreateComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    AddressComponent
   ],
   imports: [
     CommonModule,

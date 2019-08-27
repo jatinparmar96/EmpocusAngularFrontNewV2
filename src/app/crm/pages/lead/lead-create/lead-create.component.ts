@@ -78,16 +78,6 @@ export class LeadCreateComponent implements OnInit {
         company_industry_type: [''],
         company_business_type: ['']
       }),
-      address: this.fb.group({
-        address_id: ['new', Validators.required],
-        building: [''],
-        road_name: [''],
-        landmark: [''],
-        pincode: [''],
-        country: [''],
-        state: [''],
-        city: ['']
-      }),
       social: this.fb.group({
         facebook_link: [' '],
         twitter_link: [''],

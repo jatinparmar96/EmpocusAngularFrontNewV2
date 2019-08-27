@@ -83,13 +83,12 @@
             <h4 class="form-section">
               <i class="ft-mail"></i>Address Information
             </h4>
-            <h4>Temporary Address Field</h4>
-
             <!-- Residential Address Field-->
             <h4>Residential Address</h4>
             <app-address
               [parentForm]="employee"
               [controlName]="'residential_address'"
+              [meta]="'ResidentialAddress'"
             ></app-address>
             <div>
               <h4>Permanent Address</h4>
@@ -104,6 +103,7 @@
               <app-address
                 [parentForm]="employee"
                 [controlName]="'permanent_address'"
+                [meta]="'PermanentAddress'"
               ></app-address>
             </fieldset>
 

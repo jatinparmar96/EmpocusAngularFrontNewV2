@@ -29,8 +29,9 @@ export class EmployeeCreateComponent implements OnInit {
       contact_numbers: this.fb.array([this.createContactGroup()]),
       adhar_number: [''],
       pan_number: [''],
-      permanent_address: this.generateAddress(),
-      residential_address: this.generateAddress()
+      bank_name: ['', Validators.required],
+      bank_account_number: ['', Validators.required],
+      ifsc_code: ['', Validators.required]
     });
   }
 
