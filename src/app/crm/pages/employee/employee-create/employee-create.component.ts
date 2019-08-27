@@ -35,7 +35,8 @@ export class EmployeeCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this._activatedRoute.snapshot.data['employee']) {
+    const employeeDetails = this._activatedRoute.snapshot.data.employee;
+    if (employeeDetails.data) {
       this.patchData(this._activatedRoute.snapshot.data['employee'].data);
     }
   }

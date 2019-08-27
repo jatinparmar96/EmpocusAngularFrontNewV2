@@ -6,7 +6,6 @@ import {
 } from '@angular/router';
 import { EmployeeService } from '../services/employee/employee.service';
 import { Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
 
 @Injectable()
 export class EmployeeListResolverService implements Resolve<any[]> {
@@ -16,5 +15,5 @@ export class EmployeeListResolverService implements Resolve<any[]> {
   ): any | Observable<any> {
     return this._employeeService.list();
   }
-  constructor(private _employeeService: EmployeeService) { }
+  constructor(private _employeeService: EmployeeService) {}
 }
