@@ -16,7 +16,7 @@ export class EmployeeCreateComponent implements OnInit {
     private fb: FormBuilder,
     private _employeeService: EmployeeService,
     private _toaster: NotifyService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.employee = this.fb.group({
@@ -81,11 +81,12 @@ export class EmployeeCreateComponent implements OnInit {
         if (data.status) {
           this._toaster.success(data.message);
           this.employee.reset();
+          this.processing = false;
         }
       })
       .catch((error: any) => {
-        console.log(error);
+        console.error(error);
+        this.processing = false;
       })
-      .finally(() => (this.processing = false));
   }
 }
