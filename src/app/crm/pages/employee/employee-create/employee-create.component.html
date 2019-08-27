@@ -5,22 +5,36 @@
   <div class="card-content">
     <div class="px-3">
       <fieldset [disabled]="processing">
-        <form class="form" [formGroup]="employee" (ngSubmit)="addOrUpdate(employee)">
+        <form
+          class="form"
+          [formGroup]="employee"
+          (ngSubmit)="addOrUpdate(employee)"
+        >
           <div class="form-body">
             <h4 class="form-section"><i class="ft-info"></i> About Employee</h4>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="employee_name">Name</label>
-                  <input class="form-control border-primary" id="userinput1" name="employee_name" type="text"
-                    formControlName="employee_name" />
+                  <input
+                    class="form-control border-primary"
+                    id="userinput1"
+                    name="employee_name"
+                    type="text"
+                    formControlName="employee_name"
+                  />
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="employee_username">UserName</label>
-                  <input class="form-control border-primary" id="employee_username" name="employee_username" type="text"
-                    formControlName="employee_username" />
+                  <input
+                    class="form-control border-primary"
+                    id="employee_username"
+                    name="employee_username"
+                    type="text"
+                    formControlName="employee_username"
+                  />
                 </div>
               </div>
             </div>
@@ -33,68 +47,120 @@
               <div class="row">
                 <div class="col-md-12">
                   <label>Address Line 1</label>
-                  <input class="form-control border-primary" id="address_line_1" type="text"
-                    formControlName="address_line_1" />
+                  <input
+                    class="form-control border-primary"
+                    id="address_line_1"
+                    type="text"
+                    formControlName="address_line_1"
+                  />
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <label>Address Line 2</label>
-                  <input class="form-control border-primary" id="address_line_2" type="text"
-                    formControlName="address_line_2" />
+                  <input
+                    class="form-control border-primary"
+                    id="address_line_2"
+                    type="text"
+                    formControlName="address_line_2"
+                  />
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label for="city">City</label>
-                  <input class="form-control border-primary" id="city" type="text" formControlName="city" />
+                  <input
+                    class="form-control border-primary"
+                    id="city"
+                    type="text"
+                    formControlName="city"
+                  />
                 </div>
                 <div class="col-md-4">
                   <label for="state">State</label>
-                  <input class="form-control border-primary" id="state" type="text" formControlName="state" />
+                  <input
+                    class="form-control border-primary"
+                    id="state"
+                    type="text"
+                    formControlName="state"
+                  />
                 </div>
                 <div class="col-md-4">
                   <label for="pincode">PinCode</label>
-                  <input class="form-control border-primary" id="pincode" type="text" formControlName="pincode" />
+                  <input
+                    class="form-control border-primary"
+                    id="pincode"
+                    type="text"
+                    formControlName="pincode"
+                  />
                 </div>
               </div>
             </div>
             <!-- Permanent Address Field-->
             <div>
               <h4>Permanent Address</h4>
-              <mat-checkbox [(ngModel)]="checkBoxValue" [ngModelOptions]="{ standalone: true }"
-                (change)="addressEvent($event)">Same as Above</mat-checkbox>
+              <mat-checkbox
+                [(ngModel)]="checkBoxValue"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="addressEvent($event)"
+                >Same as Above</mat-checkbox
+              >
             </div>
             <div class="form-group" formGroupName="permanent_address">
               <div class="row">
                 <div class="col-md-12">
                   <label>Address Line 1</label>
-                  <input [readOnly]="checkBoxValue" class="form-control border-primary" id="address_line_1" type="text"
-                    formControlName="address_line_1" />
+                  <input
+                    [readOnly]="checkBoxValue"
+                    class="form-control border-primary"
+                    id="address_line_1"
+                    type="text"
+                    formControlName="address_line_1"
+                  />
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <label>Address Line 2</label>
-                  <input [readOnly]="checkBoxValue" class="form-control border-primary" id="address_line_2" type="text"
-                    formControlName="address_line_2" />
+                  <input
+                    [readOnly]="checkBoxValue"
+                    class="form-control border-primary"
+                    id="address_line_2"
+                    type="text"
+                    formControlName="address_line_2"
+                  />
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-4">
                   <label for="city">City</label>
-                  <input [readOnly]="checkBoxValue" class="form-control border-primary" id="city" type="text"
-                    formControlName="city" />
+                  <input
+                    [readOnly]="checkBoxValue"
+                    class="form-control border-primary"
+                    id="city"
+                    type="text"
+                    formControlName="city"
+                  />
                 </div>
                 <div class="col-md-4">
                   <label for="state">State</label>
-                  <input [readOnly]="checkBoxValue" class="form-control border-primary" id="state" type="text"
-                    formControlName="state" />
+                  <input
+                    [readOnly]="checkBoxValue"
+                    class="form-control border-primary"
+                    id="state"
+                    type="text"
+                    formControlName="state"
+                  />
                 </div>
                 <div class="col-md-4">
                   <label for="pincode">PinCode</label>
-                  <input [readOnly]="checkBoxValue" class="form-control border-primary" id="pincode" type="text"
-                    formControlName="pincode" />
+                  <input
+                    [readOnly]="checkBoxValue"
+                    class="form-control border-primary"
+                    id="pincode"
+                    type="text"
+                    formControlName="pincode"
+                  />
                 </div>
               </div>
             </div>
@@ -102,19 +168,40 @@
             <h4 class="form-section"><i class="ft-mail"></i> Contact Info</h4>
             <div class="form-group">
               <label for="email">Email</label>
-              <input class="form-control border-primary" id="email" type="email" formControlName="email" />
+              <input
+                class="form-control border-primary"
+                id="email"
+                type="email"
+                formControlName="email"
+              />
             </div>
             <div class="form-group" formArrayName="contact_numbers">
               <label>Contact Number </label>
-              <a class="mt-2 ml-2 btn btn-sm btn-raised btn-outline-primary" (click)="addContact()">Add</a>
-              <div class="row mb-2" *ngFor="let contact of contactNumbers.controls; let i = index">
+              <a
+                class="mt-2 ml-2 btn btn-sm btn-raised btn-outline-primary"
+                (click)="addContact()"
+                >Add</a
+              >
+              <div
+                class="row mb-2"
+                *ngFor="let contact of contactNumbers.controls; let i = index"
+              >
                 <div class="col-md-5" [formGroupName]="i">
                   <div class="d-flex">
-                    <input class="form-control border-primary" id="contact_number" formControlName="contact_number"
-                      name="contact_number-{{ i }}" type="number" placeholder="Contact Number-{{ i + 1 }}" />
+                    <input
+                      class="form-control border-primary"
+                      id="contact_number"
+                      formControlName="contact_number"
+                      name="contact_number-{{ i }}"
+                      type="number"
+                      placeholder="Contact Number-{{ i + 1 }}"
+                    />
                     <a class="ml-1 mt-2">
-                      <i class="ft-x danger font-medium-2" *ngIf="contactNumbers.controls.length !== 1"
-                        (click)="removeContact(i)"></i>
+                      <i
+                        class="ft-x danger font-medium-2"
+                        *ngIf="contactNumbers.controls.length !== 1"
+                        (click)="removeContact(i)"
+                      ></i>
                     </a>
                   </div>
                 </div>
@@ -122,27 +209,54 @@
             </div>
             <h4 class="form-section">Other Information</h4>
             <div class="form-group">
-              <label for="adhar_number">Adhar Number</label>
-              <input class="form-control border-primary" id="adhar_number" type="text" formControlName="adhar_number" />
+              <label for="adhar_number">Aadhar Number</label>
+              <input
+                class="form-control border-primary"
+                id="adhar_number"
+                type="text"
+                formControlName="adhar_number"
+              />
             </div>
             <div class="form-group">
               <label for="pan_number">PAN Number</label>
-              <input class="form-control border-primary" id="pan_number" type="text" formControlName="pan_number" />
+              <input
+                class="form-control border-primary"
+                id="pan_number"
+                type="text"
+                formControlName="pan_number"
+              />
             </div>
           </div>
+          <h4 class="form-section">Bank Information</h4>
+          <div class="form-group">
+            <label for="adhar_number">Aadhar Number</label>
+            <input
+              class="form-control border-primary"
+              id="adhar_number"
+              type="text"
+              formControlName="adhar_number"
+            />
+          </div>
           <div class="form-actions right">
-            <button class="btn btn-raised btn-warning mr-1" type="button">
+            <a
+              class="btn btn-raised btn-warning mr-1"
+              [routerLink]="['/crm', 'employee']"
+            >
               <i class="ft-x"></i> Cancel
-            </button>
-            <button [disabled]="!employee.valid" class="btn btn-raised btn-primary" type="submit">
+            </a>
+            <button
+              [disabled]="!employee.valid"
+              class="btn btn-raised btn-primary"
+              type="submit"
+            >
               <i class="fa fa-check-square-o"></i> Save
             </button>
           </div>
         </form>
       </fieldset>
-      <div>
-        {{employee.value | json}}
-      </div>
+      <!-- <div>
+        {{ employee.value | json }}
+      </div> -->
     </div>
   </div>
 </div>

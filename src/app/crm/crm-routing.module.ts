@@ -36,7 +36,8 @@ const routes: Routes = [
         component: EmployeeCreateComponent,
         resolve: {
           employee: EmployeeEditResolveService
-        }
+        },
+        canDeactivate: [FormAbandonGuard]
       },
       {
         path: '',
@@ -54,4 +55,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [EmployeeListResolverService]
 })
-export class CrmRoutingModule { }
+export class CrmRoutingModule {}
