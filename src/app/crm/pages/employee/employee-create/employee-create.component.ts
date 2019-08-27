@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { EmployeeService } from 'app/crm/services/employee/employee.service';
 import { NotifyService } from 'app/shared/services/notify.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ContactNumber } from 'app/crm/Models/employee';
 
 @Component({
   selector: 'app-employee-create',
@@ -19,9 +20,7 @@ export class EmployeeCreateComponent implements OnInit {
     private _toaster: NotifyService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.employee = this.fb.group({
       id: ['new', Validators.required],
       employee_name: ['', Validators.required],
@@ -33,6 +32,9 @@ export class EmployeeCreateComponent implements OnInit {
       permanent_address: this.generateAddress(),
       residential_address: this.generateAddress()
     });
+  }
+
+  ngOnInit() {
     if (this._activatedRoute.snapshot.data['employee']) {
       this.patchData(this._activatedRoute.snapshot.data['employee'].data);
     }
@@ -60,7 +62,7 @@ export class EmployeeCreateComponent implements OnInit {
     console.log(this.contactNumbers.controls);
   }
   removeContact(index): void {
-    let contact = this.contactNumbers;
+    const contact = this.contactNumbers;
     contact.removeAt(index);
     contact.markAsDirty();
     contact.markAsTouched();
@@ -85,7 +87,11 @@ export class EmployeeCreateComponent implements OnInit {
     }
   }
 
-  addOrUpdate(employee) {
+  /**
+   * Add or Update and Employee
+   * @param employee
+   */
+  addOrUpdate(employee: FormGroup): void {
     this.processing = true;
     this._employeeService
       .store(employee.value)
@@ -100,27 +106,56 @@ export class EmployeeCreateComponent implements OnInit {
       .catch((error: any) => {
         console.error(error);
         this.processing = false;
-      })
+      });
   }
-
-  patchData(employee) {
+  /**
+   * Patch Employee form With Received Employee Data
+   * @param employee
+   * @method patchData
+   * @returns void
+   */
+  patchData(employee): void {
     this.employee.patchValue({
       id: employee.id,
       employee_name: employee.employee_name,
       employee_username: '',
       email: employee.email,
       adhar_number: employee.employee_adhaar_number,
-      pan_number: employee.employee_pan_number,
+      pan_number: employee.employee_pan_number
     });
-    this.employee.setControl('permanent_address', this.generateAddress(employee.permanent_address[0]));
-    this.employee.setControl('residential_address', this.generateAddress(employee.residential_address[0]));
-    this.employee.setControl('contact_numbers', this.setExistingNumbers(employee.employee_contact_numbers))
+    this.employee.setControl(
+      'permanent_address',
+      this.generateAddress(employee.permanent_address[0])
+    );
+    this.employee.setControl(
+      'residential_address',
+      this.generateAddress(employee.residential_address[0])
+    );
+    this.employee.setControl(
+      'contact_numbers',
+      this.setExistingNumbers(employee.employee_contact_numbers)
+    );
   }
-  setExistingNumbers(contact_numbers: any[]): FormArray {
+  /**
+   * Populate FormArray Field Contact Number
+   * @param contact_numbers
+   * @returns FormArray
+   */
+  setExistingNumbers(contact_numbers: ContactNumber[]): FormArray {
     const formArry = new FormArray([]);
     contact_numbers.forEach(element => {
       formArry.push(this.createContactGroup(element.contact_number));
     });
-    return formArry
+    return formArry;
+  }
+  /**
+   *
+   */
+  canDeactivate(): boolean {
+    if (this.employee.dirty) {
+      return confirm('Are You Sure you want to Discard the changes?');
+    } else {
+      return true;
+    }
   }
 }
