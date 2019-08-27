@@ -134,16 +134,6 @@ export const ROUTES: RouteInfo[] = [
         submenu: []
       },
       {
-        path: '/crm/employee/new',
-        title: 'Employee',
-        icon: '',
-        class: '',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: []
-      },
-      {
         path: '/crm/employee/',
         title: 'Employee List',
         icon: '',
