@@ -283,77 +283,8 @@
 
                     </div>
                     <div class="tab-pane" [class.active]="active=='missed'" id="missed" role="tabpanel"
-                      formGroupName="address">
-                      <input type="hidden" formControlName="address_id">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="building">Block No./ Building Name</label>
-                            <input type="text" formControlName="building" class="form-control" id="building"
-                              name="building">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="road_name">Road Name</label>
-                            <input type="text" formControlName="road_name" class="form-control" id="road_name"
-                              name="road_name">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="landmark">Landmark</label>
-                            <input type="text" formControlName="landmark" class="form-control" id="landmark"
-                              name="landmark">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="pincode">Pincode</label>
-                            <input type="text" formControlName="pincode" class="form-control" id="pincode"
-                              name="pincode">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="country">Country</label>
-                            <select class="form-control" formControlName="country" id="country">
-                              <option>Select Option</option>
-                              <option>India</option>
-                              <option>China</option>
-                              <option>Nepal</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="state">State</label>
-                            <select class="form-control" formControlName="state" id="state">
-                              <option>Select Option</option>
-                              <option>Maharashtra</option>
-                              <option>Gujarat</option>
-                              <option>Rajasthan</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="city">City</label>
-                            <select class="form-control" formControlName="city" id="city">
-                              <option>Select Option</option>
-                              <option>Mumbai</option>
-                              <option>Nagpur</option>
-                              <option>Thane</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
+                      >
+                    <app-address [parentForm]="lead_data" [controlName]="'address'"></app-address>
                     </div>
                     <div class="tab-pane active" [class.active]="active=='social'" id="social" role="tabpanel"
                       formGroupName="social">
@@ -465,6 +396,9 @@
             </div>
           </form>
           <!-- Form End -->
+          <div>
+            {{lead_data.value | json}}
+          </div>
         </div>
       </div>
     </div>
