@@ -38,133 +38,6 @@
                 </div>
               </div>
             </div>
-            <h4 class="form-section">
-              <i class="ft-mail"></i>Address Information
-            </h4>
-            <!-- Residential Address Field-->
-            <h4>Residential Address</h4>
-            <div class="form-group" formGroupName="residential_address">
-              <div class="row">
-                <div class="col-md-12">
-                  <label>Address Line 1</label>
-                  <input
-                    class="form-control border-primary"
-                    id="address_line_1"
-                    type="text"
-                    formControlName="address_line_1"
-                  />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label>Address Line 2</label>
-                  <input
-                    class="form-control border-primary"
-                    id="address_line_2"
-                    type="text"
-                    formControlName="address_line_2"
-                  />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label for="city">City</label>
-                  <input
-                    class="form-control border-primary"
-                    id="city"
-                    type="text"
-                    formControlName="city"
-                  />
-                </div>
-                <div class="col-md-4">
-                  <label for="state">State</label>
-                  <input
-                    class="form-control border-primary"
-                    id="state"
-                    type="text"
-                    formControlName="state"
-                  />
-                </div>
-                <div class="col-md-4">
-                  <label for="pincode">PinCode</label>
-                  <input
-                    class="form-control border-primary"
-                    id="pincode"
-                    type="text"
-                    formControlName="pincode"
-                  />
-                </div>
-              </div>
-            </div>
-            <!-- Permanent Address Field-->
-            <div>
-              <h4>Permanent Address</h4>
-              <mat-checkbox
-                [(ngModel)]="checkBoxValue"
-                [ngModelOptions]="{ standalone: true }"
-                (change)="addressEvent($event)"
-                >Same as Above</mat-checkbox
-              >
-            </div>
-            <div class="form-group" formGroupName="permanent_address">
-              <div class="row">
-                <div class="col-md-12">
-                  <label>Address Line 1</label>
-                  <input
-                    [readOnly]="checkBoxValue"
-                    class="form-control border-primary"
-                    id="address_line_1"
-                    type="text"
-                    formControlName="address_line_1"
-                  />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label>Address Line 2</label>
-                  <input
-                    [readOnly]="checkBoxValue"
-                    class="form-control border-primary"
-                    id="address_line_2"
-                    type="text"
-                    formControlName="address_line_2"
-                  />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label for="city">City</label>
-                  <input
-                    [readOnly]="checkBoxValue"
-                    class="form-control border-primary"
-                    id="city"
-                    type="text"
-                    formControlName="city"
-                  />
-                </div>
-                <div class="col-md-4">
-                  <label for="state">State</label>
-                  <input
-                    [readOnly]="checkBoxValue"
-                    class="form-control border-primary"
-                    id="state"
-                    type="text"
-                    formControlName="state"
-                  />
-                </div>
-                <div class="col-md-4">
-                  <label for="pincode">PinCode</label>
-                  <input
-                    [readOnly]="checkBoxValue"
-                    class="form-control border-primary"
-                    id="pincode"
-                    type="text"
-                    formControlName="pincode"
-                  />
-                </div>
-              </div>
-            </div>
-            <!-- Permanent Address Field END-->
             <h4 class="form-section"><i class="ft-mail"></i> Contact Info</h4>
             <div class="form-group">
               <label for="email">Email</label>
@@ -207,6 +80,33 @@
                 </div>
               </div>
             </div>
+            <h4 class="form-section">
+              <i class="ft-mail"></i>Address Information
+            </h4>
+            <h4>Temporary Address Field</h4>
+
+            <!-- Residential Address Field-->
+            <h4>Residential Address</h4>
+            <app-address
+              [parentForm]="employee"
+              [controlName]="'residential_address'"
+            ></app-address>
+            <div>
+              <h4>Permanent Address</h4>
+              <mat-checkbox
+                [(ngModel)]="checkBoxValue"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="addressEvent($event)"
+                >Same as Above</mat-checkbox
+              >
+            </div>
+            <fieldset [disabled]="checkBoxValue">
+              <app-address
+                [parentForm]="employee"
+                [controlName]="'permanent_address'"
+              ></app-address>
+            </fieldset>
+
             <h4 class="form-section">Other Information</h4>
             <div class="form-group">
               <label for="adhar_number">Aadhar Number</label>
@@ -229,14 +129,37 @@
           </div>
           <h4 class="form-section">Bank Information</h4>
           <div class="form-group">
-            <label for="adhar_number">Aadhar Number</label>
-            <input
-              class="form-control border-primary"
-              id="adhar_number"
-              type="text"
-              formControlName="adhar_number"
-            />
+            <div class="row">
+              <div class="col-md-4">
+                <label for="bank_name">Bank Name</label>
+                <input
+                  class="form-control border-primary"
+                  id="bank_number"
+                  type="text"
+                  formControlName="bank_name"
+                />
+              </div>
+              <div class="col-md-4">
+                <label for="bank_account_number">Bank Account Number</label>
+                <input
+                  class="form-control border-primary"
+                  id="bank_account_number"
+                  type="text"
+                  formControlName="bank_account_number"
+                />
+              </div>
+              <div class="col-md-4">
+                <label for="ifsc_code">IFSC Code</label>
+                <input
+                  class="form-control border-primary"
+                  id="ifsc_code"
+                  type="text"
+                  formControlName="ifsc_code"
+                />
+              </div>
+            </div>
           </div>
+
           <div class="form-actions right">
             <a
               class="btn btn-raised btn-warning mr-1"
@@ -254,9 +177,9 @@
           </div>
         </form>
       </fieldset>
-      <!-- <div>
+      <div>
         {{ employee.value | json }}
-      </div> -->
+      </div>
     </div>
   </div>
 </div>
