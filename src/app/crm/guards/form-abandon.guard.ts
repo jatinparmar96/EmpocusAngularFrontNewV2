@@ -8,11 +8,8 @@ export interface CanDeactivateComponent {
 @Injectable({
   providedIn: 'root'
 })
-
 export class FormAbandonGuard implements CanDeactivate<CanDeactivateComponent> {
-
   canDeactivate(component: CanDeactivateComponent): boolean {
     return component.canDeactivate ? component.canDeactivate() : true;
   }
-
 }
