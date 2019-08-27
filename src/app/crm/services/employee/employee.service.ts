@@ -8,17 +8,21 @@ import { Observable } from 'rxjs';
 })
 export class EmployeeService {
   url = `crm/employee`;
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
   store(employee: Employee): Promise<any> {
     return this.apiService.post(this.url, employee);
   }
 
-  list(): Observable<any> {
-    return this.apiService.observableGet(this.url);
+  list(page = 1): Observable<any> {
+    return this.apiService.observableGet(`${this.url}?page=${page}`);
   }
 
   fullList(): Observable<Employee[]> {
     return this.apiService.observableGet(`${this.url}/full_list`);
+  }
+
+  get(employee: string): Observable<any> {
+    return this.apiService.observableGet(`${this.url}/${employee}`);
   }
 }

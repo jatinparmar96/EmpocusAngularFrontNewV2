@@ -7,6 +7,7 @@ import { FormAbandonGuard } from './guards/form-abandon.guard';
 import { EmployeeCreateComponent } from './pages/employee/employee-create/employee-create.component';
 import { EmployeeListComponent } from './pages/employee/employee-list/employee-list.component';
 import { EmployeeListResolverService } from './resolvers/employee-list-resolver.service';
+import { EmployeeEditResolveService } from './resolvers/employee-edit-resolve.service';
 
 const routes: Routes = [
   {
@@ -32,7 +33,10 @@ const routes: Routes = [
     children: [
       {
         path: ':id',
-        component: EmployeeCreateComponent
+        component: EmployeeCreateComponent,
+        resolve: {
+          employee: EmployeeEditResolveService
+        }
       },
       {
         path: '',
@@ -50,4 +54,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [EmployeeListResolverService]
 })
-export class CrmRoutingModule {}
+export class CrmRoutingModule { }

@@ -14,7 +14,7 @@ export class EmployeeListResolverService implements Resolve<any[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): any | Observable<any> {
-    return this._employeeService.list().pipe(delay(1000));
+    return this._employeeService.list();
   }
-  constructor(private _employeeService: EmployeeService) {}
+  constructor(private _employeeService: EmployeeService) { }
 }

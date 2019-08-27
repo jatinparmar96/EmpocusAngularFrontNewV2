@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { EmployeeService } from 'app/crm/services/employee/employee.service';
 import { NotifyService } from 'app/shared/services/notify.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-create',
@@ -15,7 +16,9 @@ export class EmployeeCreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _employeeService: EmployeeService,
-    private _toaster: NotifyService
+    private _toaster: NotifyService,
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -30,18 +33,24 @@ export class EmployeeCreateComponent implements OnInit {
       permanent_address: this.generateAddress(),
       residential_address: this.generateAddress()
     });
+    if (this._activatedRoute.snapshot.data['employee']) {
+      this.patchData(this._activatedRoute.snapshot.data['employee'].data);
+    }
   }
   // Getters For Commonly used Controls
   get residentialAddress() {
     return this.employee.controls['residential_address'];
   }
+  get permanentAddress() {
+    return this.employee.controls['permanent_address'];
+  }
   get contactNumbers() {
     return this.employee.controls.contact_numbers as FormArray;
   }
 
-  createContactGroup() {
+  createContactGroup(element: any = '') {
     return this.fb.group({
-      contact_number: ['', Validators.required]
+      contact_number: [element, Validators.required]
     });
   }
 
@@ -51,16 +60,19 @@ export class EmployeeCreateComponent implements OnInit {
     console.log(this.contactNumbers.controls);
   }
   removeContact(index): void {
-    this.contactNumbers.removeAt(index);
+    let contact = this.contactNumbers;
+    contact.removeAt(index);
+    contact.markAsDirty();
+    contact.markAsTouched();
   }
   // Generate Address Form Field
-  generateAddress() {
+  generateAddress(element: any = '') {
     return this.fb.group({
-      address_line_1: [''],
-      address_line_2: [''],
-      city: [''],
-      state: [''],
-      pincode: ['']
+      address_line_1: [element.address_line_1],
+      address_line_2: [element.address_line_2],
+      city: [element.city],
+      state: [element.state],
+      pincode: [element.pincode]
     });
   }
   addressEvent(event) {
@@ -82,11 +94,33 @@ export class EmployeeCreateComponent implements OnInit {
           this._toaster.success(data.message);
           this.employee.reset();
           this.processing = false;
+          this._router.navigate(['/crm', 'employee']);
         }
       })
       .catch((error: any) => {
         console.error(error);
         this.processing = false;
       })
+  }
+
+  patchData(employee) {
+    this.employee.patchValue({
+      id: employee.id,
+      employee_name: employee.employee_name,
+      employee_username: '',
+      email: employee.email,
+      adhar_number: employee.employee_adhaar_number,
+      pan_number: employee.employee_pan_number,
+    });
+    this.employee.setControl('permanent_address', this.generateAddress(employee.permanent_address[0]));
+    this.employee.setControl('residential_address', this.generateAddress(employee.residential_address[0]));
+    this.employee.setControl('contact_numbers', this.setExistingNumbers(employee.employee_contact_numbers))
+  }
+  setExistingNumbers(contact_numbers: any[]): FormArray {
+    const formArry = new FormArray([]);
+    contact_numbers.forEach(element => {
+      formArry.push(this.createContactGroup(element.contact_number));
+    });
+    return formArry
   }
 }
