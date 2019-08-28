@@ -21,7 +21,6 @@ export class AddressComponent implements OnInit, OnChanges {
   constructor(private fb: FormBuilder) {}
 
   generateAddress(element: any = '') {
-    console.log(element);
     return this.fb.group({
       address_line_1: [element.address_line_1],
       address_line_2: [element.address_line_2],

@@ -29,4 +29,13 @@ export class EmployeeService {
       map((data: any) => (data = data.data))
     );
   }
+
+  searchEmployeeName(searchTerm: string): Observable<Employee[]> {
+    return this.apiService
+      .observableGet(`${this.url}?search[employee_name]=${searchTerm}`)
+      .pipe(
+        take(1),
+        map((data: any) => (data = data.data))
+      );
+  }
 }

@@ -3,9 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { EmployeeService } from 'app/crm/services/employee/employee.service';
 import { NotifyService } from 'app/shared/services/notify.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ContactNumber, Address } from 'app/crm/Models/employee';
-import swal from 'sweetalert2';
-import { Observable, Subject } from 'rxjs';
+import { Address, EmployeeContactNumber } from 'app/crm/Models/employee';
 
 @Component({
   selector: 'app-employee-create',
@@ -71,7 +69,6 @@ export class EmployeeCreateComponent implements OnInit {
   // Methods For Adding and Removing Contact Groups
   addContact(): void {
     this.contactNumbers.push(this.createContactGroup());
-    console.log(this.contactNumbers.controls);
   }
   removeContact(index): void {
     const contact = this.contactNumbers;
@@ -142,7 +139,7 @@ export class EmployeeCreateComponent implements OnInit {
    * @param contact_numbers
    * @returns FormArray
    */
-  setExistingNumbers(contact_numbers: ContactNumber[]): FormArray {
+  setExistingNumbers(contact_numbers: EmployeeContactNumber[]): FormArray {
     const formArry = new FormArray([]);
     contact_numbers.forEach(element => {
       formArry.push(this.createContactGroup(element.contact_number));

@@ -8,40 +8,38 @@ import {
   catchError,
   map
 } from 'rxjs/operators';
-import { EmployeeService } from 'app/crm/services/employee/employee.service';
+import { ProductService } from 'app/shared/services/product.service';
 
 @Component({
-  selector: 'app-contact-selector',
-  templateUrl: './contact-selector.component.html',
-  styleUrls: ['./contact-selector.component.scss']
+  selector: 'app-product-select',
+  templateUrl: './product-select.component.html',
+  styleUrls: ['./product-select.component.scss']
 })
-export class ContactSelectorComponent implements OnInit {
+export class ProductSelectComponent implements OnInit {
   @Input() parentForm: string;
   @Input() controlName: string;
   @Output() value = new EventEmitter();
 
-  contact: Observable<any>;
-  contactLoading = false;
-  contactInput = new Subject<string>();
+  product: Observable<any>;
+  product_loading = false;
+  productInput = new Subject<string>();
 
-  constructor(private _employeeService: EmployeeService) {}
+  constructor(private _productService: ProductService) {}
 
-  ngOnInit() {
-    this.loadItems();
-  }
+  ngOnInit() {}
   private loadItems() {
-    this.contact = concat(
+    this.product = concat(
       of([]), // default items
-      this.contactInput.pipe(
+      this.productInput.pipe(
         debounceTime(200),
         distinctUntilChanged(),
-        tap(() => (this.contactLoading = true)),
+        tap(() => (this.product_loading = true)),
         switchMap(term =>
-          this._employeeService.searchEmployeeName(term).pipe(
+          this._productService.searchProductByName(term).pipe(
             catchError(() => of([])), // empty list on error
             map((val: any) => (val = val.data)),
             tap(() => {
-              this.contactLoading = false;
+              this.product_loading = false;
             })
           )
         )

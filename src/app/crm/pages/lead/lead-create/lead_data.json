@@ -1,12 +1,12 @@
 {
   "id": "new",
   "company_name": "",
-  "source": "",
-  "latitude": 19.573717700000003,
-  "longitude": 72.8195252,
+  "source": null,
+  "latitude": "",
+  "longitude": "",
   "assigned_to": "",
-  "lead_status": "",
-  "product": "",
+  "lead_status": null,
+  "product": null,
   "contact_persons": [
     {
       "name": "",
@@ -21,25 +21,23 @@
     "company_annual_revenue": "",
     "company_website": "",
     "company_phone": "",
-    "company_industry_type": "",
-    "company_business_type": ""
-  },
-  "address": {
-    "address_id": "new",
-    "building": "",
-    "road_name": "",
-    "landmark": "",
-    "pincode": "",
-    "country": "",
-    "state": "",
-    "city": ""
+    "company_industry_type": null,
+    "company_business_type": null
   },
   "social": { "facebook_link": " ", "twitter_link": "", "linkedin_link": "" },
   "deal": {
     "deal_name": "",
     "deal_value": "",
     "deal_expected_close_date": "",
-    "deal_product": ""
+    "deal_product": null
   },
-  "source_info": { "campaign": "", "medium": "", "keyword": "" }
+  "source_info": { "campaign": "", "medium": "", "keyword": "" },
+  "address": {
+    "address_line_1": null,
+    "address_line_2": null,
+    "city": null,
+    "state": null,
+    "pincode": null,
+    "meta": "defaultAddress"
+  }
 }

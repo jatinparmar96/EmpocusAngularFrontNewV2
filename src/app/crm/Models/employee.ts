@@ -5,21 +5,27 @@ export interface Employee {
   employee_name: string;
   employee_username: string;
   email: string;
-  contact_numbers: ContactNumber[];
-  adhar_number: string;
-  pan_number: string;
-  permanent_address: Address;
+  employee_contact_numbers: EmployeeContactNumber[];
+  address_checkbox: boolean;
+  employee_adhaar_number: string;
+  employee_pan_number: string;
+  bank_name: string;
+  bank_account_number: string;
+  ifsc_code: string;
+  provident_fund_account_number: string;
   residential_address: Address;
+  permanent_address: Address;
 }
 
-export interface ContactNumber {
-  contact_number: number;
+export interface EmployeeContactNumber {
+  contact_number: string;
 }
 
 export interface Address {
-  address_line_1: string;
-  address_line_2: string;
-  city: string;
-  state: string;
-  pincode: string;
+  address_line_1: null;
+  address_line_2: null;
+  city: null;
+  state: null;
+  pincode: null;
+  meta: string;
 }

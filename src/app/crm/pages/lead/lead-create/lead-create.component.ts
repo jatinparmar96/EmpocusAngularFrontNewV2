@@ -11,6 +11,7 @@ import {
   animate,
   query
 } from '@angular/animations';
+import { Address } from 'app/crm/Models/employee';
 
 @Component({
   selector: 'app-lead-create',
@@ -47,29 +48,23 @@ import {
 })
 export class LeadCreateComponent implements OnInit {
   active = 'today';
+  prefetchedAddress: Address;
   lead_data: FormGroup;
-  Lead: FormGroup;
-  formTouched = false;
   isProcessing = false;
-  errors: any;
-  id: any = 'new';
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private notifyService: NotifyService,
-    private router: Router
+    private notifyService: NotifyService
   ) {
     this.lead_data = this.fb.group({
       id: ['new', Validators.required],
       company_name: ['', Validators.required],
       source: ['', Validators.required],
-      latitude: [''],
-      longitude: [''],
       assigned_to: ['', Validators.required],
       lead_status: ['', Validators.required],
       product: ['', Validators.required],
       contact_persons: this.fb.array([this.createContactGroup()]),
+      address: [],
       company_info: this.fb.group({
         company_employee_number: [''],
         company_annual_revenue: [''],
@@ -119,22 +114,7 @@ export class LeadCreateComponent implements OnInit {
   get contactsFormArray() {
     return this.lead_data.controls.contact_persons as FormArray;
   }
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      console.log(params['id']);
-      if (params['id'] === 'new') {
-        this.id = 'new';
-        navigator.geolocation.getCurrentPosition(position => {
-          console.log('Got position', position.coords);
-          this.lead_data.value.latitude = position.coords.latitude;
-          this.lead_data.value.longitude = position.coords.longitude;
-        });
-      } else {
-        this.id = +params['id']; // (+) converts string 'id' to a number
-        this.getData(this.id);
-      }
-    });
-  }
+  ngOnInit() {}
   getData(id: any) {
     this.apiService.get('admin/crm/leads/' + id).then(data => {
       const l_data: any = data;
@@ -143,7 +123,6 @@ export class LeadCreateComponent implements OnInit {
     });
   }
   addOrUpdate(lead) {
-    this.formTouched = true;
     this.isProcessing = true;
     console.log(lead);
     // post request
@@ -170,13 +149,11 @@ export class LeadCreateComponent implements OnInit {
             },
             'error'
           );
-          this.errors = result.error;
         }
       })
       .catch(error => {
         this.isProcessing = false;
         const errors: any = error;
-        this.errors = errors;
       });
   }
   canDeactivate() {

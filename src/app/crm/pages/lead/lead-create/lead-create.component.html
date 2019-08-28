@@ -98,23 +98,25 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="assigned_to">Assigned To</label>
-                    <ng-select>
-                      <ng-option>Employee 1</ng-option>
-                    </ng-select>
+                   <app-employee-selector
+                   [parentForm]="lead_data"
+                   [controlName]="'assigned_to'"
+                   >
+                   </app-employee-selector>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="lead_status">Lead Status</label>
-                    <select class="form-control" formControlName="lead_status" id="lead_status">
-                      <option>Select Option</option>
-                      <option>New</option>
-                      <option>Contacted</option>
-                      <option>Interested</option>
-                      <option>Under Review</option>
-                      <option>Demo</option>
-                      <option>Unqualified</option>
-                    </select>
+                    <ng-select  formControlName="lead_status" id="lead_status">
+                      <ng-option>Select Option</ng-option>
+                      <ng-option>New</ng-option>
+                      <ng-option>Contacted</ng-option>
+                      <ng-option>Interested</ng-option>
+                      <ng-option>Under Review</ng-option>
+                      <ng-option>Demo</ng-option>
+                      <ng-option>Unqualified</ng-option>
+                    </ng-select>
                   </div>
                 </div>
               </div>
@@ -122,23 +124,23 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="source">Source</label>
-                    <select class="form-control" formControlName="source" id="source">
-                      <option>Select Option</option>
-                      <option>Web</option>
-                      <option>Organic Search</option>
-                      <option>Email</option>
-                    </select>
+                    <ng-select formControlName="source" id="source">
+                      <ng-option>Select Option</ng-option>
+                      <ng-option>Web</ng-option>
+                      <ng-option>Organic Search</ng-option>
+                      <ng-option>Email</ng-option>
+                    </ng-select>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="product">Product</label>
-                    <select class="form-control" formControlName="product" id="product">
-                      <option>Select Option</option>
-                      <option>Product 1</option>
-                      <option>Product 2</option>
-                      <option>Product 3</option>
-                    </select>
+                    <ng-select formControlName="product" id="product">
+                      <ng-option>Select Option</ng-option>
+                      <ng-option>Product 1</ng-option>
+                      <ng-option>Product 2</ng-option>
+                      <ng-option>Product 3</ng-option>
+                    </ng-select>
                   </div>
                 </div>
               </div>
@@ -208,75 +210,75 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="company_industry_type">Industry type</label>
-                            <select class="form-control" formControlName="company_industry_type"
+                            <ng-select formControlName="company_industry_type"
                               id="company_industry_type">
-                              <option>Select Option</option>
-                              <option>Accounting Type</option>
-                              <option>Advertising</option>
-                              <option>Aerospace</option>
-                              <option>Agriculture</option>
-                              <option>Aircraft</option>
-                              <option>Airline</option>
-                              <option>Apparel & Accessories</option>
-                              <option>Automative</option>
-                              <option>Banking</option>
-                              <option>Biotechology</option>
-                              <option>Broadcasting</option>
-                              <option>Call Center</option>
-                              <option>Cargo Handling</option>
-                              <option>Construction</option>
-                              <option>Consulting</option>
-                              <option>Consumer Product</option>
-                              <option>Defence</option>
-                              <option>Education</option>
-                              <option>Electronic</option>
-                              <option>Energy</option>
-                              <option>Engineering</option>
-                              <option>Entertainment & Leisure</option>
-                              <option>Executive Search</option>
-                              <option>Finanical Services</option>
-                              <option>Hosptality</option>
-                              <option>Insurance</option>
-                              <option>Investment Banking</option>
-                              <option>Music</option>
-                              <option>Newspaper Publishing</option>
-                              <option>Online Auctions</option>
-                              <option>Pension Funds</option>
-                              <option>Pharmaceuticals</option>
-                              <option>Publishing</option>
-                              <option>Real Estate</option>
-                              <option>Retail & Wholesale</option>
-                              <option>Security & Wholesale</option>
-                              <option>Services</option>
-                              <option>Shipping</option>
-                              <option>Saop & Detergent</option>
-                              <option>Software</option>
-                              <option>Sports</option>
-                              <option>Telecommunication</option>
-                              <option>Television</option>
-                              <option>Transportation</option>
-                              <option>Utilities</option>
-                            </select>
+                             
+                              <ng-option ngValue="Accounting Type">Accounting Type</ng-option>
+                              <ng-option ngValue="Advertising">Advertising</ng-option>
+                              <ng-option ngValue="Aerospace">Aerospace</ng-option>
+                              <ng-option ngValue="Agriculture">Agriculture</ng-option>
+                              <ng-option ngValue="Aircraft">Aircraft</ng-option>
+                              <ng-option ngValue="Airline">Airline</ng-option>
+                              <ng-option ngValue="Apparel & Accessories">Apparel & Accessories</ng-option>
+                              <ng-option ngValue="Automative">Automative</ng-option>
+                              <ng-option ngValue="Banking">Banking</ng-option>
+                              <ng-option ngValue="Biotechology">Biotechology</ng-option>
+                              <ng-option ngValue="Broadcasting">Broadcasting</ng-option>
+                              <ng-option ngValue="Call Center">Call Center</ng-option>
+                              <ng-option ngValue="Cargo Handling">Cargo Handling</ng-option>
+                              <ng-option ngValue="Construction">Construction</ng-option>
+                              <ng-option ngValue="Consulting">Consulting</ng-option>
+                              <ng-option ngValue="Consumer Product">Consumer Product</ng-option>
+                              <ng-option ngValue="Defence">Defence</ng-option>
+                              <ng-option ngValue="Education">Education</ng-option>
+                              <ng-option ngValue="Electronic">Electronic</ng-option>
+                              <ng-option ngValue="Energy">Energy</ng-option>
+                              <ng-option ngValue="Engineering">Engineering</ng-option>
+                              <ng-option ngValue="Entertainment & Leisure">Entertainment & Leisure</ng-option>
+                              <ng-option ngValue="Executive Search">Executive Search</ng-option>
+                              <ng-option ngValue="Finanical Services">Finanical Services</ng-option>
+                              <ng-option ngValue="Hosptality">Hosptality</ng-option>
+                              <ng-option ngValue="Insurance">Insurance</ng-option>
+                              <ng-option ngValue="Investment Banking">Investment Banking</ng-option>
+                              <ng-option ngValue="Music">Music</ng-option>
+                              <ng-option ngValue="Newspaper Publishing">Newspaper Publishing</ng-option>
+                              <ng-option ngValue="Online Auctions">Online Auctions</ng-option>
+                              <ng-option ngValue="Pension Funds">Pension Funds</ng-option>
+                              <ng-option ngValue="Pharmaceuticals">Pharmaceuticals</ng-option>
+                              <ng-option ngValue="Publishing">Publishing</ng-option>
+                              <ng-option ngValue="Real Estate">Real Estate</ng-option>
+                              <ng-option ngValue="Retail & Wholesale">Retail & Wholesale</ng-option>
+                              <ng-option ngValue="Security & Wholesale">Security & Wholesale</ng-option>
+                              <ng-option ngValue="Services">Services</ng-option>
+                              <ng-option ngValue="Shipping">Shipping</ng-option>
+                              <ng-option ngValue="Saop & Detergent">Saop & Detergent</ng-option>
+                              <ng-option ngValue="Software">Software</ng-option>
+                              <ng-option ngValue="Sports">Sports</ng-option>
+                              <ng-option ngValue="Telecommunication">Telecommunication</ng-option>
+                              <ng-option ngValue="Television">Television</ng-option>
+                              <ng-option ngValue="Transportation">Transportation</ng-option>
+                              <ng-option ngValue="Utilities">Utilities</ng-option>
+                            </ng-select>
                           </div>
                         </div>
 
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="company_business_type">Business Type</label>
-                            <select class="form-control" formControlName="company_business_type"
+                            <ng-select  formControlName="company_business_type"
                               id="company_business_type">
-                              <option>Select Option</option>
-                              <option>Analyst</option>
-                              <option>Competitor</option>
-                              <option>Customer</option>
-                              <option>Integration</option>
-                              <option>Investor</option>
-                              <option>Partner</option>
-                              <option>Press</option>
-                              <option>Prospect</option>
-                              <option>Reseller</option>
-                              <option>Other</option>
-                            </select>
+                              <ng-option>Select Option</ng-option>
+                              <ng-option>Analyst</ng-option>
+                              <ng-option>Competitor</ng-option>
+                              <ng-option>Customer</ng-option>
+                              <ng-option>Integration</ng-option>
+                              <ng-option>Investor</ng-option>
+                              <ng-option>Partner</ng-option>
+                              <ng-option>Press</ng-option>
+                              <ng-option>Prospect</ng-option>
+                              <ng-option>Reseller</ng-option>
+                              <ng-option>Other</ng-option>
+                            </ng-select>
                           </div>
                         </div>
                       </div>
@@ -284,7 +286,9 @@
                     </div>
                     <div class="tab-pane" [class.active]="active=='missed'" id="missed" role="tabpanel"
                       >
-                    <app-address [parentForm]="lead_data" [controlName]="'address'"></app-address>
+                    <app-address [parentForm]="lead_data" [controlName]="'address'"
+                    [prefetchedData]="prefetchedAddress"
+                    ></app-address>
                     </div>
                     <div class="tab-pane active" [class.active]="active=='social'" id="social" role="tabpanel"
                       formGroupName="social">
@@ -343,12 +347,12 @@
                           <div class="form-group">
                             <label for="deal_product">Product</label>
 
-                            <select class="form-control" formControlName="deal_product" id="deal_product">
-                              <option>Select Option</option>
-                              <option>Maharashtra</option>
-                              <option>Gujarat</option>
-                              <option>Rajasthan</option>
-                            </select>
+                            <ng-select formControlName="deal_product" id="deal_product">
+                              <ng-option>Select Option</ng-option>
+                              <ng-option>Maharashtra</ng-option>
+                              <ng-option>Gujarat</ng-option>
+                              <ng-option>Rajasthan</ng-option>
+                            </ng-select>
                           </div>
                         </div>
                       </div>
@@ -359,12 +363,12 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="campaign">Campaign</label>
-                            <!-- <select class="form-control" formControlName="campaign" id="campaign">
-                                                          <option>Select Option</option>
-                                                          <option>Option 1</option>
-                                                          <option>Option 2</option>
-                                                          <option>Option 3</option>
-                                                        </select> -->
+                            <!-- <ng-select class="form-control" formControlName="campaign" id="campaign">
+                                                          <ng-option>Select Option</ng-option>
+                                                          <ng-option>Option 1</ng-option>
+                                                          <ng-option>Option 2</ng-option>
+                                                          <ng-option>Option 3</ng-option>
+                                                        </ng-select> -->
                             <input type="text" formControlName="campaign" class="form-control" id="campaign"
                               name="campaign">
                           </div>

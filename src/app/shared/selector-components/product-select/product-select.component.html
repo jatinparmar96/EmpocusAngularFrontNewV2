@@ -1,0 +1,20 @@
+<div [formGroup]="parentForm">
+  <ng-select
+    [items]="product | async"
+    [loading]="product_loading"
+    [typeahead]="productInput"
+    formControlName="{{ controlName }}"
+  >
+    <ng-template ng-label-tmp let-item="item">
+      {{ item.product_name }}
+    </ng-template>
+    <ng-template
+      ng-option-tmp
+      let-item="item"
+      let-index="index"
+      let-search="searchTerm"
+    >
+      {{ item.product_name }} - {{ item.product_category }}
+    </ng-template>
+  </ng-select>
+</div>

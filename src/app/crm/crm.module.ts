@@ -16,6 +16,7 @@ import { EmployeeCreateComponent } from './pages/employee/employee-create/employ
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EmployeeListComponent } from './pages/employee/employee-list/employee-list.component';
 import { AddressComponent } from './shared/address/address.component';
+import { EmployeeSelectorComponent } from './selector-components/employee-selector/employee-selector.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AddressComponent } from './shared/address/address.component';
     ContactSelectorComponent,
     EmployeeCreateComponent,
     EmployeeListComponent,
-    AddressComponent
+    AddressComponent,
+    EmployeeSelectorComponent
   ],
   imports: [
     CommonModule,

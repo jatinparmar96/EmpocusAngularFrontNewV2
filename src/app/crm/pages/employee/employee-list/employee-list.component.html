@@ -6,6 +6,35 @@
     <h4>Employees List</h4>
   </div>
   <div class="card-body">
+    <form>
+      <fieldset class="form-group">
+        <div class="row">
+          <div class="col-md-10">
+            <input
+              #searchField
+              type="text"
+              class="form-control form-control-lg"
+              [(ngModel)]="searchTerm"
+              [ngModelOptions]="{ standalone: true }"
+              placeholder="Search For Employees"
+            />
+          </div>
+          <div class="col-md-2 mt-1">
+            <ng-select
+              [(ngModel)]="searchColumn"
+              [ngModelOptions]="{ standalone: true }"
+            >
+              <ng-option ngValue="employee_name">Name</ng-option>
+              <ng-option ngValue="employee_username">UserName</ng-option>
+              <ng-option ngValue="employee_email">Email</ng-option>
+              <ng-option ngValue="employee_contact_numbers"
+                >Contact Number</ng-option
+              >
+            </ng-select>
+          </div>
+        </div>
+      </fieldset>
+    </form>
     <div class="table-responsive">
       <table class="table table-hover">
         <thead class="thead-light">
@@ -20,7 +49,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let employee of employeeList; let i = index">
-            <th scope="row">{{ i + 1 }}</th>
+            <th scope="row">
+              {{
+                (paginationData.current_page - 1) * paginationData.per_page +
+                  1 +
+                  i
+              }}
+            </th>
             <td>{{ employee.employee_name }}</td>
             <td>{{ employee.employee_username }}</td>
             <td>{{ employee.email }}</td>
@@ -44,6 +79,9 @@
         [collectionSize]="paginationData.total"
         [page]="paginationData.current_page"
         [pageSize]="paginationData.per_page"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        [maxSize]="10"
         (pageChange)="pageChange($event)"
       >
       </ngb-pagination>

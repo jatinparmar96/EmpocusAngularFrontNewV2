@@ -9,13 +9,12 @@ import {
   map
 } from 'rxjs/operators';
 import { EmployeeService } from 'app/crm/services/employee/employee.service';
-
 @Component({
-  selector: 'app-contact-selector',
-  templateUrl: './contact-selector.component.html',
-  styleUrls: ['./contact-selector.component.scss']
+  selector: 'app-employee-selector',
+  templateUrl: './employee-selector.component.html',
+  styleUrls: ['./employee-selector.component.scss']
 })
-export class ContactSelectorComponent implements OnInit {
+export class EmployeeSelectorComponent implements OnInit {
   @Input() parentForm: string;
   @Input() controlName: string;
   @Output() value = new EventEmitter();
