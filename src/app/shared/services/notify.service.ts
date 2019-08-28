@@ -12,7 +12,8 @@ export class NotifyService {
 
   success(message: string) {
     this.toastyservice.success(message, 'Success', {
-      progressBar: true
+      progressBar: true,
+      progressAnimation: 'increasing'
     });
   }
   show(data: any, type: string = 'success', duration: number = 5000) {

@@ -89,21 +89,22 @@
               [parentForm]="employee"
               [controlName]="'residential_address'"
               [meta]="'ResidentialAddress'"
+              [prefetchedData]="prefetchResidentialAddress"
             ></app-address>
             <div>
               <h4>Permanent Address</h4>
               <mat-checkbox
-                [(ngModel)]="checkBoxValue"
-                [ngModelOptions]="{ standalone: true }"
+                formControlName="address_checkbox"
                 (change)="addressEvent($event)"
                 >Same as Above</mat-checkbox
               >
             </div>
-            <fieldset [disabled]="checkBoxValue">
+            <fieldset [disabled]="checkBoxValue.value">
               <app-address
                 [parentForm]="employee"
                 [controlName]="'permanent_address'"
                 [meta]="'PermanentAddress'"
+                [prefetchedData]="prefetchPermanentAddress"
               ></app-address>
             </fieldset>
 

@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { EmployeeService } from 'app/crm/services/employee/employee.service';
 import { NotifyService } from 'app/shared/services/notify.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ContactNumber } from 'app/crm/Models/employee';
+import { ContactNumber, Address } from 'app/crm/Models/employee';
 
 @Component({
   selector: 'app-employee-create',
@@ -12,8 +12,9 @@ import { ContactNumber } from 'app/crm/Models/employee';
 })
 export class EmployeeCreateComponent implements OnInit {
   employee: FormGroup;
-  checkBoxValue: boolean;
   processing = false;
+  prefetchPermanentAddress: Address;
+  prefetchResidentialAddress: Address;
   constructor(
     private fb: FormBuilder,
     private _employeeService: EmployeeService,
@@ -27,6 +28,7 @@ export class EmployeeCreateComponent implements OnInit {
       employee_username: ['', Validators.required],
       email: [''],
       contact_numbers: this.fb.array([this.createContactGroup()]),
+      address_checkbox: [false],
       adhar_number: [''],
       pan_number: [''],
       bank_name: ['', Validators.required],
@@ -41,17 +43,22 @@ export class EmployeeCreateComponent implements OnInit {
       this.patchData(this._activatedRoute.snapshot.data['employee'].data);
     }
   }
-  // Getters For Commonly used Controls
+  /**
+   * Getters for Commonly used Form Controls
+   */
   get residentialAddress() {
     return this.employee.controls['residential_address'];
   }
+
   get permanentAddress() {
     return this.employee.controls['permanent_address'];
   }
   get contactNumbers() {
     return this.employee.controls.contact_numbers as FormArray;
   }
-
+  get checkBoxValue() {
+    return this.employee.controls.address_checkbox;
+  }
   createContactGroup(element: any = '') {
     return this.fb.group({
       contact_number: [element, Validators.required]
@@ -70,17 +77,18 @@ export class EmployeeCreateComponent implements OnInit {
     contact.markAsTouched();
   }
   // Generate Address Form Field
-  generateAddress(element: any = '') {
-    return this.fb.group({
-      address_line_1: [element.address_line_1],
-      address_line_2: [element.address_line_2],
-      city: [element.city],
-      state: [element.state],
-      pincode: [element.pincode]
-    });
-  }
+  // generateAddress(element: any = '') {
+  //   return this.fb.group({
+  //     address_line_1: [element.address_line_1],
+  //     address_line_2: [element.address_line_2],
+  //     city: [element.city],
+  //     state: [element.state],
+  //     pincode: [element.pincode]
+  //   });
+  // }
+
   addressEvent(event) {
-    if (this.checkBoxValue) {
+    if (event.checked) {
       this.employee.controls['permanent_address'].setValue(
         this.residentialAddress.value
       );
@@ -110,6 +118,7 @@ export class EmployeeCreateComponent implements OnInit {
         this.processing = false;
       });
   }
+
   /**
    * Patch Employee form With Received Employee Data
    * @param employee
@@ -125,19 +134,14 @@ export class EmployeeCreateComponent implements OnInit {
       adhar_number: employee.employee_adhaar_number,
       pan_number: employee.employee_pan_number
     });
-    this.employee.setControl(
-      'permanent_address',
-      this.generateAddress(employee.permanent_address[0])
-    );
-    this.employee.setControl(
-      'residential_address',
-      this.generateAddress(employee.residential_address[0])
-    );
+    this.prefetchResidentialAddress = employee.residential_address[0];
+    this.prefetchPermanentAddress = employee.permanent_address[0];
     this.employee.setControl(
       'contact_numbers',
       this.setExistingNumbers(employee.employee_contact_numbers)
     );
   }
+
   /**
    * Populate FormArray Field Contact Number
    * @param contact_numbers
@@ -150,8 +154,9 @@ export class EmployeeCreateComponent implements OnInit {
     });
     return formArry;
   }
+
   /**
-   *
+   * Method To Show Confirm Dialog Box
    */
   canDeactivate(): boolean {
     if (this.employee.dirty) {

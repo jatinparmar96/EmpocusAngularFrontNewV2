@@ -1,4 +1,4 @@
-import { Injectable, Inject  } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
@@ -19,12 +19,10 @@ import 'prismjs/components/prism-scss';
 declare var Prism: any;
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class HighlightService {
-
-    highlightAll() {
-        Prism.highlightAll();
-    }
-
+  highlightAll() {
+    Prism.highlightAll();
+  }
 }
