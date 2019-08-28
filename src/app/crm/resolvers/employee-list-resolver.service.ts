@@ -5,15 +5,17 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { EmployeeService } from '../services/employee/employee.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class EmployeeListResolverService implements Resolve<any[]> {
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): any | Observable<any> {
-    return this._employeeService.list();
+  resolve(): any | Observable<any> {
+    return this._employeeService.list().pipe(
+      catchError((error: any) => {
+        return of(error);
+      })
+    );
   }
   constructor(private _employeeService: EmployeeService) {}
 }

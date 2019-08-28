@@ -5,7 +5,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { FormGroup, FormBuilder, FormControlName } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Address } from 'app/crm/Models/employee';
 
 @Component({

@@ -27,20 +27,21 @@ export class EmployeeCreateComponent implements OnInit {
       employee_name: ['', Validators.required],
       employee_username: ['', Validators.required],
       email: [''],
-      contact_numbers: this.fb.array([this.createContactGroup()]),
+      employee_contact_numbers: this.fb.array([this.createContactGroup()]),
       address_checkbox: [false],
-      adhar_number: [''],
-      pan_number: [''],
-      bank_name: ['', Validators.required],
-      bank_account_number: ['', Validators.required],
-      ifsc_code: ['', Validators.required]
+      employee_adhaar_number: [''],
+      employee_pan_number: [''],
+      bank_name: [''],
+      bank_account_number: [''],
+      ifsc_code: [''],
+      provident_fund_account_number: ['']
     });
   }
 
   ngOnInit() {
     const employeeDetails = this._activatedRoute.snapshot.data.employee;
-    if (employeeDetails.data) {
-      this.patchData(this._activatedRoute.snapshot.data['employee'].data);
+    if (employeeDetails) {
+      this.patchData(employeeDetails);
     }
   }
   /**
@@ -54,7 +55,7 @@ export class EmployeeCreateComponent implements OnInit {
     return this.employee.controls['permanent_address'];
   }
   get contactNumbers() {
-    return this.employee.controls.contact_numbers as FormArray;
+    return this.employee.controls.employee_contact_numbers as FormArray;
   }
   get checkBoxValue() {
     return this.employee.controls.address_checkbox;
@@ -76,24 +77,12 @@ export class EmployeeCreateComponent implements OnInit {
     contact.markAsDirty();
     contact.markAsTouched();
   }
-  // Generate Address Form Field
-  // generateAddress(element: any = '') {
-  //   return this.fb.group({
-  //     address_line_1: [element.address_line_1],
-  //     address_line_2: [element.address_line_2],
-  //     city: [element.city],
-  //     state: [element.state],
-  //     pincode: [element.pincode]
-  //   });
-  // }
 
   addressEvent(event) {
     if (event.checked) {
-      this.employee.controls['permanent_address'].setValue(
-        this.residentialAddress.value
-      );
+      this.prefetchPermanentAddress = this.residentialAddress.value;
     } else {
-      this.employee.controls['permanent_address'].reset();
+      this.permanentAddress.reset();
     }
   }
 
@@ -129,15 +118,19 @@ export class EmployeeCreateComponent implements OnInit {
     this.employee.patchValue({
       id: employee.id,
       employee_name: employee.employee_name,
-      employee_username: '',
+      employee_username: employee.employee_username,
       email: employee.email,
-      adhar_number: employee.employee_adhaar_number,
-      pan_number: employee.employee_pan_number
+      employee_adhaar_number: employee.employee_adhaar_number,
+      employee_pan_number: employee.employee_pan_number,
+      bank_name: employee.bank_name,
+      bank_account_number: employee.bank_account_number,
+      ifsc_code: employee.ifsc_code,
+      provident_fund_account_number: employee.provident_fund_account_number
     });
     this.prefetchResidentialAddress = employee.residential_address[0];
     this.prefetchPermanentAddress = employee.permanent_address[0];
     this.employee.setControl(
-      'contact_numbers',
+      'employee_contact_numbers',
       this.setExistingNumbers(employee.employee_contact_numbers)
     );
   }

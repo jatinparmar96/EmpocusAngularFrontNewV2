@@ -13,18 +13,22 @@ export class EmployeeListComponent implements OnInit {
   page = 1;
   employeeList: any;
   paginationData: PaginationData = null;
-  constructor(private route: ActivatedRoute,
-    private _employeeService: EmployeeService) {
+  constructor(
+    private route: ActivatedRoute,
+    private _employeeService: EmployeeService
+  ) {
     this.paginationData = this.route.snapshot.data['employeeList'].data;
     this.employeeList = this.paginationData.data;
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
   pageChange(e) {
-
-    this._employeeService.list(e).pipe(first()).subscribe((data: any) => {
-      this.paginationData = data.data;
-      this.employeeList = this.paginationData.data;
-    })
+    this._employeeService
+      .list(e)
+      .pipe(first())
+      .subscribe((data: any) => {
+        this.paginationData = data.data;
+        this.employeeList = this.paginationData.data;
+      });
   }
 }
