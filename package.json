@@ -45,6 +45,7 @@
     "resize-observer-polyfill": "1.5.1",
     "rxjs": "6.5.2",
     "screenfull": "4.2.0",
+    "sweetalert2": "^8.16.3",
     "tslib": "1.9.3",
     "web-animations-js": "github:angular/web-animations-js#release_pr208",
     "zone.js": "~0.9.1"

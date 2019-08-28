@@ -4,6 +4,8 @@ import { EmployeeService } from 'app/crm/services/employee/employee.service';
 import { NotifyService } from 'app/shared/services/notify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ContactNumber, Address } from 'app/crm/Models/employee';
+import swal from 'sweetalert2';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-employee-create',
@@ -153,9 +155,9 @@ export class EmployeeCreateComponent implements OnInit {
    */
   canDeactivate(): boolean {
     if (this.employee.dirty) {
-      return confirm('Are You Sure you want to Discard the changes?');
-    } else {
       return true;
+    } else {
+      return false;
     }
   }
 }
