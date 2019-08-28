@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EmployeeListComponent } from './pages/employee/employee-list/employee-list.component';
 import { AddressComponent } from './shared/address/address.component';
 import { EmployeeSelectorComponent } from './selector-components/employee-selector/employee-selector.component';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -33,13 +34,14 @@ import { EmployeeSelectorComponent } from './selector-components/employee-select
   imports: [
     CommonModule,
     CrmRoutingModule,
+    SharedModule,
     ReactiveFormsModule,
     RouterModule,
     NgSelectModule,
     MatTableModule,
     FormsModule,
     MatCheckboxModule,
-    NgbModule.forRoot(),
+    NgbModule.forRoot()
   ]
 })
-export class CrmModule { }
+export class CrmModule {}

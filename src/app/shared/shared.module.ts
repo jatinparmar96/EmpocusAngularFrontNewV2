@@ -33,7 +33,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ToggleFullscreenDirective,
     SidebarDirective,
     NgbModule,
-    TranslateModule
+    TranslateModule,
+    ProductSelectComponent
   ],
   imports: [
     RouterModule,

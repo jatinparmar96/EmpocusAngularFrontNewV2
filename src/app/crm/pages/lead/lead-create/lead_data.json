@@ -1,12 +1,66 @@
 {
   "id": "new",
   "company_name": "",
-  "source": null,
-  "latitude": "",
-  "longitude": "",
-  "assigned_to": "",
-  "lead_status": null,
-  "product": null,
+  "source": { "$ngOptionLabel": "Web", "disabled": false },
+  "assigned_to": {
+    "id": 3,
+    "company_id": 1,
+    "employee_name": "Toby Hahn",
+    "employee_username": "marielle78",
+    "employee_adhaar_number": "6352",
+    "employee_pan_number": "426",
+    "employee_contact_numbers": [{ "contact_number": "424.281.3958 x28990" }],
+    "email": "denesik.zella@ankunding.com",
+    "bank_name": "culpa",
+    "bank_account_number": "99953235078123",
+    "ifsc_code": "99",
+    "provident_fund_account_number": "920238560",
+    "created_at": "2019-08-28 12:32:25",
+    "updated_at": "2019-08-28 12:32:25",
+    "created_by": 1,
+    "updated_by": 1,
+    "permanent_address": [
+      {
+        "id": 6,
+        "addressable_id": 3,
+        "addressable_type": "App\\Models\\Master\\Employee",
+        "meta": "PermanentAddress",
+        "address_line_1": "147 Pouros Mill Apt. 465",
+        "address_line_2": "3591 Kathryn Inlet Suite 422\nEast Karleeshire, MO 61647",
+        "city": "Strackeside",
+        "state": "Port Glenfort",
+        "pincode": "7",
+        "created_at": "2019-08-28 12:32:25",
+        "updated_at": "2019-08-28 12:32:25"
+      }
+    ],
+    "residential_address": [
+      {
+        "id": 5,
+        "addressable_id": 3,
+        "addressable_type": "App\\Models\\Master\\Employee",
+        "meta": "ResidentialAddress",
+        "address_line_1": "110 Homenick Meadows",
+        "address_line_2": "18055 Macejkovic Shore Suite 423\nWest Myrtice, MO 74793",
+        "city": "Port Ardithstad",
+        "state": "Nyaberg",
+        "pincode": "2",
+        "created_at": "2019-08-28 12:32:25",
+        "updated_at": "2019-08-28 12:32:25"
+      }
+    ]
+  },
+  "lead_status": "",
+  "product": {
+    "id": 9,
+    "company_id": 1,
+    "product_name": "a",
+    "product_type": "quo",
+    "created_at": "2019-08-28 12:32:25",
+    "updated_at": "2019-08-28 12:32:25",
+    "created_by": 1,
+    "updated_by": 1
+  },
   "contact_persons": [
     {
       "name": "",
@@ -21,15 +75,15 @@
     "company_annual_revenue": "",
     "company_website": "",
     "company_phone": "",
-    "company_industry_type": null,
-    "company_business_type": null
+    "company_industry_type": "",
+    "company_business_type": ""
   },
   "social": { "facebook_link": " ", "twitter_link": "", "linkedin_link": "" },
   "deal": {
     "deal_name": "",
     "deal_value": "",
     "deal_expected_close_date": "",
-    "deal_product": null
+    "deal_product": ""
   },
   "source_info": { "campaign": "", "medium": "", "keyword": "" },
   "address": {

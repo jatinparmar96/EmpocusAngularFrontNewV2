@@ -135,12 +135,10 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="product">Product</label>
-                    <ng-select formControlName="product" id="product">
-                      <ng-option>Select Option</ng-option>
-                      <ng-option>Product 1</ng-option>
-                      <ng-option>Product 2</ng-option>
-                      <ng-option>Product 3</ng-option>
-                    </ng-select>
+                    <app-product-select
+                    [parentForm]="lead_data"
+                    [controlName]="'product'"
+                    ></app-product-select>
                   </div>
                 </div>
               </div>

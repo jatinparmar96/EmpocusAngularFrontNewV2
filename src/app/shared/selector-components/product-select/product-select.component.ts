@@ -26,7 +26,9 @@ export class ProductSelectComponent implements OnInit {
 
   constructor(private _productService: ProductService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadItems();
+  }
   private loadItems() {
     this.product = concat(
       of([]), // default items
@@ -37,9 +39,10 @@ export class ProductSelectComponent implements OnInit {
         switchMap(term =>
           this._productService.searchProductByName(term).pipe(
             catchError(() => of([])), // empty list on error
-            map((val: any) => (val = val.data)),
-            tap(() => {
+            map((data: any) => (data = data.data)),
+            tap((val: any) => {
               this.product_loading = false;
+              console.log(val);
             })
           )
         )
