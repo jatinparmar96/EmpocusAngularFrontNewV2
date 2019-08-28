@@ -173,7 +173,13 @@
               class="btn btn-raised btn-primary"
               type="submit"
             >
-              <i class="fa fa-check-square-o"></i> Save
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+                *ngIf="processing"
+              ></span>
+              <i class="fa fa-check-square-o" *ngIf="!processing"></i> Save
             </button>
           </div>
         </form>

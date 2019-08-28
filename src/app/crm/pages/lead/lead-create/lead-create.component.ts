@@ -22,14 +22,15 @@ import { Address } from 'app/crm/Models/employee';
       state(
         'void, hidden',
         style({
-          transform: 'scale(0) translateY(100%)'
+          opacity: '0',
+          transform: 'scale(1)'
         })
       ),
       transition('void => *', [
         animate(
-          '300ms ease',
+          '300ms ease-in',
           style({
-            transform: 'scale(1) translateY(0)'
+            opacity: '1'
           })
         )
       ]),
@@ -37,9 +38,8 @@ import { Address } from 'app/crm/Models/employee';
         animate(
           '300ms ease-out',
           style({
-            'background-color': 'red',
-            opacity: '0.5',
-            transform: 'scale(0.3) translateY(-100%)'
+            opacity: '0.0',
+            transform: 'scale(0.3)'
           })
         )
       ])

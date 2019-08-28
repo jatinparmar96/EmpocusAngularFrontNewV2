@@ -16,6 +16,12 @@ export class NotifyService {
       progressAnimation: 'increasing'
     });
   }
+  error(message: string = 'Unknown Error') {
+    this.toastyservice.error(message, `An Error Occured`, {
+      disableTimeOut: true,
+      closeButton: true
+    });
+  }
   show(data: any, type: string = 'success', duration: number = 5000) {
     const title: string = data.title;
     const message: string = data.message;

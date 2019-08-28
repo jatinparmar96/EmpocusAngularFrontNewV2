@@ -24,10 +24,10 @@
               [(ngModel)]="searchColumn"
               [ngModelOptions]="{ standalone: true }"
             >
-              <ng-option ngValue="employee_name">Name</ng-option>
-              <ng-option ngValue="employee_username">UserName</ng-option>
-              <ng-option ngValue="employee_email">Email</ng-option>
-              <ng-option ngValue="employee_contact_numbers"
+              <ng-option value="employee_name">Name</ng-option>
+              <ng-option value="employee_username">UserName</ng-option>
+              <ng-option value="employee_email">Email</ng-option>
+              <ng-option value="employee_contact_numbers"
                 >Contact Number</ng-option
               >
             </ng-select>
@@ -35,7 +35,12 @@
         </div>
       </fieldset>
     </form>
-    <div class="table-responsive">
+    <div class="d-flex justify-content-center" *ngIf="!loaded">
+      <div class="spinner-border text-info" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <div class="table-responsive" *ngIf="loaded">
       <table class="table table-hover">
         <thead class="thead-light">
           <tr>
@@ -47,7 +52,7 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="loaded">
           <tr *ngFor="let employee of employeeList; let i = index">
             <th scope="row">
               {{
@@ -75,6 +80,7 @@
         </tbody>
       </table>
       <ngb-pagination
+        *ngIf="loaded"
         class="d-flex justify-content-end"
         [collectionSize]="paginationData.total"
         [page]="paginationData.current_page"
