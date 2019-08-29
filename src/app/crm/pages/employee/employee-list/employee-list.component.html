@@ -10,26 +10,21 @@
       <fieldset class="form-group">
         <div class="row">
           <div class="col-md-10">
-            <input
-              #searchField
-              type="text"
-              class="form-control form-control-lg"
-              [(ngModel)]="searchTerm"
-              [ngModelOptions]="{ standalone: true }"
-              placeholder="Search For Employees"
-            />
+            <div class="position-relative has-icon-right">
+              <input #searchField type="text" class="form-control form-control-lg" [(ngModel)]="searchTerm"
+                [ngModelOptions]="{ standalone: true }" placeholder="Search For Employees" />
+              <div class="form-control-position">
+                <span class="spinner-border spinner-border-sm text-primary" role="status" aria-hidden="true"
+                  *ngIf="searchLoading"></span>
+              </div>
+            </div>
           </div>
           <div class="col-md-2 mt-1">
-            <ng-select
-              [(ngModel)]="searchColumn"
-              [ngModelOptions]="{ standalone: true }"
-            >
+            <ng-select [(ngModel)]="searchColumn" [ngModelOptions]="{ standalone: true }">
               <ng-option value="employee_name">Name</ng-option>
               <ng-option value="employee_username">UserName</ng-option>
               <ng-option value="employee_email">Email</ng-option>
-              <ng-option value="employee_contact_numbers"
-                >Contact Number</ng-option
-              >
+              <ng-option value="employee_contact_numbers">Contact Number</ng-option>
             </ng-select>
           </div>
         </div>
@@ -65,31 +60,20 @@
             <td>{{ employee.employee_username }}</td>
             <td>{{ employee.email }}</td>
             <td>
-              <ng-container
-                *ngFor="let contact of employee.employee_contact_numbers"
-              >
-                {{ contact.contact_number }}
+              <ng-container *ngFor="let contact of employee.employee_contact_numbers">
+                <a target="_blank" href="https://wa.me/91{{contact.contact_number}}">{{ contact.contact_number }}</a>
+                &nbsp;
               </ng-container>
             </td>
             <td>
-              <a [routerLink]="[employee.id]" class="success p-0"
-                ><i class="ft-edit-2 font-medium-3 mr-2"></i
-              ></a>
+              <a [routerLink]="[employee.id]" class="success p-0"><i class="ft-edit-2 font-medium-3 mr-2"></i></a>
             </td>
           </tr>
         </tbody>
       </table>
-      <ngb-pagination
-        *ngIf="loaded"
-        class="d-flex justify-content-end"
-        [collectionSize]="paginationData.total"
-        [page]="paginationData.current_page"
-        [pageSize]="paginationData.per_page"
-        [rotate]="true"
-        [boundaryLinks]="true"
-        [maxSize]="10"
-        (pageChange)="pageChange($event)"
-      >
+      <ngb-pagination *ngIf="loaded" class="d-flex justify-content-end" [collectionSize]="paginationData.total"
+        [page]="paginationData.current_page" [pageSize]="paginationData.per_page" [rotate]="true" [boundaryLinks]="true"
+        [maxSize]="10" (pageChange)="pageChange($event)">
       </ngb-pagination>
     </div>
   </div>

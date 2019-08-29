@@ -32,6 +32,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   searchColumn = 'employee_name';
   subscription: Subscription;
   loaded = false;
+  searchLoading = false;
   @ViewChild('searchField', { static: true }) searchField: ElementRef;
 
   constructor(
@@ -80,14 +81,14 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       });
   }
   updateList(value) {
-    this.loaded = false;
+    this.searchLoading = true;
     this._employeeService
       .searchEmployeeName(value)
       .pipe(take(1))
       .subscribe((data: any) => {
         this.paginationData = data;
         this.employeeList = this.paginationData.data;
-        this.loaded = true;
+        this.searchLoading = false;
       });
   }
   ngOnDestroy() {

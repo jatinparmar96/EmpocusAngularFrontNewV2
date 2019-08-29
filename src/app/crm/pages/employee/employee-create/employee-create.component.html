@@ -5,76 +5,50 @@
   <div class="card-content">
     <div class="px-3">
       <fieldset [disabled]="processing">
-        <form
-          class="form"
-          [formGroup]="employee"
-          (ngSubmit)="addOrUpdate(employee)"
-        >
+        <form class="form" [formGroup]="employee" (ngSubmit)="addOrUpdate(employee)">
           <div class="form-body">
             <h4 class="form-section"><i class="ft-info"></i> About Employee</h4>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="employee_name">Name</label>
-                  <input
-                    class="form-control border-primary"
-                    id="userinput1"
-                    name="employee_name"
-                    type="text"
-                    formControlName="employee_name"
-                  />
+                  <input class="form-control border-primary" id="userinput1" name="employee_name" type="text"
+                    formControlName="employee_name" />
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="employee_username">UserName</label>
-                  <input
-                    class="form-control border-primary"
-                    id="employee_username"
-                    name="employee_username"
-                    type="text"
-                    formControlName="employee_username"
-                  />
+                  <input class="form-control border-primary" id="employee_username" name="employee_username" type="text"
+                    formControlName="employee_username" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="provident_fund_account_number">Provident Fund Account Number</label>
+                  <input class="form-control border-primary" id="userinput1" name="provident_fund_account_number" type="text"
+                    formControlName="provident_fund_account_number" />
                 </div>
               </div>
             </div>
             <h4 class="form-section"><i class="ft-mail"></i> Contact Info</h4>
             <div class="form-group">
               <label for="email">Email</label>
-              <input
-                class="form-control border-primary"
-                id="email"
-                type="email"
-                formControlName="email"
-              />
+              <input class="form-control border-primary" id="email" type="email" formControlName="email" />
             </div>
             <div class="form-group" formArrayName="employee_contact_numbers">
               <label>Contact Number </label>
-              <a
-                class="mt-2 ml-2 btn btn-sm btn-raised btn-outline-primary"
-                (click)="addContact()"
-                >Add</a
-              >
-              <div
-                class="row mb-2"
-                *ngFor="let contact of contactNumbers.controls; let i = index"
-              >
+              <a class="mt-2 ml-2 btn btn-sm btn-raised btn-outline-primary" (click)="addContact()">Add</a>
+              <div class="row mb-2" *ngFor="let contact of contactNumbers.controls; let i = index">
                 <div class="col-md-5" [formGroupName]="i">
                   <div class="d-flex">
-                    <input
-                      class="form-control border-primary"
-                      id="contact_number"
-                      formControlName="contact_number"
-                      name="contact_number-{{ i }}"
-                      type="text"
-                      placeholder="Contact Number-{{ i + 1 }}"
-                    />
+                    <input class="form-control border-primary" id="contact_number" formControlName="contact_number"
+                      name="contact_number-{{ i }}" type="text" placeholder="Contact Number-{{ i + 1 }}" />
                     <a class="ml-1 mt-2">
-                      <i
-                        class="ft-x danger font-medium-2"
-                        *ngIf="contactNumbers.controls.length !== 1"
-                        (click)="removeContact(i)"
-                      ></i>
+                      <i class="ft-x danger font-medium-2" *ngIf="contactNumbers.controls.length !== 1"
+                        (click)="removeContact(i)"></i>
                     </a>
                   </div>
                 </div>
@@ -85,47 +59,28 @@
             </h4>
             <!-- Residential Address Field-->
             <h4>Residential Address</h4>
-            <app-address
-              [parentForm]="employee"
-              [controlName]="'residential_address'"
-              [meta]="'ResidentialAddress'"
-              [prefetchedData]="prefetchResidentialAddress"
-            ></app-address>
+            <app-address [parentForm]="employee" [controlName]="'residential_address'" [meta]="'ResidentialAddress'"
+              [prefetchedData]="prefetchResidentialAddress"></app-address>
             <div>
               <h4>Permanent Address</h4>
-              <mat-checkbox
-                formControlName="address_checkbox"
-                (change)="addressEvent($event)"
-                >Same as Above</mat-checkbox
-              >
+              <mat-checkbox formControlName="address_checkbox" (change)="addressEvent($event)">Same as Above
+              </mat-checkbox>
             </div>
             <fieldset [disabled]="checkBoxValue.value">
-              <app-address
-                [parentForm]="employee"
-                [controlName]="'permanent_address'"
-                [meta]="'PermanentAddress'"
-                [prefetchedData]="prefetchPermanentAddress"
-              ></app-address>
+              <app-address [parentForm]="employee" [controlName]="'permanent_address'" [meta]="'PermanentAddress'"
+                [prefetchedData]="prefetchPermanentAddress"></app-address>
             </fieldset>
 
             <h4 class="form-section">Other Information</h4>
             <div class="form-group">
               <label for="employee_adhaar_number">Aadhar Number</label>
-              <input
-                class="form-control border-primary"
-                id="employee_adhaar_number"
-                type="text"
-                formControlName="employee_adhaar_number"
-              />
+              <input class="form-control border-primary" id="employee_adhaar_number" type="text"
+                formControlName="employee_adhaar_number" />
             </div>
             <div class="form-group">
               <label for="employee_pan_number">PAN Number</label>
-              <input
-                class="form-control border-primary"
-                id="employee_pan_number"
-                type="text"
-                formControlName="employee_pan_number"
-              />
+              <input class="form-control border-primary" id="employee_pan_number" type="text"
+                formControlName="employee_pan_number" />
             </div>
           </div>
           <h4 class="form-section">Bank Information</h4>
@@ -133,52 +88,26 @@
             <div class="row">
               <div class="col-md-4">
                 <label for="bank_name">Bank Name</label>
-                <input
-                  class="form-control border-primary"
-                  id="bank_number"
-                  type="text"
-                  formControlName="bank_name"
-                />
+                <input class="form-control border-primary" id="bank_number" type="text" formControlName="bank_name" />
               </div>
               <div class="col-md-4">
                 <label for="bank_account_number">Bank Account Number</label>
-                <input
-                  class="form-control border-primary"
-                  id="bank_account_number"
-                  type="text"
-                  formControlName="bank_account_number"
-                />
+                <input class="form-control border-primary" id="bank_account_number" type="text"
+                  formControlName="bank_account_number" />
               </div>
               <div class="col-md-4">
                 <label for="ifsc_code">IFSC Code</label>
-                <input
-                  class="form-control border-primary"
-                  id="ifsc_code"
-                  type="text"
-                  formControlName="ifsc_code"
-                />
+                <input class="form-control border-primary" id="ifsc_code" type="text" formControlName="ifsc_code" />
               </div>
             </div>
           </div>
 
           <div class="form-actions right">
-            <a
-              class="btn btn-raised btn-warning mr-1"
-              [routerLink]="['/crm', 'employee']"
-            >
+            <a class="btn btn-raised btn-warning mr-1" [routerLink]="['/crm', 'employee']">
               <i class="ft-x"></i> Cancel
             </a>
-            <button
-              [disabled]="!employee.valid"
-              class="btn btn-raised btn-primary"
-              type="submit"
-            >
-              <span
-                class="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-                *ngIf="processing"
-              ></span>
+            <button [disabled]="!employee.valid" class="btn btn-raised btn-primary" type="submit">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="processing"></span>
               <i class="fa fa-check-square-o" *ngIf="!processing"></i> Save
             </button>
           </div>
