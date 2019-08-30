@@ -94,17 +94,19 @@
           </tr>
         </tbody>
       </table>
-      <ngb-pagination
-        class="d-flex justify-content-end"
-        [collectionSize]="paginationData.total"
-        [page]="paginationData.current_page"
-        [pageSize]="paginationData.per_page"
-        [rotate]="true"
-        [boundaryLinks]="true"
-        [maxSize]="10"
-        (pageChange)="pageChange($event)"
-      >
-      </ngb-pagination>
     </div>
+    <ngb-pagination
+      *ngIf="loaded"
+      class="d-flex justify-content-end"
+      style="flex-wrap: wrap"
+      [collectionSize]="paginationData.total"
+      [page]="paginationData.current_page"
+      [pageSize]="paginationData.per_page"
+      [rotate]="true"
+      [boundaryLinks]="true"
+      [maxSize]="3"
+      (pageChange)="pageChange($event)"
+    >
+    </ngb-pagination>
   </div>
 </div>
