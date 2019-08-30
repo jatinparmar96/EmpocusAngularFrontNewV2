@@ -109,13 +109,12 @@
                   <div class="form-group">
                     <label for="lead_status">Lead Status</label>
                     <ng-select  formControlName="lead_status" id="lead_status">
-                      <ng-option>Select Option</ng-option>
-                      <ng-option>New</ng-option>
-                      <ng-option>Contacted</ng-option>
-                      <ng-option>Interested</ng-option>
-                      <ng-option>Under Review</ng-option>
-                      <ng-option>Demo</ng-option>
-                      <ng-option>Unqualified</ng-option>
+                      <ng-option value="new" >New</ng-option>
+                      <ng-option value="contacted">Contacted</ng-option>
+                      <ng-option value="interested">Interested</ng-option>
+                      <ng-option value="under_review">Under Review</ng-option>
+                      <ng-option value="demo">Demo</ng-option>
+                      <ng-option value="unqualified">Unqualified</ng-option>
                     </ng-select>
                   </div>
                 </div>
@@ -125,10 +124,9 @@
                   <div class="form-group">
                     <label for="source">Source</label>
                     <ng-select formControlName="source" id="source">
-                      <ng-option>Select Option</ng-option>
-                      <ng-option>Web</ng-option>
-                      <ng-option>Organic Search</ng-option>
-                      <ng-option>Email</ng-option>
+                      <ng-option value="web">Web</ng-option>
+                      <ng-option value="organic_search">Organic Search</ng-option>
+                      <ng-option value="email">Email</ng-option>
                     </ng-select>
                   </div>
                 </div>

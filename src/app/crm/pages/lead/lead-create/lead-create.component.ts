@@ -1,17 +1,81 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { ApiService } from 'app/shared/services/api.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { NotifyService } from 'app/shared/services/notify.service';
 import {
   trigger,
   style,
   state,
   transition,
-  animate,
-  query
+  animate
 } from '@angular/animations';
 import { Address } from 'app/crm/Models/employee';
+import { LeadService } from 'app/crm/services/lead.service';
+import { Router } from '@angular/router';
+
+const LeadDummyData = JSON.parse(
+  `{
+  "lead_data": {
+    "id": "new",
+    "company_name": "Bitmanity LLP",
+    "source": "web",
+    "assigned_to": {
+      "id": 3
+    },
+    "lead_status": "",
+    "product": {
+      "id": 9
+    },
+    "contact_persons": [
+      {
+        "name": "Jatin Parmar",
+        "email": "jatinparmar96@gmail.com",
+        "designation": "Co-Founder",
+        "primary_contact_number": "8329628990",
+        "secondary_contact_number": "9028605003"
+      },
+      {
+        "name": "Rehman Deraiya",
+        "email": "rehmanity@gmail.com",
+        "designation": "Co-Founder",
+        "primary_contact_number": "4123231412",
+        "secondary_contact_number": "123124141"
+      }
+    ],
+    "company_info": {
+      "company_employee_number": "100",
+      "company_annual_revenue": "300",
+      "company_website": "bitmanity.com",
+      "company_phone": "984618461",
+      "company_industry_type": "Technology",
+      "company_business_type": "Software Business"
+    },
+    "social": {
+      "facebook_link": "/bitmanity",
+      "twitter_link": "/twitter",
+      "linkedin_link": "/linked_in"
+    },
+    "deal": {
+      "deal_name": "",
+      "deal_value": "",
+      "deal_expected_close_date": "",
+      "deal_product": ""
+    },
+    "source_info": {
+      "campaign": "Campaign 1",
+      "medium": "Field Visit",
+      "keyword": "None"
+    },
+    "address": {
+      "address_line_1": null,
+      "address_line_2": null,
+      "city": null,
+      "state": null,
+      "pincode": null
+    }
+  }
+}
+`
+);
 
 @Component({
   selector: 'app-lead-create',
@@ -52,9 +116,10 @@ export class LeadCreateComponent implements OnInit {
   lead_data: FormGroup;
   isProcessing = false;
   constructor(
-    private apiService: ApiService,
+    private leadService: LeadService,
     private fb: FormBuilder,
-    private notifyService: NotifyService
+    private notifyService: NotifyService,
+    private _router: Router
   ) {
     this.lead_data = this.fb.group({
       id: ['new', Validators.required],
@@ -114,24 +179,21 @@ export class LeadCreateComponent implements OnInit {
   get contactsFormArray() {
     return this.lead_data.controls.contact_persons as FormArray;
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.lead_data.patchValue(LeadDummyData.lead_data);
+  }
   getData(id: any) {
-    this.apiService.get('admin/crm/leads/' + id).then(data => {
-      const l_data: any = data;
-      this.lead_data.patchValue(l_data.data);
-      console.log(this.lead_data.value);
-    });
+    // TODO
   }
   addOrUpdate(lead) {
     this.isProcessing = true;
     console.log(lead);
     // post request
-    this.apiService
-      .post('admin/crm/leads', lead.value)
+    this.leadService
+      .store(lead.value)
       .then(data => {
         const result: any = data;
         // success
-        console.log(result);
         this.isProcessing = false;
         if (result.status) {
           this.notifyService.show(
@@ -141,6 +203,7 @@ export class LeadCreateComponent implements OnInit {
             },
             'success'
           );
+          this._router.navigate(['/crm', 'lead']);
         } else {
           this.notifyService.show(
             {
@@ -156,6 +219,7 @@ export class LeadCreateComponent implements OnInit {
         const errors: any = error;
       });
   }
+
   canDeactivate() {
     if (this.lead_data.dirty) {
       return true;
