@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { environment } from 'environments/environment';
 
 // export const address = 'http://127.0.0.1:8000/api/';
-export const address =
-  'https://salesmultiplier.in/apis/EmpocusApisV2/public/api/';
 // export const address= 'http://clarusinfo.com/apis/public/api/';
 // export const address = 'http://roksoindia.com/empocus/apis/public/api/';
+
+export const address = environment.apiEndPoint;
 
 @Injectable({
   providedIn: 'root'
@@ -51,10 +53,21 @@ export class ApiService {
     });
   }
   observableGet(url): Observable<any> {
-    return this.http.get(address + url, {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('x-auth-token')
-      }
-    });
+    return this.http
+      .get(address + url, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('x-auth-token')
+        }
+      })
+      .pipe(
+        catchError((error: any) => {
+          if (error.status === 401) {
+            localStorage.removeItem('x-auth-token');
+            location.reload();
+          } else {
+            return throwError(error);
+          }
+        })
+      );
   }
 }

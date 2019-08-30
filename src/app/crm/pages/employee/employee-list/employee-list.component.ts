@@ -12,11 +12,11 @@ import {
   first,
   debounceTime,
   map,
-  tap,
   distinctUntilChanged,
-  take
+  take,
+  catchError
 } from 'rxjs/operators';
-import { Observable, fromEvent, Subscription } from 'rxjs';
+import { Observable, fromEvent, Subscription, of } from 'rxjs';
 import { NotifyService } from 'app/shared/services/notify.service';
 
 @Component({
@@ -27,7 +27,20 @@ import { NotifyService } from 'app/shared/services/notify.service';
 export class EmployeeListComponent implements OnInit, OnDestroy {
   page = 1;
   employeeList: any;
-  paginationData: PaginationData = null;
+  paginationData: PaginationData = {
+    current_page: 0,
+    data: null,
+    first_page_url: '',
+    from: 0,
+    last_page: 0,
+    last_page_url: '',
+    next_page_url: null,
+    path: '',
+    per_page: 0,
+    prev_page_url: null,
+    to: 0,
+    total: 0
+  };
   searchTerm: string;
   searchColumn = 'employee_name';
   subscription: Subscription;
@@ -44,9 +57,9 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     if (
       _employeeList != null &&
       _employeeList !== undefined &&
-      _employeeList.status !== 0
+      _employeeList.status !== 0 &&
+      _employeeList.data
     ) {
-      console.log(_employeeList.status);
       this.paginationData = _employeeList.data;
       this.employeeList = this.paginationData.data;
       this.loaded = true;
@@ -85,11 +98,18 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this._employeeService
       .searchEmployeeName(value)
       .pipe(take(1))
-      .subscribe((data: any) => {
-        this.paginationData = data;
-        this.employeeList = this.paginationData.data;
-        this.searchLoading = false;
-      });
+      .subscribe(
+        (data: any) => {
+          if (data !== undefined) {
+            this.employeeList = this.paginationData.data;
+            this.searchLoading = false;
+            this.paginationData = data;
+          }
+        },
+        (error: any) => {
+          console.error(error);
+        }
+      );
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

@@ -1,97 +1,61 @@
 {
-  "id": "new",
-  "company_name": "",
-  "source": { "$ngOptionLabel": "Web", "disabled": false },
-  "assigned_to": {
-    "id": 3,
-    "company_id": 1,
-    "employee_name": "Toby Hahn",
-    "employee_username": "marielle78",
-    "employee_adhaar_number": "6352",
-    "employee_pan_number": "426",
-    "employee_contact_numbers": [{ "contact_number": "424.281.3958 x28990" }],
-    "email": "denesik.zella@ankunding.com",
-    "bank_name": "culpa",
-    "bank_account_number": "99953235078123",
-    "ifsc_code": "99",
-    "provident_fund_account_number": "920238560",
-    "created_at": "2019-08-28 12:32:25",
-    "updated_at": "2019-08-28 12:32:25",
-    "created_by": 1,
-    "updated_by": 1,
-    "permanent_address": [
+  "lead_data": {
+    "id": "new",
+    "company_name": "Bitmanity LLP",
+    "source": "web",
+    "assigned_to": {
+      "id": 3
+    },
+    "lead_status": "",
+    "product": {
+      "id": 9
+    },
+    "contact_persons": [
       {
-        "id": 6,
-        "addressable_id": 3,
-        "addressable_type": "App\\Models\\Master\\Employee",
-        "meta": "PermanentAddress",
-        "address_line_1": "147 Pouros Mill Apt. 465",
-        "address_line_2": "3591 Kathryn Inlet Suite 422\nEast Karleeshire, MO 61647",
-        "city": "Strackeside",
-        "state": "Port Glenfort",
-        "pincode": "7",
-        "created_at": "2019-08-28 12:32:25",
-        "updated_at": "2019-08-28 12:32:25"
+        "name": "Jatin Parmar",
+        "email": "jatinparmar96@gmail.com",
+        "designation": "Co-Founder",
+        "primary_contact_number": "8329628990",
+        "secondary_contact_number": "9028605003"
+      },
+      {
+        "name": "Rehman Deraiya",
+        "email": "rehmanity@gmail.com",
+        "designation": "Co-Founder",
+        "primary_contact_number": "4123231412",
+        "secondary_contact_number": "123124141"
       }
     ],
-    "residential_address": [
-      {
-        "id": 5,
-        "addressable_id": 3,
-        "addressable_type": "App\\Models\\Master\\Employee",
-        "meta": "ResidentialAddress",
-        "address_line_1": "110 Homenick Meadows",
-        "address_line_2": "18055 Macejkovic Shore Suite 423\nWest Myrtice, MO 74793",
-        "city": "Port Ardithstad",
-        "state": "Nyaberg",
-        "pincode": "2",
-        "created_at": "2019-08-28 12:32:25",
-        "updated_at": "2019-08-28 12:32:25"
-      }
-    ]
-  },
-  "lead_status": "",
-  "product": {
-    "id": 9,
-    "company_id": 1,
-    "product_name": "a",
-    "product_type": "quo",
-    "created_at": "2019-08-28 12:32:25",
-    "updated_at": "2019-08-28 12:32:25",
-    "created_by": 1,
-    "updated_by": 1
-  },
-  "contact_persons": [
-    {
-      "name": "",
-      "email": "",
-      "designation": "",
-      "primary_contact_number": "",
-      "secondary_contact_number": ""
+    "company_info": {
+      "company_employee_number": "100",
+      "company_annual_revenue": "300",
+      "company_website": "bitmanity.com",
+      "company_phone": "984618461",
+      "company_industry_type": "Technology",
+      "company_business_type": "Software Business"
+    },
+    "social": {
+      "facebook_link": "/bitmanity",
+      "twitter_link": "/twitter",
+      "linkedin_link": "/linked_in"
+    },
+    "deal": {
+      "deal_name": "",
+      "deal_value": "",
+      "deal_expected_close_date": "",
+      "deal_product": ""
+    },
+    "source_info": {
+      "campaign": "Campaign 1",
+      "medium": "Field Visit",
+      "keyword": "None"
+    },
+    "address": {
+      "address_line_1": null,
+      "address_line_2": null,
+      "city": null,
+      "state": null,
+      "pincode": null
     }
-  ],
-  "company_info": {
-    "company_employee_number": "",
-    "company_annual_revenue": "",
-    "company_website": "",
-    "company_phone": "",
-    "company_industry_type": "",
-    "company_business_type": ""
-  },
-  "social": { "facebook_link": " ", "twitter_link": "", "linkedin_link": "" },
-  "deal": {
-    "deal_name": "",
-    "deal_value": "",
-    "deal_expected_close_date": "",
-    "deal_product": ""
-  },
-  "source_info": { "campaign": "", "medium": "", "keyword": "" },
-  "address": {
-    "address_line_1": null,
-    "address_line_2": null,
-    "city": null,
-    "state": null,
-    "pincode": null,
-    "meta": "defaultAddress"
   }
 }
