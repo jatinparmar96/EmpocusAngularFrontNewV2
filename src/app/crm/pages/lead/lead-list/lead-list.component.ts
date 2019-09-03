@@ -7,16 +7,7 @@ import {
   animate
 } from '@angular/animations';
 import { Router } from '@angular/router';
-import { ApiService } from 'app/shared/services/api.service';
 import { LeadService } from 'app/crm/services/lead.service';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  description: string;
-}
 
 @Component({
   selector: 'app-lead-list',
@@ -33,7 +24,7 @@ export interface PeriodicElement {
 export class LeadListComponent implements OnInit, AfterViewInit {
   dataSource = [];
   columnsToDisplay = ['company_name', 'lead_status', 'assigned_to'];
-  expandedElement: PeriodicElement;
+  expandedElement;
   visibility = 'hidden';
   constructor(private router: Router, private leadService: LeadService) {}
 

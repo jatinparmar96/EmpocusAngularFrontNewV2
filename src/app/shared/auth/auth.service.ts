@@ -52,8 +52,10 @@ export class AuthService {
   }
   logout() {
     this.token = null;
-    localStorage.removeItem('x-auth-token');
-    location.reload();
+    this.apiService.post('auth/logout', '').then((data: any) => {
+      localStorage.removeItem('x-auth-token');
+      location.reload();
+    });
   }
 
   getToken() {

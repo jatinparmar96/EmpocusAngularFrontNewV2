@@ -23,7 +23,7 @@
                             class="fa fa-search white font-large-3 float-left"></i>
                         </div>
                         <div class="media-body text-right">
-                          <h3 class="mb-1 white">India Mart</h3>
+                          <h3 class="mb-1 white">{{data?.source}}</h3>
                           <span class="white">Lead Source</span>
                         </div>
                       </div>
@@ -63,8 +63,8 @@
             <ul class="list-group">
               <li class="list-group-item list-group-item-danger">This Task is important/Pending</li>
               <li class="list-group-item list-group-item-warning">This Task's due time is near</li>
-              <li class="list-group-item list-group-item-success">This Task is normal</li>
-              <li class="list-group-item list-group-item-secondary">
+              <li class="list-group-item list-group-item-secondary">This Task is normal</li>
+              <li class="list-group-item list-group-item-success">
                 <i class="ft-check-circle primary"></i> This Task is
                 complete</li>
             </ul>
@@ -80,29 +80,17 @@
                 <i class="fa fa-plus"></i>
               </button>
             </div>
-            <ul class="list-group">
+            <ul class="list-group" *ngFor="let contact of data?.contacts;let i= index">
               <li class="list-group-item flex-column align-items-start mb-3">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5>Contact Name 1</h5>
+                  <h5>Contact Name {{i+1}}</h5>
                 </div>
                 <div class="d-flex w-100 justify-content-around">
-                  <span>Email: <a href="mailto:abc@gmail.com">Abc@gmail.com</a></span>
-                  <span class="semi-bold">Primary Phone: 9025684756</span>
-                  <span>Secondary Phone: 832972860</span>
+                  <span>Email: <a href="mailto:{{contact.email}}">{{contact.email}}</a></span>
+                  <span class="semi-bold">Primary Phone: {{contact.primary_contact_number}}</span>
+                  <span>Secondary Phone: {{contact.secondary_contact_number}}</span>
+                  <span>Designation: {{contact.designation}}</span>
                 </div>
-
-              </li>
-              <li class="list-group-item flex-column align-items-start mb-3">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5>Contact Name 2</h5>
-                </div>
-                <div class="d-flex w-100 justify-content-around">
-                  <span>Email: <a href="mailto:abc@gmail.com">xyz@gmail.com</a></span>
-                  <span class="semi-bold">Primary Phone: 9025684756</span>
-                  <span>Secondary Phone: 832972860</span>
-                  <span>Designation: Manager</span>
-                </div>
-
               </li>
             </ul>
           </ng-template>
