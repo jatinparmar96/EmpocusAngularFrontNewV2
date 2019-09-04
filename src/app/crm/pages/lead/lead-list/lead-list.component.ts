@@ -8,6 +8,8 @@ import {
 } from '@angular/animations';
 import { Router } from '@angular/router';
 import { LeadService } from 'app/crm/services/lead.service';
+import { PaginationData } from 'app/crm/Models/pagination.model';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-lead-list',
@@ -26,55 +28,39 @@ export class LeadListComponent implements OnInit, AfterViewInit {
   columnsToDisplay = ['company_name', 'lead_status', 'assigned_to'];
   expandedElement;
   visibility = 'hidden';
+  paginationData: PaginationData = {
+    current_page: 0,
+    data: null,
+    first_page_url: '',
+    from: 0,
+    last_page: 0,
+    last_page_url: '',
+    next_page_url: null,
+    path: '',
+    per_page: 0,
+    prev_page_url: null,
+    to: 0,
+    total: 0
+  };
   constructor(private router: Router, private leadService: LeadService) {}
 
   ngOnInit() {}
 
   ngAfterViewInit() {
     this.leadService.list().subscribe((data: any) => {
+      this.paginationData = data;
       this.dataSource = data.data;
     });
   }
   expandElement(element, expandedElement) {
     this.visibility = expandedElement === element ? 'visible' : 'hidden';
   }
-}
 
-const ELEMENT_DATA = [
-  {
-    'Company Name': 'Rokso Pvt Ltd',
-    'Assigned To': 'Jatin Parmar',
-    'Lead Status': 'Qualified',
-    id: 1
-  },
-  {
-    'Company Name': 'Rokso Pvt Ltd',
-    'Assigned To': 'Jatin Parmar',
-    'Lead Status': 'Qualified',
-    id: 1
-  },
-  {
-    'Company Name': 'Rokso Pvt Ltd',
-    'Assigned To': 'Jatin Parmar',
-    'Lead Status': 'Qualified',
-    id: 1
-  },
-  {
-    'Company Name': 'Rokso Pvt Ltd',
-    'Assigned To': 'Jatin Parmar',
-    'Lead Status': 'Qualified',
-    id: 1
-  },
-  {
-    'Company Name': 'Rokso Pvt Ltd',
-    'Assigned To': 'Jatin Parmar',
-    'Lead Status': 'Qualified',
-    id: 1
-  },
-  {
-    'Company Name': 'Rokso Pvt Ltd',
-    'Assigned To': 'Jatin Parmar',
-    'Lead Status': 'Qualified',
-    id: 1
+  pageChange(event: PageEvent) {
+    console.log(event);
+    this.leadService.list(event.pageIndex + 1).subscribe((data: any) => {
+      this.paginationData = data;
+      this.dataSource = data.data;
+    });
   }
-];
+}

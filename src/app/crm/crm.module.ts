@@ -18,6 +18,7 @@ import { EmployeeListComponent } from './pages/employee/employee-list/employee-l
 import { AddressComponent } from './shared/address/address.component';
 import { EmployeeSelectorComponent } from './selector-components/employee-selector/employee-selector.component';
 import { SharedModule } from 'app/shared/shared.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SharedModule } from 'app/shared/shared.module';
     MatTableModule,
     FormsModule,
     MatCheckboxModule,
+    MatPaginatorModule,
     NgbModule.forRoot()
   ]
 })

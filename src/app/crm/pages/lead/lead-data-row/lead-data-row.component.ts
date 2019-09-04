@@ -23,7 +23,7 @@ import {
         'void, hidden',
         style({
           opacity: 0
-          //transform: 'translateX(-100%)',
+          // transform: 'translateX(-100%)',
         })
       ),
       state(
@@ -44,13 +44,11 @@ export class LeadDataRowComponent implements OnInit, OnChanges {
 
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.data);
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     setTimeout(() => {
       this.localVisibility = changes.visibility.currentValue;
-    }, 500);
+    }, 100);
   }
 }
