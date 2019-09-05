@@ -1,0 +1,94 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create a Task</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="px-3">
+    <form [formGroup]="task">
+      <div class="form-group">
+        <label for="title">Task Title</label>
+        <input
+          type="text"
+          formControlName="title"
+          id="title"
+          class="form-control border-primary"
+          name="title"
+          required
+        />
+        <div *ngIf="title.touched && title.invalid">
+          <small class="form-text text-muted danger"
+            >Please enter a Task Title!</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group ">
+        <label for="due_date">Due Date</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dp"
+            formControlName="due_date"
+            ngbDatepicker
+            #d="ngbDatepicker"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary fa fa-calendar"
+              (click)="d.toggle()"
+              type="button"
+            ></button>
+          </div>
+        </div>
+        <div *ngIf="due_date.touched && due_date.invalid">
+          <small class="form-text text-muted danger"
+            >Please enter a Due Date for Task!</small
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Task Description</label>
+        <textarea
+          formControlName="description"
+          id="description"
+          class="form-control border-primary"
+          name="description"
+        ></textarea>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="form-actions right">
+    <button
+      type="button"
+      class="btn btn-danger btn-raised"
+      (click)="activeModal.close('Close click')"
+    >
+      Close
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary btn-raised"
+      ngbAutofocus
+      (click)="storeTask()"
+      [disabled]="processing"
+    >
+      <span
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+        *ngIf="processing"
+      ></span>
+      <i class="fa fa-check-square-o" *ngIf="!processing"></i> Save
+    </button>
+  </div>
+</div>

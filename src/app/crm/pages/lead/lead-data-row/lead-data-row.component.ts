@@ -12,6 +12,8 @@ import {
   transition,
   animate
 } from '@angular/animations';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TaskCreateComponent } from '../task-create/task-create.component';
 
 @Component({
   selector: 'app-lead-data-row',
@@ -42,7 +44,7 @@ export class LeadDataRowComponent implements OnInit, OnChanges {
   @Input() visibility: string;
   localVisibility = 'hidden';
 
-  constructor() {}
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit() {}
 
@@ -50,5 +52,13 @@ export class LeadDataRowComponent implements OnInit, OnChanges {
     setTimeout(() => {
       this.localVisibility = changes.visibility.currentValue;
     }, 100);
+  }
+  openTaskModal() {
+    const taskModal = this.modalService.open(TaskCreateComponent, {
+      size: 'lg',
+      centered: true,
+      backdrop: 'static'
+    });
+    taskModal.componentInstance.lead_id = this.data.id;
   }
 }

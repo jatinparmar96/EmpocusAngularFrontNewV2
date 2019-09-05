@@ -57,7 +57,6 @@ export class LeadListComponent implements OnInit, AfterViewInit {
   }
 
   pageChange(event: PageEvent) {
-    console.log(event);
     this.leadService.list(event.pageIndex + 1).subscribe((data: any) => {
       this.paginationData = data;
       this.dataSource = data.data;
