@@ -14,6 +14,8 @@ import {
 } from '@angular/animations';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TaskCreateComponent } from '../task-create/task-create.component';
+import { TaskService } from 'app/crm/services/task.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lead-data-row',
@@ -44,7 +46,10 @@ export class LeadDataRowComponent implements OnInit, OnChanges {
   @Input() visibility: string;
   localVisibility = 'hidden';
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private taskService: TaskService
+  ) {}
 
   ngOnInit() {}
 
@@ -60,5 +65,23 @@ export class LeadDataRowComponent implements OnInit, OnChanges {
       backdrop: 'static'
     });
     taskModal.componentInstance.lead_id = this.data.id;
+  }
+
+  markTaskAsDone(taskId) {
+    Swal.fire({
+      title: `Are You Sure?`,
+      text: `Mark this Task as Done`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result: any) => {
+      if (result.value) {
+        this.taskService.markTaskAsDone(taskId).subscribe((data: any) => {
+          Swal.fire('Good Job', 'Task Marked As Done', 'success');
+        });
+      }
+    });
   }
 }
