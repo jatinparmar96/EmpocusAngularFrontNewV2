@@ -24,16 +24,22 @@ export class TaskCreateComponent implements OnInit {
       id: ['new'],
       lead_id: [this.lead_id, Validators.required],
       title: ['', Validators.required],
+      task_type: ['', Validators.required],
       due_date: ['', Validators.required],
+      due_time: ['', Validators.required],
       description: []
     });
   }
   get title() {
     return this.task.controls.title;
   }
+  get task_type() {
+    return this.task.controls.task_type;
+  }
   get due_date() {
     return this.task.controls.due_date;
   }
+
   storeTask() {
     if (this.task.valid) {
       this.processing = true;

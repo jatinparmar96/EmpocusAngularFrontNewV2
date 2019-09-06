@@ -29,31 +29,60 @@
         </div>
       </div>
 
-      <div class="form-group ">
-        <label for="due_date">Due Date</label>
-        <div class="input-group">
-          <input
-            class="form-control"
-            placeholder="yyyy-mm-dd"
-            name="dp"
-            formControlName="due_date"
-            ngbDatepicker
-            #d="ngbDatepicker"
-          />
-          <div class="input-group-append">
-            <button
-              class="btn btn-outline-secondary fa fa-calendar"
-              (click)="d.toggle()"
-              type="button"
-            ></button>
-          </div>
-        </div>
-        <div *ngIf="due_date.touched && due_date.invalid">
+      <div class="form-group">
+        <label for="task_type">Task Type</label>
+        <ng-select
+          type="text"
+          formControlName="task_type"
+          id="task_type"    
+          name="task_type"
+          required
+        >
+        <ng-option value="follow_up">Follow Up</ng-option>
+        <ng-option value="call_reminder">Call Reminder</ng-option>
+      </ng-select>
+        <div *ngIf="task_type.touched && task_type.invalid">
           <small class="form-text text-muted danger"
-            >Please enter a Due Date for Task!</small
+            >Please Select a Task Type!</small
           >
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="due_date">Due Date</label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              formControlName="due_date"
+              ngbDatepicker
+              #d="ngbDatepicker"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary fa fa-calendar"
+                (click)="d.toggle()"
+                type="button"
+              ></button>
+            </div>
+          </div>
+          <div *ngIf="due_date.touched && due_date.invalid">
+            <small class="form-text text-muted danger"
+              >Please enter a Due Date for Task!</small
+            >
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="due_time">Time</label>
+        <div class="input-group">
+          <ngb-timepicker formControlName="due_time" [spinners]="false" [meridian]=true></ngb-timepicker>
+
+          
+        </div>
+        </div>
+      </div>
+     
       <div class="form-group">
         <label for="description">Task Description</label>
         <textarea
