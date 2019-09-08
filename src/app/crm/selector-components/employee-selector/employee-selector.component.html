@@ -4,6 +4,8 @@
     [loading]="contactLoading"
     [typeahead]="contactInput"
     formControlName="{{ controlName }}"
+    (clear)="loadItems()"
+    [trackByFn]="trackBy"
   >
     <ng-template ng-label-tmp let-item="item">
       {{ item.employee_name }}
