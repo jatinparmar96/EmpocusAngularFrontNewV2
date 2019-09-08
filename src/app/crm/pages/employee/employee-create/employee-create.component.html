@@ -77,6 +77,10 @@
               <input class="form-control border-primary" id="employee_adhaar_number" type="text"
                 formControlName="employee_adhaar_number" />
             </div>
+            <fieldset class="form-group">
+              <label for="inputGroupFile01">Aadhar Card Image</label>
+                <input formControlName="aadhar_img" class="form-control-file" id="inputGroupFile01" type="file" accept="image/png">
+              </fieldset>
             <div class="form-group">
               <label for="employee_pan_number">PAN Number</label>
               <input class="form-control border-primary" id="employee_pan_number" type="text"
@@ -113,9 +117,9 @@
           </div>
         </form>
       </fieldset>
-      <div>
+      <pre> 
         {{ employee.value | json }}
-      </div>
+      </pre>
     </div>
   </div>
 </div>

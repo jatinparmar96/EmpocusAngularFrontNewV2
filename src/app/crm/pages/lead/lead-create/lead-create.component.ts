@@ -10,7 +10,7 @@ import {
 } from '@angular/animations';
 import { Address } from 'app/crm/Models/employee';
 import { LeadService } from 'app/crm/services/lead.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 const LeadDummyData = JSON.parse(
   `{
@@ -115,13 +115,19 @@ export class LeadCreateComponent implements OnInit {
   prefetchedAddress: Address;
   lead_data: FormGroup;
   isProcessing = false;
+  employeeDetails: any;
   constructor(
     private leadService: LeadService,
     private fb: FormBuilder,
     private notifyService: NotifyService,
-    private _router: Router
+    private _router: Router,
+    private _route: ActivatedRoute
   ) {
-    this.lead_data = this.fb.group({
+    this.lead_data = this.createLeadForm();
+  }
+
+  createLeadForm(value = '') {
+    return this.fb.group({
       id: ['new', Validators.required],
       company_name: ['', Validators.required],
       source: ['', Validators.required],
@@ -156,13 +162,24 @@ export class LeadCreateComponent implements OnInit {
       })
     });
   }
-  createContactGroup() {
+  createContactGroup(value: any = '') {
+    if (!value) {
+      value = new Object();
+      value.name = '';
+      value.email = '';
+      value.designation = '';
+      value.primary_contact_number = '';
+      value.secondary_contact_number = '';
+    }
     return this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      designation: [''],
-      primary_contact_number: ['', Validators.required],
-      secondary_contact_number: ['']
+      name: [value.name, Validators.required],
+      email: [value.email, [Validators.required, Validators.email]],
+      designation: [value.designation],
+      primary_contact_number: [
+        value.primary_contact_number,
+        Validators.required
+      ],
+      secondary_contact_number: [value.secondary_contact_number]
     });
   }
   addContactGroup() {
@@ -180,14 +197,19 @@ export class LeadCreateComponent implements OnInit {
     return this.lead_data.controls.contact_persons as FormArray;
   }
   ngOnInit() {
-    this.lead_data.patchValue(LeadDummyData.lead_data);
+    // this.lead_data.patchValue(LeadDummyData.lead_data);
+    const id = +this._route.snapshot.paramMap.get('id');
+    if (id) {
+      this.leadService.get(id).subscribe((data: any) => {
+        this.patchLeadData(data);
+      });
+    }
   }
   getData(id: any) {
     // TODO
   }
   addOrUpdate(lead) {
     this.isProcessing = true;
-    console.log(lead);
     // post request
     this.leadService
       .store(lead.value)
@@ -219,7 +241,25 @@ export class LeadCreateComponent implements OnInit {
         const errors: any = error;
       });
   }
-
+  /**
+   * Patch Lead Form With Existing Lead Details
+   */
+  patchLeadData(lead) {
+    this.lead_data.patchValue(lead);
+    this.prefetchedAddress = lead.address;
+    this.employeeDetails = lead.assigned_to;
+    this.lead_data.setControl(
+      'contact_persons',
+      this.createContactGroups(lead.contact_persons)
+    );
+  }
+  createContactGroups(contact_persons: any): FormArray {
+    const formArray = new FormArray([]);
+    contact_persons.forEach(element => {
+      formArray.push(this.createContactGroup(element));
+    });
+    return formArray;
+  }
   canDeactivate() {
     if (this.lead_data.dirty) {
       return true;

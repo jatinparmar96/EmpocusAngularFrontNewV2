@@ -3,7 +3,7 @@
   <div class="card-header p-0 d-flex justify-content-between">
     <h4 class="card-title">Lead Details</h4>
     <div class="actions float-right">
-      <i class="ft-edit cursor-pointer mr-1 info"></i>
+      <a [routerLink]="[data.id]" routerLinkActive="router-link-active" ><i class="ft-edit cursor-pointer mr-1 info"></i></a>
       <i class="ft-trash-2 cursor-pointer danger"></i>
     </div>
   </div>

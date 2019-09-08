@@ -71,7 +71,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="primary_contact_number-{{i}}">Primary Contact Number</label>
-                            <input type="number" formControlName="primary_contact_number"
+                            <input type="text" formControlName="primary_contact_number"
                               id="primary_contact_number-{{i}}" class="form-control border-primary"
                               name="primary_contact_number">
                             <div
@@ -83,7 +83,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="secondary_contact_number-{{i}}">Secondary Contact Number</label>
-                            <input type="number" formControlName="secondary_contact_number"
+                            <input type="text" formControlName="secondary_contact_number"
                               id="secondary_contact_number-{{i}}" class="form-control border-primary">
                           </div>
                         </div>
@@ -101,6 +101,7 @@
                    <app-employee-selector
                    [parentForm]="lead_data"
                    [controlName]="'assigned_to'"
+                   [controlValue]="employeeDetails"
                    >
                    </app-employee-selector>
                   </div>
@@ -396,9 +397,9 @@
             </div>
           </form>
           <!-- Form End -->
-          <div>
+          <pre>
             {{lead_data.value | json}}
-          </div>
+          </pre>
         </div>
       </div>
     </div>

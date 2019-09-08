@@ -30,6 +30,7 @@ export class EmployeeCreateComponent implements OnInit {
       employee_contact_numbers: this.fb.array([this.createContactGroup()]),
       address_checkbox: [false],
       employee_adhaar_number: [''],
+      aadhar_img: [],
       employee_pan_number: [''],
       bank_name: [''],
       bank_account_number: [''],
@@ -44,6 +45,7 @@ export class EmployeeCreateComponent implements OnInit {
       this.patchData(employeeDetails);
     }
   }
+
   /**
    * Getters for Commonly used Form Controls
    */

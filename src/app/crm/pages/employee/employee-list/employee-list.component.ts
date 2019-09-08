@@ -8,15 +8,8 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { PaginationData } from 'app/crm/Models/pagination.model';
 import { EmployeeService } from 'app/crm/services/employee/employee.service';
-import {
-  first,
-  debounceTime,
-  map,
-  distinctUntilChanged,
-  take,
-  catchError
-} from 'rxjs/operators';
-import { Observable, fromEvent, Subscription, of } from 'rxjs';
+import { first, debounceTime, map, distinctUntilChanged } from 'rxjs/operators';
+import { fromEvent, Subscription } from 'rxjs';
 import { NotifyService } from 'app/shared/services/notify.service';
 
 @Component({
@@ -95,21 +88,18 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
   updateList(value) {
     this.searchLoading = true;
-    this._employeeService
-      .searchEmployeeName(value)
-      .pipe(take(1))
-      .subscribe(
-        (data: any) => {
-          if (data !== undefined) {
-            this.employeeList = this.paginationData.data;
-            this.searchLoading = false;
-            this.paginationData = data;
-          }
-        },
-        (error: any) => {
-          console.error(error);
+    this._employeeService.searchEmployeeName(value).subscribe(
+      (data: any) => {
+        if (data !== undefined) {
+          this.paginationData = data;
+          this.employeeList = this.paginationData.data;
+          this.searchLoading = false;
         }
-      );
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
