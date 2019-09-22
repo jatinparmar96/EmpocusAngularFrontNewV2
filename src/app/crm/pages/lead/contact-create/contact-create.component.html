@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create a Task</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="card-block p-0">
+    <h5 class="card-title">Contact Person
+    </h5>
+    <form [formGroup]="contact">
+      <input type="hidden" formControlName="lead_id">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" formControlName="name" id="name" class="form-control border-primary">
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" formControlName="email" id="email" class="form-control border-primary">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="primary_contact_number">Primary Contact Number</label>
+            <input type="text" formControlName="primary_contact_number" id="primary_contact_number"
+              class="form-control border-primary" name="primary_contact_number">
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="secondary_contact_number">Secondary Contact Number</label>
+            <input type="text" formControlName="secondary_contact_number" id="secondary_contact_number"
+              class="form-control border-primary">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="form-actions right">
+    <button type="button" class="btn btn-danger btn-raised" (click)="activeModal.close('Close click')">
+      Close
+    </button>
+    <button type="button" class="btn btn-primary btn-raised" ngbAutofocus (click)="storeContact()"
+      [disabled]="processing">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="processing"></span>
+      <i class="fa fa-check-square-o" *ngIf="!processing"></i> Save
+    </button>
+  </div>
+</div>

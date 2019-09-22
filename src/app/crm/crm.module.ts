@@ -20,6 +20,7 @@ import { EmployeeSelectorComponent } from './selector-components/employee-select
 import { SharedModule } from 'app/shared/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TaskCreateComponent } from './pages/lead/task-create/task-create.component';
+import { ContactCreateComponent } from './pages/lead/contact-create/contact-create.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { TaskCreateComponent } from './pages/lead/task-create/task-create.compon
     EmployeeListComponent,
     AddressComponent,
     EmployeeSelectorComponent,
-    TaskCreateComponent
+    TaskCreateComponent,
+    ContactCreateComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,6 @@ import { TaskCreateComponent } from './pages/lead/task-create/task-create.compon
     MatPaginatorModule,
     NgbModule.forRoot()
   ],
-  entryComponents: [TaskCreateComponent]
+  entryComponents: [TaskCreateComponent, ContactCreateComponent]
 })
 export class CrmModule {}

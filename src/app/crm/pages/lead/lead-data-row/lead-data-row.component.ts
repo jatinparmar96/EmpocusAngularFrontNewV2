@@ -16,6 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TaskCreateComponent } from '../task-create/task-create.component';
 import { TaskService } from 'app/crm/services/task.service';
 import Swal from 'sweetalert2';
+import { ContactCreateComponent } from '../contact-create/contact-create.component';
 
 @Component({
   selector: 'app-lead-data-row',
@@ -83,5 +84,13 @@ export class LeadDataRowComponent implements OnInit, OnChanges {
         });
       }
     });
+  }
+  openContactModal() {
+    const contactModal = this.modalService.open(ContactCreateComponent, {
+      size: 'lg',
+      centered: true,
+      backdrop: 'static'
+    });
+    contactModal.componentInstance.lead_id = this.data.id;
   }
 }
