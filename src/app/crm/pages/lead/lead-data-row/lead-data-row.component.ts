@@ -3,7 +3,9 @@ import {
   OnInit,
   Input,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import {
   trigger,
@@ -45,6 +47,7 @@ import { ContactCreateComponent } from '../contact-create/contact-create.compone
 export class LeadDataRowComponent implements OnInit, OnChanges {
   @Input() data: any;
   @Input() visibility: string;
+  @Output() changeRow = new EventEmitter();
   localVisibility = 'hidden';
 
   constructor(
@@ -56,7 +59,9 @@ export class LeadDataRowComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     setTimeout(() => {
-      this.localVisibility = changes.visibility.currentValue;
+      if (changes.visibility) {
+        this.localVisibility = changes.visibility.currentValue;
+      }
     }, 100);
   }
   openTaskModal() {
@@ -66,6 +71,15 @@ export class LeadDataRowComponent implements OnInit, OnChanges {
       backdrop: 'static'
     });
     taskModal.componentInstance.lead_id = this.data.id;
+    taskModal.result.then(val => {
+      if (val === 'saved') {
+        Swal.fire('Success', 'Task Created Successfully', 'success').then(
+          () => {
+            this.changeRow.emit(true);
+          }
+        );
+      }
+    });
   }
 
   markTaskAsDone(taskId) {
@@ -80,7 +94,9 @@ export class LeadDataRowComponent implements OnInit, OnChanges {
     }).then((result: any) => {
       if (result.value) {
         this.taskService.markTaskAsDone(taskId).subscribe((data: any) => {
-          Swal.fire('Good Job', 'Task Marked As Done', 'success');
+          Swal.fire('Good Job', 'Task Marked As Done', 'success').then(() =>
+            this.changeRow.emit(true)
+          );
         });
       }
     });

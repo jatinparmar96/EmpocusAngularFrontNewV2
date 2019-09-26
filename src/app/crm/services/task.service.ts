@@ -42,7 +42,7 @@ export class TaskService {
 
   markTaskAsDone(taskId): Observable<any> {
     return this.apiService
-      .observableGet(`${this.url}?markDone=${taskId}`)
+      .observableGet(`${this.url}/markdone/${taskId}`)
       .pipe(take(1));
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TaskService } from 'app/crm/services/task.service';
@@ -10,6 +10,7 @@ import { TaskService } from 'app/crm/services/task.service';
 })
 export class TaskCreateComponent implements OnInit {
   @Input() lead_id;
+  @Output() task_status = new EventEmitter();
   task: FormGroup;
 
   processing = false;
@@ -23,10 +24,8 @@ export class TaskCreateComponent implements OnInit {
     this.task = this.fb.group({
       id: ['new'],
       lead_id: [this.lead_id, Validators.required],
-      title: ['', Validators.required],
       task_type: ['', Validators.required],
       due_date: ['', Validators.required],
-      due_time: ['', Validators.required],
       description: []
     });
   }
@@ -47,7 +46,7 @@ export class TaskCreateComponent implements OnInit {
         .store(this.task.value)
         .then((data: any) => {
           if (data.status) {
-            this.activeModal.close();
+            this.activeModal.close('saved');
             this.processing = false;
           }
         })

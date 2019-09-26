@@ -63,7 +63,7 @@
             <ul class="list-group">
               <ng-container *ngFor="let task of data?.due_tasks">
                 <li class="list-group-item list-group-item-danger d-flex justify-content-between align-items-center">
-                  {{ task.title }}
+                  {{task.task_type?.full_type}}
                   <span>
                     <a class="btn btn-sm btn-fab btn-outline-info blue" (click)="markTaskAsDone(task.id)">
                       <i class="fa fa-check"></i>
@@ -71,12 +71,32 @@
                   </span>
                 </li>
               </ng-container>
-              <li class="list-group-item list-group-item-warning">
-                This Task's due time is near
-              </li>
-              <li class="list-group-item list-group-item-secondary">
-                This Task is normal
-              </li>
+              <ng-container *ngFor="let task of data?.pending_task_close">
+                <li class="list-group-item list-group-item-warning  d-flex justify-content-between align-items-center">
+                  {{task.task_type?.full_type}}
+                  <span>
+                    <a class="btn btn-sm btn-fab btn-outline-info blue" (click)="markTaskAsDone(task.id)">
+                      <i class="fa fa-check"></i>
+                    </a>
+                  </span>
+                </li>
+              </ng-container>
+              <ng-container *ngFor="let task of data?.pending_task_today">
+                <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+                  {{task.task_type?.full_type}}
+                  <span>
+                    <a class="btn btn-sm btn-fab btn-outline-info blue" (click)="markTaskAsDone(task.id)">
+                      <i class="fa fa-check"></i>
+                    </a>
+                  </span>
+                </li>
+              </ng-container>
+              <ng-container *ngFor="let task of data?.completed_tasks">
+                <li class="list-group-item list-group-item-success">
+                  <i class="ft-check-circle primary"></i> {{task.task_type?.full_type}}
+                </li>
+              </ng-container>
+
               <li class="list-group-item list-group-item-success">
                 <i class="ft-check-circle primary"></i> This Task is complete
               </li>

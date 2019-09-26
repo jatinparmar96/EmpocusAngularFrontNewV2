@@ -26,6 +26,7 @@ export class AddressComponent implements OnInit, OnChanges {
       address_line_2: [element.address_line_2],
       city: [element.city],
       state: [element.state],
+      country: [element.country],
       pincode: [element.pincode],
       meta: [this.meta]
     });

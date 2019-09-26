@@ -7,20 +7,16 @@
 <div class="modal-body">
   <div class="px-3">
     <form [formGroup]="task">
-      <div class="form-group">
-        <label for="title">Task Title</label>
-        <input type="text" formControlName="title" id="title" class="form-control border-primary" name="title"
-          required />
-        <div *ngIf="title.touched && title.invalid">
-          <small class="form-text text-muted danger">Please enter a Task Title!</small>
-        </div>
-      </div>
 
       <div class="form-group">
         <label for="task_type">Task Type</label>
         <ng-select type="text" formControlName="task_type" id="task_type" name="task_type" required>
+          <ng-option value="calling">Call</ng-option>
+          <ng-option value="meeting">Meeting/Appointment</ng-option>
           <ng-option value="follow_up">Follow Up</ng-option>
-          <ng-option value="call_reminder">Call Reminder</ng-option>
+          <ng-option value="send_quotation">Send Quotation</ng-option>
+          <ng-option value="order_generated">Generate Order</ng-option>
+
         </ng-select>
         <div *ngIf="task_type.touched && task_type.invalid">
           <small class="form-text text-muted danger">Please Select a Task Type!</small>
@@ -40,16 +36,7 @@
             <small class="form-text text-muted danger">Please enter a Due Date for Task!</small>
           </div>
         </div>
-        <div class="col-md-6">
-          <label for="due_time">Time</label>
-          <div class="input-group">
-            <ngb-timepicker formControlName="due_time" [spinners]="false" [meridian]=true></ngb-timepicker>
-
-
-          </div>
-        </div>
       </div>
-
       <div class="form-group">
         <label for="description">Task Description</label>
         <textarea formControlName="description" id="description" class="form-control border-primary"

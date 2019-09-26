@@ -55,6 +55,16 @@ export class LeadListComponent implements OnInit, AfterViewInit {
   expandElement(element, expandedElement) {
     this.visibility = expandedElement === element ? 'visible' : 'hidden';
   }
+  reloadDetails(event) {
+    if (event) {
+      this.leadService
+        .list(this.paginationData.current_page)
+        .subscribe((data: any) => {
+          this.paginationData = data;
+          this.dataSource = data.data;
+        });
+    }
+  }
 
   pageChange(event: PageEvent) {
     this.leadService.list(event.pageIndex + 1).subscribe((data: any) => {
