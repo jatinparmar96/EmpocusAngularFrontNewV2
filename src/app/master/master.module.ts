@@ -17,6 +17,9 @@ import { ViewCategoryMasterComponent } from './components/category-master/view-c
 import { CreateBranchMasterComponent } from './components/branch-master/create-branch-master/create-branch-master.component';
 import { ShowBranchMasterComponent } from './components/branch-master/show-branch-master/show-branch-master.component';
 import { ViewBranchMasterComponent } from './components/branch-master/view-branch-master/view-branch-master.component';
+import { CreateChartsOfAccountComponent } from './components/charts-of-account/create-charts-of-account/create-charts-of-account.component';
+import { ShowChartsOfAccountComponent } from './components/charts-of-account/show-charts-of-account/show-charts-of-account.component';
+import { ViewChartsOfAccountComponent } from './components/charts-of-account/view-charts-of-account/view-charts-of-account.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { ViewBranchMasterComponent } from './components/branch-master/view-branc
     ViewCategoryMasterComponent,
     CreateBranchMasterComponent,
     ShowBranchMasterComponent,
-    ViewBranchMasterComponent
+    ViewBranchMasterComponent,
+    CreateChartsOfAccountComponent,
+    ShowChartsOfAccountComponent,
+    ViewChartsOfAccountComponent
   ],
   imports: [
     CommonModule,
