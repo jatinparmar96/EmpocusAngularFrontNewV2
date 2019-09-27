@@ -12,6 +12,8 @@ import { UomListComponent } from './components/unit-of-measurement/uom-list/uom-
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BankMasterCreateComponent } from './components/bank-master/bank-master-create/bank-master-create.component';
 import { BankMasterViewComponent } from './components/bank-master/bank-master-view/bank-master-view.component';
+import { CreateCategoryMasterComponent } from './components/category-master/create-category-master/create-category-master.component';
+import { ViewCategoryMasterComponent } from './components/category-master/view-category-master/view-category-master.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { BankMasterViewComponent } from './components/bank-master/bank-master-vi
     UomCreateComponent,
     UomListComponent,
     BankMasterCreateComponent,
-    BankMasterViewComponent
+    BankMasterViewComponent,
+    CreateCategoryMasterComponent,
+    ViewCategoryMasterComponent
   ],
   imports: [
     CommonModule,
