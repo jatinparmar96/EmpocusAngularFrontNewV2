@@ -10,7 +10,8 @@ import { RouterModule } from '@angular/router';
 import { UomCreateComponent } from './components/unit-of-measurement/uom-create/uom-create.component';
 import { UomListComponent } from './components/unit-of-measurement/uom-list/uom-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { NotifyService } from 'app/shared/services/notify.service';
+import { BankMasterCreateComponent } from './components/bank-master/bank-master-create/bank-master-create.component';
+import { BankMasterViewComponent } from './components/bank-master/bank-master-view/bank-master-view.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,8 @@ import { NotifyService } from 'app/shared/services/notify.service';
     ProductViewComponent,
     UomCreateComponent,
     UomListComponent,
+    BankMasterCreateComponent,
+    BankMasterViewComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,6 @@ import { NotifyService } from 'app/shared/services/notify.service';
     ReactiveFormsModule,
     RouterModule,
     NgxPaginationModule
-  ],
+  ]
 })
-export class MasterModule { }
+export class MasterModule {}
