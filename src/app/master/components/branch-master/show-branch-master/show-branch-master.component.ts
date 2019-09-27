@@ -4,9 +4,9 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-show-branch',
-  templateUrl: './show-branch.component.html',
-  styleUrls: ['./show-branch.component.scss']
+  selector: 'app-show-branch-master',
+  templateUrl: './show-branch-master.component.html',
+  styleUrls: ['./show-branch-master.component.scss']
 })
 export class ShowBranchMasterComponent implements OnInit {
   id: any;
