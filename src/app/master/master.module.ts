@@ -20,6 +20,8 @@ import { ViewBranchMasterComponent } from './components/branch-master/view-branc
 import { CreateChartsOfAccountComponent } from './components/charts-of-account/create-charts-of-account/create-charts-of-account.component';
 import { ShowChartsOfAccountComponent } from './components/charts-of-account/show-charts-of-account/show-charts-of-account.component';
 import { ViewChartsOfAccountComponent } from './components/charts-of-account/view-charts-of-account/view-charts-of-account.component';
+import { CreateChargesMasterComponent } from './components/charges-master/create-charges-master/create-charges-master.component';
+import { ViewChargesMasterComponent } from './components/charges-master/view-charges-master/view-charges-master.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { ViewChartsOfAccountComponent } from './components/charts-of-account/vie
     ViewBranchMasterComponent,
     CreateChartsOfAccountComponent,
     ShowChartsOfAccountComponent,
-    ViewChartsOfAccountComponent
+    ViewChartsOfAccountComponent,
+    CreateChargesMasterComponent,
+    ViewChargesMasterComponent
   ],
   imports: [
     CommonModule,
