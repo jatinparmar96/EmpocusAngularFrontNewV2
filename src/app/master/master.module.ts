@@ -14,6 +14,9 @@ import { BankMasterCreateComponent } from './components/bank-master/bank-master-
 import { BankMasterViewComponent } from './components/bank-master/bank-master-view/bank-master-view.component';
 import { CreateCategoryMasterComponent } from './components/category-master/create-category-master/create-category-master.component';
 import { ViewCategoryMasterComponent } from './components/category-master/view-category-master/view-category-master.component';
+import { CreateBranchMasterComponent } from './components/branch-master/create-branch-master/create-branch-master.component';
+import { ShowBranchMasterComponent } from './components/branch-master/show-branch-master/show-branch-master.component';
+import { ViewBranchMasterComponent } from './components/branch-master/view-branch-master/view-branch-master.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { ViewCategoryMasterComponent } from './components/category-master/view-c
     BankMasterCreateComponent,
     BankMasterViewComponent,
     CreateCategoryMasterComponent,
-    ViewCategoryMasterComponent
+    ViewCategoryMasterComponent,
+    CreateBranchMasterComponent,
+    ShowBranchMasterComponent,
+    ViewBranchMasterComponent
   ],
   imports: [
     CommonModule,

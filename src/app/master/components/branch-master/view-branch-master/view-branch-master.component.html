@@ -1,0 +1,46 @@
+<button class="btn btn-primary btn-raised" (click)="toNext()">Create New</button>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-lg-12">
+              <table class="table table-bordered table-responsive-md">
+                <thead>
+                  <th>Branch Name</th>
+                  <th>Gst Number</th>
+                  <th>Branch Code</th>
+                  <th>Godown</th>
+                  <th>Action</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let branch of rows |paginate: {
+                                                                itemsPerPage: paginationData.per_page,
+                                                                currentPage: paginationData.current_page,
+                                                                totalItems: paginationData.total,
+                                                                id: 'get_list'
+                                }">
+                    <td>{{branch.branch_name}}</td>
+                    <td>{{branch.branch_gst_number}}</td>
+                    <td>{{branch.branch_code}}</td>
+                    <td>{{branch.branch_godown}}</td>
+                    <td>
+                      <a (click)="show(branch.id)" class="danger font-medium-1 p-0"><i class="fa fa-eye"></i></a>
+                      <a (click)="edit(branch.id)" class="success font-medium-1 p-0 ml-2"><i class="fa fa-edit"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="row pull-right pr-5">
+                <nav>
+                  <pagination-controls id="get_list" (pageChange)='getData($event)'></pagination-controls>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
