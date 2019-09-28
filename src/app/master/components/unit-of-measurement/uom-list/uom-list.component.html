@@ -19,7 +19,7 @@
                                 }">
                   <td>{{uom.unit_name}}</td>
                   <td>
-                    <a (click)="edit(uom.id)" class="success font-medium-1 p-0"><i class="fa fa-edit"></i></a>
+                    <a [routerLink]="[uom.id]" class="success font-medium-1 p-0"><i class="fa fa-edit"></i></a>
                   </td>
                 </tr>
               </tbody>
