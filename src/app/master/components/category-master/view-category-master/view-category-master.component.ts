@@ -32,7 +32,7 @@ export class ViewCategoryMasterComponent implements OnInit {
   }
 
   getData(page = 1) {
-    this.apiService.get('admin/coa?page=' + page).then(data => {
+    this.apiService.get('admin/product_category?page=' + page).then(data => {
       let l_data: any = data;
       l_data = l_data.data;
       this.rows = l_data.data;

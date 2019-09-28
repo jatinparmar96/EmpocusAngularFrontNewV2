@@ -33,7 +33,7 @@ export class CreateCategoryMasterComponent implements OnInit {
     this.resetErrorMessages();
     this.category_data = this.fb.group({
       id: ['new', Validators.required],
-      product_category_name: ['abc', Validators.required]
+      product_category_name: [, Validators.required]
     });
   }
 
@@ -83,6 +83,8 @@ export class CreateCategoryMasterComponent implements OnInit {
             },
             'success'
           );
+          this.category_data.reset();
+          this.category_data.patchValue({ id: 'new' });
         } else {
           this.notifyService.show(
             {
@@ -107,7 +109,7 @@ export class CreateCategoryMasterComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigateByUrl('/dashboard/category');
+    this.router.navigateByUrl('/master/category');
   }
   // 3 Ends
 }
