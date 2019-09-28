@@ -28,7 +28,7 @@
 
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Category</a></span>
-              <span class="display-block overflow-hidden">{{data.product_category_name}}</span>
+              <span class="display-block overflow-hidden">{{data.category?.product_category_name}}</span>
             </div>
           </div>
 
@@ -43,11 +43,11 @@
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Batch Type:</a></span>
-              <span class="display-block overflow-hidden">{{data.product_batch_type}}</span>
+              <span class="display-block overflow-hidden">{{data.product_batch_type?"Yes":"NO"}}</span>
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Stock Ledger:</a></span>
-              <span class="display-block overflow-hidden">{{data.product_stock_ledger}}</span>
+              <span class="display-block overflow-hidden">{{data.product_stock_ledger?"Yes":"NO"}}</span>
             </div>
           </div>
 
@@ -55,11 +55,11 @@
           <div class="row mb-2">
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>UOM:</a></span>
-              <span class="display-block overflow-hidden">{{data.product_uom_name}}</span>
+              <span class="display-block overflow-hidden">{{data.uom?.unit_name}}</span>
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Conv UOM:</a></span>
-              <span class="display-block overflow-hidden">{{data.product_conv_uom_name}}</span>
+              <span class="display-block overflow-hidden">{{data.conv_uom?.unit_name}}</span>
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Conv Factor:</a></span>
@@ -100,7 +100,10 @@
               <span class="text-bold-500 primary"><a>Min Level:</a></span>
               <span class="display-block overflow-hidden">{{data.product_min_level}}</span>
             </div>
-
+            <div class="col-lg-3">
+              <span class="text-bold-500 primary"><a>Gst Rate:</a></span>
+              <span class="display-block overflow-hidden">{{data.tax?.tax_name}}</span>
+            </div>
           </div>
 
           <div class="row mb-2">

@@ -48,29 +48,26 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="product_category">Product Category</label>
-                    <select class="form-control" formControlName="product_category" id="product_category"
-                      name="product_category">
-                      <option *ngFor="let product_category of productCategories" value="{{product_category.id}}">
-                        {{product_category.product_category_name}}</option>
-                    </select>
+                    <ng-select formControlName="product_category" id="product_category" name="product_category">
+                      <ng-option *ngFor="let product_category of productCategories" [value]="product_category.id">
+                        {{product_category.product_category_name}}</ng-option>
+                    </ng-select>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="product_uom">UOM</label>
-                    <select class="form-control" formControlName="product_uom" id="product_uom">
-                      <!-- <option *ngFor="let uom of uoms" value="{{uom.id}}">{{uom.unit_name}}</option> -->
-                      <option *ngFor="let uom of data" value="{{uom.id}}">{{uom.unit_name}}</option>
-                    </select>
+                    <ng-select formControlName="product_uom" id="product_uom">
+                      <ng-option *ngFor="let uom of uoms" [value]="uom.id">{{uom.unit_name}}</ng-option>
+                    </ng-select>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="product_conv_uom">Conv. UOM</label>
-                    <select class="form-control" formControlName="product_conv_uom" id="product_conv_uom">
-                      <option *ngFor="let uom of data" value="{{uom.id}}">{{uom.unit_name}}</option>
-                      <!-- <option *ngFor="let uom of uoms" value="{{uom.id}}">{{uom.unit_name}}</option> -->
-                    </select>
+                    <ng-select formControlName="product_conv_uom" id="product_conv_uom">
+                      <ng-option *ngFor="let uom of uoms" [value]="uom.id">{{uom.unit_name}}</ng-option>
+                    </ng-select>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -112,42 +109,44 @@
               <h4 class="form-section mt-1"><i class="ft-info"></i>Stock Management</h4>
               <div class="row">
                 <div class="col-md-2">
-                  <!-- <div class="form-group">
-                                            <label for="product_batch_type">Batch Type</label>
-                                            <select class="form-control" formControlName="product_batch_type" id="product_batch_type">
-                                                <option>Yes</option>
-                                                <option>No</option>
-                                            </select>
-                                        </div> -->
+
                   <div class="form-group">
                     <label for="product_batch_type">Batch Type</label> <br />
-                    <div class="btn-group btn-group-toggle btn-group-sm btn-raised" formControlName="product_batch_type"
-                      ngbRadioGroup name="product_batch_type">
-                      <label ngbButtonLabel class="btn-light btn-sm btn-raised">
-                        <input ngbButton type="radio" value="Yes"> Yes</label>
-                      <label ngbButtonLabel class="btn-light btn-sm btn-raised">
-                        <input ngbButton type="radio" value="No"> No</label>
+                    <div class="input-group">
+                      <div class="custom-control custom-radio d-inline-block">
+                        <input class="custom-control-input" id="customRadioInline1" formControlName="product_batch_type"
+                          name="product_batch_type" type="radio" [value]=1>
+                        <label class="custom-control-label" for="customRadioInline1">Yes</label>
+                      </div>
+                      <div class="custom-control custom-radio d-inline-block">
+                        <input class="custom-control-input" id="customRadioInline2" formControlName="product_batch_type"
+                          name="product_batch_type" type="radio" [value]=0>
+                        <label class="custom-control-label" for="customRadioInline2">No</label></div>
                     </div>
+
+
+
                   </div>
                 </div>
                 <div class="col-md-3">
-                  <!-- <div class="form-group">
-                                            <label for="product_maintain_stock_ledger">Maintain Stock Ledger</label>
-                                            <select class="form-control" formControlName="product_maintain_stock_ledger" id="product_maintain_stock_ledger">
-                                                  <option>Yes</option>
-                                                  <option>No</option>
-                                                </select>
-                                        </div> -->
+
                   <div class="form-group">
-                    <label for="product_maintain_stock_ledger">Maintain Stock Ledger</label><br />
-                    <div class="btn-group btn-group-toggle btn-group-sm btn-raised"
-                      formControlName="product_stock_ledger" ngbRadioGroup name="product_stock_ledger">
-                      <label ngbButtonLabel class="btn-light btn-sm btn-raised">
-                        <input ngbButton type="radio" value="Yes"> Yes</label>
-                      <label ngbButtonLabel class="btn-light btn-sm btn-raised">
-                        <input ngbButton type="radio" value="No"> No</label>
+                    <label for="product_maintain_stock_ledger">Maintain Stock Ledger</label> <br />
+                    <div class="input-group">
+                      <div class="custom-control custom-radio d-inline-block">
+                        <input class="custom-control-input" id="product_stock_ledger_yes"
+                          formControlName="product_stock_ledger" name="product_stock_ledger" type="radio" [value]=1>
+
+                        <label class="custom-control-label" for="product_stock_ledger_yes">Yes</label>
+                      </div>
+                      <div class="custom-control custom-radio d-inline-block">
+                        <input class="custom-control-input" id="product_stock_ledger_no"
+                          formControlName="product_stock_ledger" name="product_stock_ledger" type="radio" [value]=0>
+
+                        <label class="custom-control-label" for="product_stock_ledger_no">No</label></div>
                     </div>
                   </div>
+
 
                 </div>
                 <div class="col-md-3">
@@ -183,12 +182,7 @@
                     </div>
                   </div>
                   <div class="row">
-                    <!-- <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="product_purchase_rate">Purchase Rate</label>
-                                                    <input type="number" formControlName="product_purchase_rate" id="product_purchase_rate" class="form-control border-primary" name="product_purchase_rate">
-                                                </div>
-                                            </div> -->
+
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label for="product_mrp_rate">MRP Rate</label>
@@ -198,23 +192,15 @@
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label for="product_gst_rate">GST Slot %</label>
+                        <label for="product_gst_rate">GST Rate %</label>
 
-                        <select class="form-control" formControlName="product_gst_rate" id="product_gst_rate">
-                          <option *ngFor="let tax of taxes" value="{{tax.id}}">{{tax.tax_name}}</option>
-                        </select>
+                        <ng-select formControlName="product_gst_rate" id="product_gst_rate">
+                          <ng-option *ngFor="let tax of taxes" [value]="tax.id">{{tax.tax_name}}</ng-option>
+                        </ng-select>
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <!-- <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="product_purchase_rate">Sales Rate</label>
-                                                    <input type="number" formControlName="product_sales_rate" id="product_purchase_rate" class="form-control border-primary" name="product_purchase_rate">
-                                                </div>
-                                            </div> -->
 
-                  </div>
                 </div>
                 <div class="col-lg-6">
                   <h4 class="form-section mt-1"><i class="ft-info"></i>Critical Level</h4>
@@ -235,8 +221,6 @@
                     </div>
                   </div>
                 </div>
-
-
               </div>
               <div class="row">
                 <div class="col-lg-6">
@@ -253,6 +237,11 @@
               <input type="submit" [disabled]="product.invalid" value="Save" class="btn btn-raised btn-primary">
             </div>
           </form>
+          <div>
+            <pre>
+              {{product.value|json}}
+            </pre>
+          </div>
         </div>
       </div>
     </div>

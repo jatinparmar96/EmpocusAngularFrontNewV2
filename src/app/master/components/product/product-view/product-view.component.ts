@@ -8,18 +8,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-view.component.scss']
 })
 export class ProductViewComponent implements OnInit {
-  id: any
-  data: any
-  constructor(
-    private apiService: ApiService,
-    private route: ActivatedRoute,
-
-  ) { }
+  id: any;
+  data: any;
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      if (params['id'] == 'new') {
-        this.id = "new";
+      if (params['id'] === 'new') {
+        this.id = 'new';
       } else {
         this.id = +params['id']; // (+) converts string 'id' to a number
         this.getData(this.id);
@@ -27,10 +23,9 @@ export class ProductViewComponent implements OnInit {
     });
   }
   getData(id: any) {
-    this.apiService.get("admin/raw_product/" + id)
-      .then(data => {
-        let l_data: any = data;
-        this.data = l_data.data
-      })
+    this.apiService.get('admin/raw_product/' + id).then(data => {
+      const l_data: any = data;
+      this.data = l_data.data;
+    });
   }
 }
