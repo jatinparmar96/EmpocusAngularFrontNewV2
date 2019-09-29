@@ -11,16 +11,6 @@ export const ROUTES: RouteInfo[] = [
     isExternalLink: false,
     submenu: [
       {
-        path: '/setupCompany',
-        title: 'Create Company',
-        icon: '',
-        class: '',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: []
-      },
-      {
         path: '/master/charts-of-accounts',
         title: 'Chart Of Accounts',
         icon: '',
@@ -51,16 +41,16 @@ export const ROUTES: RouteInfo[] = [
         submenu: []
       },
 
-      {
-        path: '/master/charges-master',
-        title: 'Charges Master',
-        icon: '',
-        class: '',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: []
-      },
+      // {
+      //   path: '/master/charges-master',
+      //   title: 'Charges Master',
+      //   icon: '',
+      //   class: '',
+      //   badge: '',
+      //   badgeClass: '',
+      //   isExternalLink: false,
+      //   submenu: []
+      // },
       {
         path: '/master/branch-master',
         title: 'Branch Master',
@@ -82,16 +72,16 @@ export const ROUTES: RouteInfo[] = [
         submenu: []
       },
 
-      {
-        path: '/master/bom/new',
-        title: 'Bill of Material',
-        icon: '',
-        class: '',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: []
-      },
+      // {
+      //   path: '/master/bom/new',
+      //   title: 'Bill of Material',
+      //   icon: '',
+      //   class: '',
+      //   badge: '',
+      //   badgeClass: '',
+      //   isExternalLink: false,
+      //   submenu: []
+      // },
       {
         path: '/master/category',
         title: 'Category',
@@ -101,17 +91,17 @@ export const ROUTES: RouteInfo[] = [
         badgeClass: '',
         isExternalLink: false,
         submenu: []
-      },
-      {
-        path: '/master/process-type',
-        title: 'Process Type',
-        icon: '',
-        class: '',
-        badge: '',
-        badgeClass: '',
-        isExternalLink: false,
-        submenu: []
       }
+      // {
+      //   path: '/master/process-type',
+      //   title: 'Process Type',
+      //   icon: '',
+      //   class: '',
+      //   badge: '',
+      //   badgeClass: '',
+      //   isExternalLink: false,
+      //   submenu: []
+      // }
     ]
   },
   {

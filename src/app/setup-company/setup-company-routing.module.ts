@@ -11,11 +11,11 @@ const routes: Routes = [
     component: HeadOfficeInfoComponent
   },
   {
-    path: "BankDetails/",
+    path: 'BankDetails/',
     component: BankInfoComponent
   },
   {
-    path: "OtherDetails/",
+    path: 'OtherDetails/',
     component: CompanyOtherDetailsComponent
   },
   {
@@ -28,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SetupCompanyRoutingModule { }
+export class SetupCompanyRoutingModule {}

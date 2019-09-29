@@ -11,37 +11,37 @@ import { Router } from '@angular/router';
 export class RegisterFormComponent implements OnInit {
   user: FormGroup;
   errors: any;
-  isProcessing: boolean = false;
+  isProcessing = false;
   constructor(
     fb: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {
     this.user = fb.group({
-      "name": ["", Validators.required],
-      "display_name": ["", Validators.required],
-      "email": ["", Validators.required],
-      "mobile": ["", Validators.required],
-      "password": ["", Validators.required],
+      name: ['', Validators.required],
+      display_name: ['', Validators.required],
+      email: ['', Validators.required],
+      mobile: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
-  ngOnInit() {
-  }
-  register(user) {
+  ngOnInit() {}
+  register(user1) {
     this.isProcessing = true;
-    this.authService.signupUser(user.value).then((data) => {
-      let user: any = data;
-      console.log(user);
-      if (user.status === 'ok') {
-        this.router.navigateByUrl('/setupCompany');
-      }
-    })
-      .catch((error) => {
+    this.authService
+      .signupUser(user1.value)
+      .then(data => {
+        const user: any = data;
+        if (user.status === 'ok') {
+          this.authService.updateToken(user.token);
+          this.router.navigateByUrl('/register/create');
+        }
+      })
+      .catch(error => {
         this.isProcessing = false;
 
-        this.errors = Object.keys(error).map(i => error[i])
-      })
+        this.errors = Object.keys(error).map(i => error[i]);
+      });
   }
-
 }

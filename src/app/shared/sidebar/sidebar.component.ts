@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { customAnimations } from '../animations/custom-animations';
 import { ConfigService } from '../services/config.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -20,6 +21,7 @@ import { ConfigService } from '../services/config.service';
 })
 export class SidebarComponent implements OnInit, AfterViewInit {
   @ViewChild('toggleIcon', { static: false }) toggleIcon: ElementRef;
+  company_name = '';
   public menuItems: any[];
   depth: number;
   activeTitle: string;
@@ -35,7 +37,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     private router: Router,
     private route: ActivatedRoute,
     public translate: TranslateService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private apiService: ApiService
   ) {
     if (this.depth === undefined) {
       this.depth = 0;
@@ -52,9 +55,26 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     } else {
       this.logoUrl = 'assets/img/logo.png';
     }
+    this.getCompanyName();
   }
-
+  getCompanyName() {
+    this.apiService.get('admin/user/company').then((data: any) => {
+      if (data.status) {
+        this.company_name = data.data.company_name;
+      } else {
+        this.router.navigateByUrl('/register/create');
+      }
+    });
+  }
   ngAfterViewInit() {
+    this.apiService.get('admin/user/company').then((data: any) => {
+      if (data.status) {
+        console.log(data);
+        this.company_name = data.data.name;
+      } else {
+        this.router.navigateByUrl('/register/create');
+      }
+    });
     setTimeout(() => {
       if (this.config.layout.sidebar.collapsed !== undefined) {
         if (this.config.layout.sidebar.collapsed === true) {
