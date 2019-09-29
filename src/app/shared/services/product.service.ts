@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
-  url = 'master/product';
+  url = 'admin/raw_product';
   constructor(private _apiService: ApiService) {}
 
   getProduct(): Observable<any> {
