@@ -98,19 +98,16 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="assigned_to">Assigned To</label>
-                   <app-employee-selector
-                   [parentForm]="lead_data"
-                   [controlName]="'assigned_to'"
-                   [controlValue]="employeeDetails"
-                   >
-                   </app-employee-selector>
+                    <app-employee-selector [parentForm]="lead_data" [controlName]="'assigned_to'"
+                      [controlValue]="employeeDetails">
+                    </app-employee-selector>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="lead_status">Lead Status</label>
-                    <ng-select  formControlName="lead_status" id="lead_status">
-                      <ng-option value="new" >New</ng-option>
+                    <ng-select formControlName="lead_status" id="lead_status">
+                      <ng-option value="new">New</ng-option>
                       <ng-option value="contacted">Contacted</ng-option>
                       <ng-option value="interested">Interested</ng-option>
                       <ng-option value="under_review">Under Review</ng-option>
@@ -134,10 +131,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="product">Product</label>
-                    <app-product-select
-                    [parentForm]="lead_data"
-                    [controlName]="'product'"
-                    ></app-product-select>
+                    <app-product-select [parentForm]="lead_data" [controlName]="'product'"></app-product-select>
                   </div>
                 </div>
               </div>
@@ -207,9 +201,8 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="company_industry_type">Industry type</label>
-                            <ng-select formControlName="company_industry_type"
-                              id="company_industry_type">
-                             
+                            <ng-select formControlName="company_industry_type" id="company_industry_type">
+
                               <ng-option ngValue="Accounting Type">Accounting Type</ng-option>
                               <ng-option ngValue="Advertising">Advertising</ng-option>
                               <ng-option ngValue="Aerospace">Aerospace</ng-option>
@@ -262,8 +255,7 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label for="company_business_type">Business Type</label>
-                            <ng-select  formControlName="company_business_type"
-                              id="company_business_type">
+                            <ng-select formControlName="company_business_type" id="company_business_type">
                               <ng-option>Select Option</ng-option>
                               <ng-option>Analyst</ng-option>
                               <ng-option>Competitor</ng-option>
@@ -281,11 +273,9 @@
                       </div>
 
                     </div>
-                    <div class="tab-pane" [class.active]="active=='missed'" id="missed" role="tabpanel"
-                      >
-                    <app-address [parentForm]="lead_data" [controlName]="'address'"
-                    [prefetchedData]="prefetchedAddress"
-                    ></app-address>
+                    <div class="tab-pane" [class.active]="active=='missed'" id="missed" role="tabpanel">
+                      <app-address [parentForm]="lead_data" [controlName]="'address'"
+                        [prefetchedData]="prefetchedAddress"></app-address>
                     </div>
                     <div class="tab-pane active" [class.active]="active=='social'" id="social" role="tabpanel"
                       formGroupName="social">
@@ -397,9 +387,7 @@
             </div>
           </form>
           <!-- Form End -->
-          <pre>
-            {{lead_data.value | json}}
-          </pre>
+
         </div>
       </div>
     </div>
