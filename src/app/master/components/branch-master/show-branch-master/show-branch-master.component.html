@@ -21,7 +21,7 @@
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a> Godown</a></span>
-              <span class="display-block overflow-hidden">{{branch.branch_godown}}</span>
+              <span class="display-block overflow-hidden">{{branch.branch_godown?'Yes':'No'}}</span>
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Code:</a></span>
@@ -31,28 +31,34 @@
           <div class="row mb-2">
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Bank Name:</a></span>
-              <span class="display-block overflow-hidden">{{branch.bank_name}}</span>
+              <span class="display-block overflow-hidden">{{branch.bank?.bank_name}}</span>
             </div>
             <div class="col-lg-3">
-              <span class="text-bold-500 primary"><a>Banch Account Name:</a></span>
-              <a class="display-block overflow-hidden">{{branch.account_name}}</a>
+              <span class="text-bold-500 primary"><a>Branch Account Name:</a></span>
+              <a class="display-block overflow-hidden">{{branch.bank?.account_name}}</a>
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Bank Account Number:</a></span>
-              <span class="display-block overflow-hidden">{{branch.account_no}}</span>
+              <span class="display-block overflow-hidden">{{branch.bank?.account_no}}</span>
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Bank IFSC:</a></span>
-              <span class="display-block overflow-hidden">{{branch.ifsc_code}}</span>
+              <span class="display-block overflow-hidden">{{branch.bank?.ifsc_code}}</span>
             </div>
           </div>
           <div class="row mb-2">
             <div class="col-lg-12">
               <span class="text-bold-500 primary"><a>Address:</a></span>
               <span class="display-block overflow-hidden">
-                <p>{{branch.branch_address_building}}, {{branch.branch_address_road_name}},
-                  {{branch.branch_address_landmark}}, {{branch.branch_address_city}}, {{branch.branch_address_state}},
-                  {{branch.branch_address_country}}, {{branch.branch_address_pincode}}</p>
+                <span *ngIf="branch.address?.address_line_1">{{branch.address?.address_line_1}}
+                  <br></span>
+                <span *ngIf="branch.address?.address_line_2">{{branch.address?.address_line_2}}
+                  <br></span>
+                <span *ngIf="branch.address?.city">{{branch.address?.city}} <br></span>
+                <span *ngIf="branch.address?.state">{{branch.address?.state}} <br></span>
+                <span *ngIf="branch.address?.country">{{branch.address?.country}} <br></span>
+                <span *ngIf="branch.address?.pincode">{{branch.address?.pincode}} <br></span>
+
               </span>
             </div>
           </div>

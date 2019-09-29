@@ -24,10 +24,12 @@
                     <td>{{branch.branch_name}}</td>
                     <td>{{branch.branch_gst_number}}</td>
                     <td>{{branch.branch_code}}</td>
-                    <td>{{branch.branch_godown}}</td>
+                    <td>{{branch.branch_godown?'Yes':'No'}}</td>
                     <td>
-                      <a (click)="show(branch.id)" class="danger font-medium-1 p-0"><i class="fa fa-eye"></i></a>
-                      <a (click)="edit(branch.id)" class="success font-medium-1 p-0 ml-2"><i class="fa fa-edit"></i></a>
+                      <a [routerLink]="['detail',branch.id]" class="danger font-medium-1 p-0"><i
+                          class="fa fa-eye"></i></a>
+                      <a [routerLink]="[branch.id]" routerLinkActive="router-link-active"
+                        class="success font-medium-1 p-0 ml-2"><i class="fa fa-edit"></i></a>
                     </td>
                   </tr>
                 </tbody>

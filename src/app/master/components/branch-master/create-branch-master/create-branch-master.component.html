@@ -20,8 +20,6 @@
                     name="branch_name">
                   <input type="hidden" formControlName="id" id="id" value="new" class="form-control border-primary"
                     name="id">
-                  <input type="hidden" formControlName="address_id" value="new" id="address_id"
-                    class="form-control border-primary" name="address_id">
                   <div *ngIf="errors.branch_name !== '' ">
                     <p class="red mt-1">{{errors.branch_name}}</p>
                   </div>
@@ -45,89 +43,31 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="branch_godown">Godown?</label> <br />
-                  <div class="btn-group btn-group-toggle" ngbRadioGroup id="branch_godown"
-                    formControlName="branch_godown">
-                    <label ngbButtonLabel class="btn btn-raised btn-sm btn-light">
-                      <input ngbButton type="radio" value="Yes"> Yes
-                    </label>
-                    <label ngbButtonLabel class="btn btn-raised btn-sm btn-light">
-                      <input ngbButton type="radio" class="radio" value="No"> No
-                    </label>
+                  <label for="ca_category">Godown?</label>
+                  <br />
+                  <div class="input-group">
+                    <div class="custom-control custom-radio d-inline-block">
+                      <input class="custom-control-input" id="yes" formControlName="branch_godown" name="branch_godown"
+                        type="radio" [value]=1>
+
+                      <label class="custom-control-label" for="yes">Yes</label>
+                    </div>
+                    <div class="custom-control custom-radio d-inline-block">
+                      <input class="custom-control-input" id="no" formControlName="branch_godown" name="branch_godown"
+                        type="radio" [value]=0>
+
+                      <label class="custom-control-label" for="no">No</label>
+                    </div>
                   </div>
                 </div>
+
               </div>
             </div>
 
             <h4 class="form-section"><i class="ft-info"></i>Branch Address Details</h4>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="bbn">Block No./ Building Name</label>
-                  <input type="text" class="form-control" formControlName="branch_address_building" id="bbn" name="bbn">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="inputRName">Road Name</label>
-                  <input type="text" class="form-control" formControlName="branch_address_road_name" id="inputRName"
-                    name="inputRNamev">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="lmark">Landmark</label>
-                  <input type="text" class="form-control" formControlName="branch_address_landmark" id="lmark"
-                    name="lmark">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="pincode">Pincode</label>
-                  <input type="text" class="form-control" id="pincode" formControlName="branch_address_pincode"
-                    name="pincode">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="countrySelect">Country</label>
-                  <select formControlName="branch_address_country" class="form-control" id="countrySelect">
-                    <option>Select Option</option>
-                    <option>India</option>
-                    <option>China</option>
-                    <option>Nepal</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="stateSelect">State</label>
-                  <select formControlName="branch_address_state" class="form-control" id="stateSelect">
-                    <option>Select Option</option>
-                    <option>Maharashtra</option>
-                    <option>Gujarat</option>
-                    <option>Rajasthan</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="City">City</label>
-                  <select formControlName="branch_address_city" class="form-control" id="CitySelect">
-                    <option>Select Option</option>
-                    <option>Mumbai</option>
-                    <option>Nagpur</option>
-                    <option>Thane</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+
+            <app-address [parentForm]="branch_data" [controlName]="'address'"></app-address>
+
             <h4 class="form-section"><i class="ft-info"></i>Branch Bank Details</h4>
             <div class="row">
               <div class="col-md-6">
@@ -143,9 +83,8 @@
             </div>
             <div class="form-actions left">
               <input type="submit" [disabled]=isProcessing value="Save" class="btn btn-raised btn-primary">
-              <input type="submit" [disabled]=isProcessing (click)="cancel()" value="Cancel"
+              <input type="submit" [disabled]=isProcessing [routerLink]="['../']" value="Cancel"
                 class="btn btn-raised btn-danger ml-2">
-              <!-- <button class="btn btn-primary btn-raised" (click)="cancel()">Back</button> -->
             </div>
           </form>
         </div>
