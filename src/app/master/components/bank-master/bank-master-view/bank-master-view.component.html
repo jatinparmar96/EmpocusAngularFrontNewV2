@@ -28,7 +28,8 @@
                   <td>{{bank.ifsc_code}}</td>
                   <td>{{bank.branch}}</td>
                   <td>
-                    <a (click)="edit(bank.id)" class="success p-0"><i class="fa fa-edit"></i></a>
+                    <a [routerLink]="[bank.id]" routerLinkActive="router-link-active" class="success p-0"><i
+                        class="fa fa-edit"></i></a>
                   </td>
                 </tr>
               </tbody>

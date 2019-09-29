@@ -80,11 +80,7 @@ export class BankMasterCreateComponent implements OnInit {
             },
             'success'
           );
-          if (this.next) {
-            this.router.navigateByUrl('/dashboard/bank-master/new');
-          } else {
-            this.router.navigateByUrl('/dashboard/bank-master');
-          }
+          this.router.navigateByUrl('/dashboard/bank-master/new');
         } else {
           this.notifyService.show(
             {
@@ -110,12 +106,5 @@ export class BankMasterCreateComponent implements OnInit {
       bank_ifsc_code: [''],
       bank_branch: ['']
     };
-  }
-
-  advanceNext() {
-    this.next = true;
-  }
-  cancel() {
-    this.router.navigateByUrl('/dashboard/bank-master');
   }
 }
