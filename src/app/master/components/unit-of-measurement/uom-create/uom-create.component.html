@@ -22,7 +22,8 @@
               </div>
               <div class="col-lg-12 d-flex justify-content-between flex-row">
                 <div>
-                  <input type="submit" [disabled]=isProcessing value="Save" class="btn btn-raised btn-primary">
+                  <input type="submit" [disabled]="isProcessing || unit_data.invalid" value="Save"
+                    class="btn btn-raised btn-primary">
                   <input type="button" (click)='cancel()' [disabled]=isProcessing value="Back"
                     class="btn ml-2 btn-raised btn-danger">
                 </div>

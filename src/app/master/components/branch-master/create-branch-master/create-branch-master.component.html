@@ -82,7 +82,8 @@
               </div>
             </div>
             <div class="form-actions left">
-              <input type="submit" [disabled]=isProcessing value="Save" class="btn btn-raised btn-primary">
+              <input type="submit" [disabled]="isProcessing||branch_data.invalid" value="Save"
+                class="btn btn-raised btn-primary">
               <input type="submit" [disabled]=isProcessing [routerLink]="['../']" value="Cancel"
                 class="btn btn-raised btn-danger ml-2">
             </div>

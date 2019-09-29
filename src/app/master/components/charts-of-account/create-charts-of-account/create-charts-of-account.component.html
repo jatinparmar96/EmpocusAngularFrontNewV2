@@ -243,16 +243,12 @@
                             </div>
                         </div>
                         <div class="form-actions left">
-                            <input type="submit" value="Save" class="btn btn-raised btn-primary">
-                            <input type="button" value="Cancel" (click)='cancel()'
-                                class="btn btn-raised ml-1 btn-danger">
+                            <input type="submit" [disabled]="coa_data.invalid" value="Save"
+                                class="btn btn-raised btn-primary">
+                            <input type="button" value="Cancel" [routerLink]="['../']"
+                                routerLinkActive="router-link-active" class="btn btn-raised ml-1 btn-danger">
                         </div>
                     </form>
-                    <div>
-                        <pre>
-                            {{coa_data.value|json}}
-                        </pre>
-                    </div>
                 </div>
             </div>
         </div>
