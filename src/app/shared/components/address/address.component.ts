@@ -32,7 +32,7 @@ export class AddressComponent implements OnInit, OnChanges {
     });
   }
   ngOnInit() {
-    this.parentForm.setControl(this.controlName, this.generateAddress());
+    this.parentForm.addControl(this.controlName, this.generateAddress());
   }
   ngOnChanges(changes: SimpleChanges) {
     if (changes.prefetchedData) {

@@ -23,6 +23,7 @@ import { ViewChartsOfAccountComponent } from './components/charts-of-account/vie
 import { CreateChargesMasterComponent } from './components/charges-master/create-charges-master/create-charges-master.component';
 import { ViewChargesMasterComponent } from './components/charges-master/view-charges-master/view-charges-master.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     RouterModule,
     NgSelectModule,
+    SharedModule,
     NgxPaginationModule
   ]
 })

@@ -57,26 +57,26 @@
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Contact Person Name</a></span>
-              <span class="display-block overflow-hidden">{{chart_of_account.ca_contact_first_name}}
-                {{chart_of_account.ca_contact_last_name}}</span>
+              <span class="display-block overflow-hidden">{{chart_of_account.contact?.ca_contact_first_name}}
+                {{chart_of_account.contact?.ca_contact_last_name}}</span>
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Contact Person Number:</a></span>
-              <span class="display-block overflow-hidden">{{chart_of_account.ca_contact_mobile_number}}</span>
+              <span class="display-block overflow-hidden">{{chart_of_account.contact?.ca_contact_mobile_number}}</span>
             </div>
           </div>
           <div class="row mb-2">
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Contact Person Email:</a></span>
-              <span class="display-block overflow-hidden">{{chart_of_account.ca_contact_email}}</span>
+              <span class="display-block overflow-hidden">{{chart_of_account.contact?.ca_contact_email}}</span>
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Contact Person Designation:</a></span>
-              <span class="display-block overflow-hidden">{{chart_of_account.ca_contact_designation}}</span>
+              <span class="display-block overflow-hidden">{{chart_of_account.contact?.ca_contact_designation}}</span>
             </div>
             <div class="col-lg-3">
               <span class="text-bold-500 primary"><a>Contact Person Branch:</a></span>
-              <span class="display-block overflow-hidden">{{chart_of_account.ca_contact_branch}}</span>
+              <span class="display-block overflow-hidden">{{chart_of_account.contact?.ca_contact_branch}}</span>
             </div>
           </div>
           <div class="row mb-2">
@@ -84,10 +84,15 @@
             <div class="col-lg-12">
               <span class="text-bold-500 primary"><a>Address:</a></span>
               <span class="display-block overflow-hidden">
-                <p>{{chart_of_account.ca_address_building}}, {{chart_of_account.ca_address_road_name}},
-                  {{chart_of_account.ca_address_landmark}}, {{chart_of_account.ca_address_city}},
-                  {{chart_of_account.ca_address_state}}, {{chart_of_account.ca_address_country}},
-                  {{chart_of_account.ca_address_pincode}}</p>
+                <span *ngIf="chart_of_account.address?.address_line_1">{{chart_of_account.address?.address_line_1}}
+                  <br></span>
+                <span *ngIf="chart_of_account.address?.address_line_2">{{chart_of_account.address?.address_line_2}}
+                  <br></span>
+                <span *ngIf="chart_of_account.address?.city">{{chart_of_account.address?.city}} <br></span>
+                <span *ngIf="chart_of_account.address?.state">{{chart_of_account.address?.state}} <br></span>
+                <span *ngIf="chart_of_account.address?.country">{{chart_of_account.address?.country}} <br></span>
+                <span *ngIf="chart_of_account.address?.pincode">{{chart_of_account.address?.pincode}} <br></span>
+
               </span>
             </div>
           </div>

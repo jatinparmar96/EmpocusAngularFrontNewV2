@@ -1,284 +1,261 @@
 <div class="row">
-  <div class="col-md-8">
-      <div class="card">
-          <div class="card-header">
-              <h4 class="card-title" id="basic-layout-colored-form-control">Chart of Accounts</h4>
-          </div>
-          <div class="card-body">
-              <div class="px-3">
-                  <form class="form" [formGroup]="coa_data" (ngSubmit)="addOrUpdate(coa_data)">
-                      <div class="form-body">
-                          <h4 class="form-section"><i class="ft-info"></i> About</h4>
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="ca_company_name">Company Name</label>
-                                      <input type="text" formControlName="ca_company_name" placeholder="Roxso LLP" id="ca_company_name" class="form-control border-primary" name="ca_company_name">
-                                      <input type="hidden" formControlName="id" id="id" class="form-control border-primary" name="id">
-                                      <input type="hidden" formControlName="address_id" id="address_id" value="new" class="form-control border-primary" name="address_id">
-                                      <div *ngIf="errors.ca_company_name !== '' ">
-                                          <p class="red mt-1">{{errors.ca_company_name}}</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="ca_company_display_name">Company Display Name</label>
-                                      <input type="text" formControlName="ca_company_display_name" id="ca_company_display_name" placeholder="Roxso" class="form-control border-primary" name="ca_company_display_name">
-                                      <div *ngIf="errors.ca_company_display_name !== '' ">
-                                          <p class="red mt-1">{{errors.ca_company_display_name}}</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="ca_category">Category</label> <br />
-                                      <div class="btn-group btn-group-toggle" ngbRadioGroup id="ca_category" formControlName="ca_category">
-                                          <label ngbButtonLabel class="btn btn-raised btn-sm btn-light">
-                        <input ngbButton type="radio" value="Creditor"> Creditor
-                      </label>
-                                          <label ngbButtonLabel class="btn btn-raised btn-sm btn-light">
-                        <input ngbButton type="radio" class="radio" value="Debitor"> Debitor
-                      </label>
-                                      </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title" id="basic-layout-colored-form-control">Chart of Accounts</h4>
+            </div>
+            <div class="card-body">
+                <div class="px-3">
+                    <form class="form" [formGroup]="coa_data" (ngSubmit)="addOrUpdate(coa_data)">
+                        <div class="form-body">
+                            <h4 class="form-section"><i class="ft-info"></i> About</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="ca_company_name">Company Name</label>
+                                        <input type="text" formControlName="ca_company_name" placeholder="Roxso LLP"
+                                            id="ca_company_name" class="form-control border-primary"
+                                            name="ca_company_name">
+                                        <input type="hidden" formControlName="id" id="id"
+                                            class="form-control border-primary" name="id">
+                                        <div *ngIf="errors?.ca_company_name !== '' ">
+                                            <p class="red mt-1">{{errors.ca_company_name}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="ca_company_display_name">Company Display Name</label>
+                                        <input type="text" formControlName="ca_company_display_name"
+                                            id="ca_company_display_name" placeholder="Roxso"
+                                            class="form-control border-primary" name="ca_company_display_name">
+                                        <div *ngIf="errors.ca_company_display_name !== '' ">
+                                            <p class="red mt-1">{{errors.ca_company_display_name}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="ca_category">Category</label>
+                                        <br />
+                                        <div class="input-group">
+                                            <div class="custom-control custom-radio d-inline-block">
+                                                <input class="custom-control-input" id="ca_category_yes"
+                                                    formControlName="ca_category" name="ca_category" type="radio"
+                                                    [value]="'Creditor'">
 
-                                      <!-- <select class="form-control" formControlName="ca_category" id="countrySelect">
-                      <option>Creditor</option>
-                      <option>Debtor</option>
-                    </select> -->
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="code">Code</label>
-                                      <input type="text" formControlName="ca_code" id="code" class="form-control border-primary" name="code">
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="ca_opening_amount">Opening Amount</label>
-                                      <input type="text" formControlName="ca_opening_amount" id="ca_opening_amount" class="form-control border-primary" name="ca_opening_amount">
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="ca_opening_type">Opening Amount Type</label> <br/>
-                                      <div class="btn-group btn-group-toggle" ngbRadioGroup id="ca_opening_type" formControlName="ca_opening_type">
-                                          <label ngbButtonLabel class="btn btn-raised btn-sm btn-light">
-                        <input ngbButton type="radio" value="Creditor"> Creditor
-                      </label>
-                                          <label ngbButtonLabel class="btn btn-raised btn-sm btn-light">
-                        <input ngbButton type="radio" class="radio" value="Debitor"> Debitor
-                      </label>
-                                      </div>
-                                      <!-- <select class="form-control" formControlName="ca_opening_type" id="oat">
-                      <option>Creditor</option>
-                      <option>Debtor</option>
-                    </select> -->
-                                  </div>
-                              </div>
-                          </div>
-                          <h4 class="form-section mt-1"><i class="ft-info"></i> Other Details</h4>
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                      <li class="nav-item">
-                                          <a class="nav-link" [class.active]="active=='today'" (click)="active='today'" role="tab"> Contact
-                        List </a>
-                                      </li>
-                                      <li class="nav-item">
-                                          <a class="nav-link active" [class.active]="active=='missed'" (click)="active='missed'" role="tab">
-                        Address </a>
-                                      </li>
-                                      <li class="nav-item">
-                                          <a class="nav-link" [class.active]="active=='future'" (click)="active='future'" role="tab">
-                        Other Details </a>
-                                      </li>
-                                  </ul>
-                                  <div class="tab-content">
-                                      <div class="tab-pane active" [class.active]="active=='today'" id="today" role="tabpanel">
+                                                <label class="custom-control-label"
+                                                    for="ca_category_yes">Creditor</label>
+                                            </div>
+                                            <div class="custom-control custom-radio d-inline-block">
+                                                <input class="custom-control-input" id="ca_category_no"
+                                                    formControlName="ca_category" name="ca_category" type="radio"
+                                                    [value]="'Debitor'">
 
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_contact_first_name">First Name</label>
-                                                      <input type="text" formControlName="ca_contact_first_name" id="ca_contact_first_name" class="form-control border-primary" name="ca_contact_first_name">
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_contact_last_name">Last Name</label>
-                                                      <input type="text" formControlName="ca_contact_last_name" id="ca_contact_last_name" class="form-control border-primary" name="ca_contact_last_name">
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_contact_mobile_number">Mobile Number</label>
-                                                      <input type="tel" formControlName="ca_contact_mobile_number" id="ca_contact_mobile_number" class="form-control border-primary" name="ca_contact_mobile_number">
-                                                  </div>
-                                              </div>
+                                                <label class="custom-control-label" for="ca_category_no">Debitor</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="code">Code</label>
+                                        <input type="text" formControlName="ca_code" id="code"
+                                            class="form-control border-primary" name="code">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="ca_opening_amount">Opening Amount</label>
+                                        <input type="text" formControlName="ca_opening_amount" id="ca_opening_amount"
+                                            class="form-control border-primary" name="ca_opening_amount">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="ca_opening_type">Opening Amount Type</label>
+                                        <br />
+                                        <div class="input-group">
+                                            <div class="custom-control custom-radio d-inline-block">
+                                                <input class="custom-control-input" id="product_stock_ledger_yes"
+                                                    formControlName="ca_opening_type" name="ca_opening_type"
+                                                    type="radio" [value]="'Creditor'">
 
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_contact_email">Email</label>
-                                                      <input type="ca_contact_email" formControlName="ca_contact_email" id="ca_contact_email" class="form-control border-primary" name="ca_contact_email">
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_contact_designation">Designation</label>
-                                                      <input type="ca_contact_designation" formControlName="ca_contact_designation" id="ca_contact_designation" class="form-control border-primary" name="ca_contact_designation">
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_contact_branch">Branch</label>
-                                                      <input type="text" formControlName="ca_contact_branch" id="ca_contact_branch" class="form-control border-primary" name="ca_contact_branch">
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="tab-pane" [class.active]="active=='missed'" id="missed" role="tabpanel">
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_address_building">Block No./ Building Name</label>
-                                                      <input type="text" formControlName="ca_address_building" class="form-control" id="ca_address_building" name="ca_address_building">
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_address_road_name">Road Name</label>
-                                                      <input type="text" formControlName="ca_address_road_name" class="form-control" id="ca_address_road_name" name="ca_address_road_name">
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_address_landmark">Landmark</label>
-                                                      <input type="text" formControlName="ca_address_landmark" class="form-control" id="ca_address_landmark" name="ca_address_landmark">
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_address_pincode">Pincode</label>
-                                                      <input type="text" formControlName="ca_address_pincode" class="form-control" id="ca_address_pincode" name="ca_address_pincode">
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_address_country">Country</label>
-                                                      <select class="form-control" formControlName="ca_address_country" id="ca_address_country">
-                              <option>Select Option</option>
-                              <option>India</option>
-                              <option>China</option>
-                              <option>Nepal</option>
-                            </select>
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_address_state">State</label>
-                                                      <select class="form-control" formControlName="ca_address_state" id="ca_address_state">
-                              <option>Select Option</option>
-                              <option>Maharashtra</option>
-                              <option>Gujarat</option>
-                              <option>Rajasthan</option>
-                            </select>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_address_city">City</label>
-                                                      <select class="form-control" formControlName="ca_address_city" id="ca_address_city">
-                              <option>Select Option</option>
-                              <option>Mumbai</option>
-                              <option>Nagpur</option>
-                              <option>Thane</option>
-                            </select>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="tab-pane" [class.active]="active=='future'" id="future" role="tabpanel">
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_pan">PAN</label>
-                                                      <input type="text" formControlName="ca_pan" class="form-control" id="ca_pan" name="ca_pan">
-                                                  </div>
-                                              </div>
+                                                <label class="custom-control-label"
+                                                    for="product_stock_ledger_yes">Creditor</label>
+                                            </div>
+                                            <div class="custom-control custom-radio d-inline-block">
+                                                <input class="custom-control-input" id="product_stock_ledger_no"
+                                                    formControlName="ca_opening_type" name="ca_opening_type"
+                                                    type="radio" [value]="'Debitor'">
+
+                                                <label class="custom-control-label"
+                                                    for="product_stock_ledger_no">Debitor</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="form-section mt-1"><i class="ft-info"></i> Other Details</h4>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link" [class.active]="active=='today'"
+                                                (click)="active='today'" role="tab"> Contact
+                                                List </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" [class.active]="active=='missed'"
+                                                (click)="active='missed'" role="tab">
+                                                Address </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" [class.active]="active=='future'"
+                                                (click)="active='future'" role="tab">
+                                                Other Details </a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" [class.active]="active=='today'" id="today"
+                                            role="tabpanel" formGroupName="contact">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ca_contact_first_name">First Name</label>
+                                                        <input type="text" formControlName="ca_contact_first_name"
+                                                            id="ca_contact_first_name"
+                                                            class="form-control border-primary"
+                                                            name="ca_contact_first_name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ca_contact_last_name">Last Name</label>
+                                                        <input type="text" formControlName="ca_contact_last_name"
+                                                            id="ca_contact_last_name"
+                                                            class="form-control border-primary"
+                                                            name="ca_contact_last_name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ca_contact_mobile_number">Mobile Number</label>
+                                                        <input type="tel" formControlName="ca_contact_mobile_number"
+                                                            id="ca_contact_mobile_number"
+                                                            class="form-control border-primary"
+                                                            name="ca_contact_mobile_number">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ca_contact_email">Email</label>
+                                                        <input type="ca_contact_email"
+                                                            formControlName="ca_contact_email" id="ca_contact_email"
+                                                            class="form-control border-primary" name="ca_contact_email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ca_contact_designation">Designation</label>
+                                                        <input type="ca_contact_designation"
+                                                            formControlName="ca_contact_designation"
+                                                            id="ca_contact_designation"
+                                                            class="form-control border-primary"
+                                                            name="ca_contact_designation">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ca_contact_branch">Branch</label>
+                                                        <input type="text" formControlName="ca_contact_branch"
+                                                            id="ca_contact_branch" class="form-control border-primary"
+                                                            name="ca_contact_branch">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" [class.active]="active=='missed'" id="missed"
+                                            role="tabpanel">
+                                            <app-address [parentForm]="coa_data" [controlName]="'address'">
+                                            </app-address>
+                                        </div>
+                                        <div class="tab-pane" [class.active]="active=='future'" id="future"
+                                            role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ca_pan">PAN</label>
+                                                        <input type="text" formControlName="ca_pan" class="form-control"
+                                                            id="ca_pan" name="ca_pan">
+                                                    </div>
+                                                </div>
 
 
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_gstn">GSTN</label>
-                                                      <input type="text" formControlName="ca_gstn" class="form-control" id="ca_gstn" name="ca_gstn">
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_tan">TAN</label>
-                                                      <input type="text" formControlName="ca_tan" class="form-control" id="ca_tan" name="ca_tan">
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_date_opened">Date Opened</label>
-                                                      <input type="date" formControlName="ca_date_opened" id="issueinput3" class="form-control" name="ca_date_opened" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Date Opened">
-                                                  </div>
-                                              </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ca_gstn">GSTN</label>
+                                                        <input type="text" formControlName="ca_gstn"
+                                                            class="form-control" id="ca_gstn" name="ca_gstn">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ca_tan">TAN</label>
+                                                        <input type="text" formControlName="ca_tan" class="form-control"
+                                                            id="ca_tan" name="ca_tan">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ca_date_opened">Date Opened</label>
+                                                        <input type="date" formControlName="ca_date_opened"
+                                                            id="issueinput3" class="form-control" name="ca_date_opened"
+                                                            data-toggle="tooltip" data-trigger="hover"
+                                                            data-placement="top" data-title="Date Opened">
+                                                    </div>
+                                                </div>
 
-                                          </div>
-                                          <div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="ca_website">Website</label>
-                                                      <input type="text" formControlName="ca_website" id="ca_website" class="form-control border-primary" name="ca_website">
-                                                  </div>
-                                              </div>
-                                          </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ca_website">Website</label>
+                                                        <input type="text" formControlName="ca_website" id="ca_website"
+                                                            class="form-control border-primary" name="ca_website">
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-actions left">
-                          <input type="submit" value="Save" class="btn btn-raised btn-primary">
-                          <input type="button" value="Cancel" (click)='cancel()' class="btn btn-raised ml-1 btn-danger">
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="col-md-4">
-      <div class="card  text-center box-shadow-0">
-          <div class="card-body">
-              <div class="card-block">
-                  <img src="../assets/img/portrait/avatars/avatar-08.png" alt="element 05" width="250" class="mb-1 img-fluid">
-                  <div class="col align-self-center">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions left">
+                            <input type="submit" value="Save" class="btn btn-raised btn-primary">
+                            <input type="button" value="Cancel" (click)='cancel()'
+                                class="btn btn-raised ml-1 btn-danger">
+                        </div>
+                    </form>
+                    <div>
+                        <pre>
+                            {{coa_data.value|json}}
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                      <button class="btn btn-raised btn-primary btn-darken-3">Change Logo</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
 </div>

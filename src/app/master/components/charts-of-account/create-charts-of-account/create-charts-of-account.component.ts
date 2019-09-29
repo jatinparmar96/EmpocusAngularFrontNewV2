@@ -17,6 +17,7 @@ export class CreateChartsOfAccountComponent implements OnInit {
   isProcessing = false;
   errors: any;
   id: any = 'new';
+  address: any;
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,
@@ -25,40 +26,32 @@ export class CreateChartsOfAccountComponent implements OnInit {
     private router: Router
   ) {
     this.coa_data = this.fb.group({
-      address_id: ['new', Validators.required],
-      id: ['new', Validators.required],
-      contact_id: ['new', Validators.required],
-      ca_company_name: ['', Validators.required],
-      ca_company_display_name: ['', Validators.required],
-      ca_category: ['', Validators.required],
-      ca_code: ['', Validators.required],
-      ca_opening_amount: ['', Validators.required],
-      ca_opening_type: ['', Validators.required],
-      ca_contact_first_name: ['', Validators.required],
-      ca_contact_last_name: ['', Validators.required],
-      ca_contact_mobile_number: ['', Validators.required],
-      ca_contact_email: ['', Validators.required],
-      ca_website: ['', Validators.required],
-      ca_contact_designation: ['', Validators.required],
-      ca_contact_branch: ['', Validators.required],
-      ca_address_building: ['', Validators.required],
-      ca_address_road_name: ['', Validators.required],
-      ca_address_landmark: ['', Validators.required],
-      ca_address_pincode: ['', Validators.required],
-      ca_address_city: ['', Validators.required],
-      ca_address_state: ['', Validators.required],
-      ca_address_country: ['', Validators.required],
-      ca_pan: [' ', Validators.required],
-      ca_gstn: ['', Validators.required],
-      ca_tan: ['', Validators.required],
-      ca_date_opened: ['', Validators.required]
+      id: ['new'],
+      ca_company_name: [, Validators.required],
+      ca_company_display_name: [],
+      ca_category: ['Creditor'],
+      ca_code: [],
+      ca_opening_amount: [],
+      ca_opening_type: ['Creditor'],
+      contact: this.fb.group({
+        ca_contact_first_name: [, Validators.required],
+        ca_contact_last_name: [],
+        ca_contact_mobile_number: [897814687948, Validators.required],
+        ca_contact_email: [],
+        ca_contact_designation: [],
+        ca_contact_branch: []
+      }),
+      ca_website: [],
+      ca_pan: [],
+      ca_gstn: [],
+      ca_tan: [],
+      ca_date_opened: []
     });
     this.resetErrorMessages();
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log(params['id']);
       if (params['id'] === 'new') {
         this.id = 'new';
       } else {
@@ -72,7 +65,6 @@ export class CreateChartsOfAccountComponent implements OnInit {
     this.apiService.get('admin/coa/' + id).then(data => {
       const l_data: any = data;
       this.coa_data.patchValue(l_data.data);
-      console.log(this.coa_data.value);
     });
   }
   addOrUpdate(coa) {
@@ -89,7 +81,6 @@ export class CreateChartsOfAccountComponent implements OnInit {
       .then(data => {
         const result: any = data;
         // success
-        console.log(result);
         this.isProcessing = false;
         if (result.status) {
           this.notifyService.show(
@@ -99,6 +90,7 @@ export class CreateChartsOfAccountComponent implements OnInit {
             },
             'success'
           );
+          this.router.navigate(['/master', 'charts-of-accounts']);
         } else {
           this.notifyService.show(
             {

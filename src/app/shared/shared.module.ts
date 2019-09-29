@@ -22,6 +22,7 @@ import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
 import { ProductSelectComponent } from './selector-components/product-select/product-select.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { AddressComponent } from './components/address/address.component';
 
 @NgModule({
   exports: [
@@ -34,7 +35,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     SidebarDirective,
     NgbModule,
     TranslateModule,
-    ProductSelectComponent
+    ProductSelectComponent,
+    AddressComponent
   ],
   imports: [
     RouterModule,
@@ -56,7 +58,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     SidebarListDirective,
     SidebarAnchorToggleDirective,
     SidebarToggleDirective,
-    ProductSelectComponent
+    ProductSelectComponent,
+    AddressComponent
   ]
 })
 export class SharedModule {}
