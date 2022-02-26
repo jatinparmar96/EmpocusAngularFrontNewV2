@@ -42,7 +42,7 @@
     "ngx-perfect-scrollbar": "7.2.1",
     "ngx-toastr": "^10.2.0",
     "node-sass": "4.12.0",
-    "prismjs": "1.16.0",
+    "prismjs": "1.27.0",
     "resize-observer-polyfill": "1.5.1",
     "rxjs": "6.5.4",
     "screenfull": "4.2.0",
